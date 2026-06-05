@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CSS Clamp Generator Online - Responsive Font Size Calculator | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit CSS Clamp Generator to create responsive font sizes online. Generate clamp() CSS values for headings, paragraphs, and fluid typography."
+  />
+
+   <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+
+  <meta
+    name="keywords"
+    content="CSS clamp generator, responsive font size generator, clamp calculator, fluid typography generator, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/css-clamp.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CSS Clamp Generator Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Create responsive CSS clamp() values for fluid typography with live preview and copy-ready CSS code."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/css-clamp.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+ 
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+<header class="site-header" id="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container nav-container">
+      <a href="/index.html" class="site-logo" aria-label="DevToolKit Home">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">DevToolKit</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="/index.html#tools">Tools</a></li>
+        <li><a href="/index.html#developer-tools">Developer</a></li>
+        <li><a href="/index.html#design-tools">Design</a></li>
+        <li><a href="/index.html#image-tools">Image</a></li>
+        <li><a href="/index.html#utility-tools">Utility</a></li>
+        <li><a href="/index.html#faq">FAQ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="/index.html#tools" class="btn btn-outline">All Tools</a>
+
+        <a
+          href="https://github.com/arjumand-codes"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >
+          GitHub
+        </a>
+      </div>
+
+      <button class="mobile-menu-btn" type="button" aria-label="Open mobile menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#design-tools">Design Tools</a>
+            <span>/</span>
+            <span>CSS Clamp Generator</span>
+          </nav>
+
+          <p class="section-badge">Design Tool</p>
+
+          <h1>CSS Clamp Generator Online</h1>
+
+          <p>
+            Generate responsive CSS clamp() values for fluid typography.
+            Set minimum size, maximum size, viewport range, preview the result,
+            and copy clean CSS for your website.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#clamp-tool" class="btn btn-primary">Generate Clamp</a>
+            <a href="../index.html#design-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Generate CSS clamp()</li>
+            <li>Fluid responsive font sizes</li>
+            <li>Minimum and maximum size controls</li>
+            <li>Viewport range controls</li>
+            <li>Copy-ready CSS output</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- CSS Clamp Workspace Start -->
+    <section class="tool-workspace-section" id="clamp-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">Clamp Workspace</p>
+            <h2>Create Responsive Font Sizes</h2>
+            <p>
+              Add your minimum and maximum font sizes. JavaScript functionality will be connected later.
+            </p>
+          </div>
+
+          <div class="tool-status" id="clamp-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="clamp-tool-layout">
+          <!-- Controls Panel -->
+          <section class="tool-panel clamp-controls-panel" aria-labelledby="clamp-controls-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="clamp-controls-title">Clamp Controls</h3>
+                <p>Set font size and viewport range values.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="sample-clamp-btn">
+                Sample
+              </button>
+            </div>
+
+            <div class="clamp-form">
+              <!-- Min Font -->
+              <div class="form-group">
+                <label for="min-font-size">Minimum Font Size</label>
+                <div class="clamp-input-row">
+                  <input
+                    type="number"
+                    id="min-font-size"
+                    class="tool-input"
+                    value="32"
+                    min="1"
+                    step="1"
+                  />
+                  <select id="min-font-unit" class="tool-select">
+                    <option value="px">px</option>
+                    <option value="rem">rem</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Max Font -->
+              <div class="form-group">
+                <label for="max-font-size">Maximum Font Size</label>
+                <div class="clamp-input-row">
+                  <input
+                    type="number"
+                    id="max-font-size"
+                    class="tool-input"
+                    value="80"
+                    min="1"
+                    step="1"
+                  />
+                  <select id="max-font-unit" class="tool-select">
+                    <option value="px">px</option>
+                    <option value="rem">rem</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Min Viewport -->
+              <div class="form-group">
+                <label for="min-viewport">Minimum Viewport Width</label>
+                <div class="clamp-input-row">
+                  <input
+                    type="number"
+                    id="min-viewport"
+                    class="tool-input"
+                    value="360"
+                    min="1"
+                    step="1"
+                  />
+                  <select id="min-viewport-unit" class="tool-select">
+                    <option value="px">px</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Max Viewport -->
+              <div class="form-group">
+                <label for="max-viewport">Maximum Viewport Width</label>
+                <div class="clamp-input-row">
+                  <input
+                    type="number"
+                    id="max-viewport"
+                    class="tool-input"
+                    value="1200"
+                    min="1"
+                    step="1"
+                  />
+                  <select id="max-viewport-unit" class="tool-select">
+                    <option value="px">px</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Property -->
+              <div class="form-group">
+                <label for="css-property">CSS Property</label>
+                <select id="css-property" class="tool-select">
+                  <option value="font-size">font-size</option>
+                  <option value="line-height">line-height</option>
+                  <option value="padding">padding</option>
+                  <option value="margin">margin</option>
+                  <option value="gap">gap</option>
+                  <option value="width">width</option>
+                </select>
+              </div>
+
+              <!-- Actions -->
+              <div class="tool-actions clamp-actions">
+                <button class="btn btn-primary" type="button" id="generate-clamp-btn">
+                  Generate Clamp
+                </button>
+
+                <button class="btn btn-outline" type="button" id="copy-clamp-btn">
+                  Copy CSS
+                </button>
+
+                <button class="btn btn-outline" type="button" id="reset-clamp-btn">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Preview Panel -->
+          <section class="tool-panel clamp-preview-panel" aria-labelledby="clamp-preview-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="clamp-preview-title">Live Preview</h3>
+                <p>Preview how fluid typography can look in a real section.</p>
+              </div>
+            </div>
+
+            <div class="clamp-preview-stage">
+              <div class="clamp-preview-card">
+                <span>Fluid Type</span>
+                <h3 id="clamp-preview-heading">Build Better Responsive Websites</h3>
+                <p>
+                  CSS clamp() helps text scale smoothly between a minimum and maximum size.
+                  This keeps typography clean on mobile, tablet, and desktop screens.
+                </p>
+              </div>
+            </div>
+
+            <div class="clamp-code-wrapper">
+              <div class="tool-panel-header small-header">
+                <div>
+                  <h3>CSS Output</h3>
+                  <p>Copy this clamp value and use it in your stylesheet.</p>
+                </div>
+              </div>
+
+              <pre class="tool-output clamp-output" id="clamp-output"><code>font-size: clamp(2rem, 5.714vw + 0.714rem, 5rem);</code></pre>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- CSS Clamp Workspace End -->
+
+    <!-- Clamp Examples Start -->
+    <section class="clamp-examples-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Clamp Examples</p>
+          <h2>Useful Fluid Typography Presets</h2>
+          <p>
+            These preset cards can later be connected with JavaScript for one-click clamp generation.
+          </p>
+        </div>
+
+        <div class="clamp-examples-grid">
+          <button class="clamp-example-card" type="button" data-preset="hero-heading">
+            <span>Hero Heading</span>
+            <strong>32px → 88px</strong>
+            <small>Best for large hero titles and landing pages.</small>
+          </button>
+
+          <button class="clamp-example-card" type="button" data-preset="section-heading">
+            <span>Section Heading</span>
+            <strong>28px → 56px</strong>
+            <small>Good for section headings and homepage blocks.</small>
+          </button>
+
+          <button class="clamp-example-card" type="button" data-preset="body-text">
+            <span>Body Text</span>
+            <strong>16px → 20px</strong>
+            <small>Clean paragraph sizing across devices.</small>
+          </button>
+
+          <button class="clamp-example-card" type="button" data-preset="card-gap">
+            <span>Layout Gap</span>
+            <strong>16px → 40px</strong>
+            <small>Useful for responsive spacing and grid gaps.</small>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Clamp Examples End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Generate CSS Clamp Values</h2>
+
+            <p>
+              CSS clamp() lets you define a minimum value, a flexible preferred value,
+              and a maximum value. It is commonly used for responsive typography.
+            </p>
+
+            <ol class="guide-list">
+              <li>Enter the minimum font size for small screens.</li>
+              <li>Enter the maximum font size for large screens.</li>
+              <li>Set the minimum and maximum viewport width.</li>
+              <li>Copy the generated clamp() CSS value.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Where to Use CSS Clamp?</h2>
+
+            <p>
+              CSS clamp() is useful for fluid headings, paragraphs, section spacing,
+              card gaps, margins, padding, widths, and modern responsive layouts.
+            </p>
+
+            <ul class="feature-list">
+              <li>Responsive hero headings</li>
+              <li>Fluid section titles</li>
+              <li>Adaptive paragraph sizes</li>
+              <li>Responsive spacing systems</li>
+              <li>Modern landing page typography</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Design Tools</h2>
+          <p>
+            Continue designing better interfaces with other DevToolKit design tools.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">🌈</div>
+            <div class="tool-content">
+              <h3>Gradient Generator</h3>
+              <p>Create beautiful CSS gradients with live preview and copy-ready code.</p>
+            </div>
+            <a href="gradient-generator.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">▣</div>
+            <div class="tool-content">
+              <h3>Box Shadow Generator</h3>
+              <p>Create smooth CSS shadows using offset, blur, spread, and color controls.</p>
+            </div>
+            <a href="box-shadow.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">◇</div>
+            <div class="tool-content">
+              <h3>Glassmorphism Generator</h3>
+              <p>Generate modern glass UI effects with blur, opacity, border, and shadow.</p>
+            </div>
+            <a href="glassmorphism-generator.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>CSS Clamp Generator FAQs</h2>
+          <p>
+            Common questions about CSS clamp(), fluid typography, and responsive font sizes.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is CSS clamp()?</summary>
+            <p>
+              CSS clamp() is a CSS function that lets you set a minimum value,
+              a preferred flexible value, and a maximum value.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Why use clamp() for font sizes?</summary>
+            <p>
+              It allows text to scale smoothly between mobile and desktop sizes
+              without writing many media queries.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can clamp() be used for spacing?</summary>
+            <p>
+              Yes, clamp() can be used for padding, margin, gap, width, height,
+              and other CSS properties that accept length values.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is clamp() supported in modern browsers?</summary>
+            <p>
+              Yes, CSS clamp() is supported in modern browsers and is commonly used
+              in responsive web design.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this CSS clamp generator free?</summary>
+            <p>
+              Yes, DevToolKit CSS Clamp Generator is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Designing</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free tools for CSS gradients, shadows, glass effects, colors, SEO, and frontend development.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="gradient-generator.html" class="btn btn-outline">
+              Try Gradient Generator
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+  <!-- Footer Start -->
+  <!-- Footer Start -->
+<footer class="site-footer">
+  <div class="container footer-container">
+    <div class="footer-brand">
+      <a href="/index.html" class="footer-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">DevToolKit</span>
+      </a>
+
+      <p>
+        Free online developer, design, image, and utility tools built for faster web development.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-column">
+        <h3>Developer Tools</h3>
+
+        <ul>
+          <li><a href="/pages/json-formatter.html">JSON Formatter</a></li>
+          <li><a href="/pages/regex-tester.html">Regex Tester</a></li>
+          <li><a href="/pages/url-tools.html">URL Tools</a></li>
+          <li><a href="/pages/markdown-preview.html">Markdown Previewer</a></li>
+          <li><a href="/pages/meta-tags.html">Meta Tags Generator</a></li>
+          <li><a href="/pages/css-minifier.html">CSS Minifier</a></li>
+          <li><a href="/pages/html-entities.html">HTML Entities</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Design Tools</h3>
+
+        <ul>
+          <li><a href="/pages/gradient-generator.html">Gradient Generator</a></li>
+          <li><a href="/pages/color-palette.html">Color Palette Generator</a></li>
+          <li><a href="/pages/box-shadow.html">Box Shadow Generator</a></li>
+          <li><a href="/pages/glassmorphism-generator.html">Glassmorphism Generator</a></li>
+          <li><a href="/pages/css-clamp.html">CSS Clamp Generator</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Image Tools</h3>
+
+        <ul>
+          <li><a href="/pages/image-converter.html">Image Converter</a></li>
+          <li><a href="/pages/image-compressor.html">Image Compressor</a></li>
+          <li><a href="/pages/image-resizer.html">Image Resizer</a></li>
+          <li><a href="/pages/favicon-generator.html">Favicon Generator</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Utility Tools</h3>
+
+        <ul>
+          <li><a href="/pages/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="/pages/password-generator.html">Password Generator</a></li>
+          <li><a href="/pages/text-case.html">Text Case Converter</a></li>
+          <li><a href="/pages/lorem-generator.html">Lorem Ipsum Generator</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-container">
+      <p>&copy; 2026 DevToolKit. Built by Arjumand Ali.</p>
+
+      <div class="footer-bottom-links">
+        <a href="/index.html#tools">All Tools</a>
+        <a
+          href="https://github.com/arjumand-codes"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer End -->
+  <!-- Footer End -->
+
+  <!-- JS Later -->
+  <script src="../js/css-clamp.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

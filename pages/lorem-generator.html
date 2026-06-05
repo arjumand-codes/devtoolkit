@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Lorem Ipsum Generator Online - Placeholder Text Generator | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit Lorem Ipsum Generator to create placeholder words, sentences, and paragraphs online for websites, mockups, landing pages, and UI designs."
+  />
+
+  <meta
+    name="keywords"
+    content="lorem ipsum generator, placeholder text generator, dummy text generator, paragraph generator, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/lorem-generator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Lorem Ipsum Generator Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Generate placeholder words, sentences, and paragraphs online for websites, mockups, and UI designs."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/lorem-generator.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lorem Ipsum Generator Online - DevToolKit" />
+  <meta
+    name="twitter:description"
+    content="Generate clean placeholder text for layouts, websites, and UI mockups."
+  />
+  <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Favicon -->
+<link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+<header class="site-header" id="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container nav-container">
+      <a href="/index.html" class="site-logo" aria-label="DevToolKit Home">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">DevToolKit</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="/index.html#tools">Tools</a></li>
+        <li><a href="/index.html#developer-tools">Developer</a></li>
+        <li><a href="/index.html#design-tools">Design</a></li>
+        <li><a href="/index.html#image-tools">Image</a></li>
+        <li><a href="/index.html#utility-tools">Utility</a></li>
+        <li><a href="/index.html#faq">FAQ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="/index.html#tools" class="btn btn-outline">All Tools</a>
+
+        <a
+          href="https://github.com/arjumand-codes"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >
+          GitHub
+        </a>
+      </div>
+
+      <button class="mobile-menu-btn" type="button" aria-label="Open mobile menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#utility-tools">Utility Tools</a>
+            <span>/</span>
+            <span>Lorem Ipsum Generator</span>
+          </nav>
+
+          <p class="section-badge">Utility Tool</p>
+
+          <h1>Lorem Ipsum Generator Online</h1>
+
+          <p>
+            Generate clean placeholder text for websites, landing pages, portfolio sections,
+            UI mockups, wireframes, blog layouts, and client design previews.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#lorem-tool" class="btn btn-primary">Generate Text</a>
+            <a href="../index.html#utility-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Generate words and sentences</li>
+            <li>Create paragraph text</li>
+            <li>Control output amount</li>
+            <li>Copy generated text</li>
+            <li>Useful for UI mockups</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- Lorem Generator Workspace Start -->
+    <section class="tool-workspace-section" id="lorem-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">Lorem Workspace</p>
+            <h2>Generate Placeholder Content</h2>
+            <p>
+              Choose output type and amount. JavaScript functionality will be connected next.
+            </p>
+          </div>
+
+          <div class="tool-status" id="lorem-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="lorem-tool-layout">
+          <!-- Controls Panel -->
+          <section class="tool-panel lorem-controls-panel" aria-labelledby="lorem-controls-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="lorem-controls-title">Generator Settings</h3>
+                <p>Select the type and amount of placeholder text.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="sample-lorem-btn">
+                Sample
+              </button>
+            </div>
+
+            <div class="lorem-form">
+              <!-- Output Type -->
+              <div class="form-group">
+                <label for="lorem-type">Output Type</label>
+                <select id="lorem-type" class="tool-select">
+                  <option value="paragraphs">Paragraphs</option>
+                  <option value="sentences">Sentences</option>
+                  <option value="words">Words</option>
+                  <option value="list">Bullet List</option>
+                </select>
+              </div>
+
+              <!-- Amount -->
+              <div class="range-group">
+                <div class="range-label-row">
+                  <label for="lorem-amount">Amount</label>
+                  <span id="lorem-amount-value">3</span>
+                </div>
+                <input type="range" id="lorem-amount" min="1" max="20" value="3" />
+              </div>
+
+              <!-- Paragraph Length -->
+              <div class="form-group">
+                <label for="lorem-size">Text Length</label>
+                <select id="lorem-size" class="tool-select">
+                  <option value="short">Short</option>
+                  <option value="medium" selected>Medium</option>
+                  <option value="long">Long</option>
+                </select>
+              </div>
+
+              <!-- Start With Lorem -->
+              <label class="checkbox-control">
+                <input type="checkbox" id="start-with-lorem" checked />
+                <span>Start with “Lorem ipsum dolor sit amet”</span>
+              </label>
+
+              <!-- Include HTML -->
+              <label class="checkbox-control">
+                <input type="checkbox" id="include-html-tags" />
+                <span>Wrap output with basic HTML tags</span>
+              </label>
+
+              <!-- Actions -->
+              <div class="tool-actions lorem-actions">
+                <button class="btn btn-primary" type="button" id="generate-lorem-btn">
+                  Generate Text
+                </button>
+
+                <button class="btn btn-outline" type="button" id="copy-lorem-btn">
+                  Copy Text
+                </button>
+
+                <button class="btn btn-outline" type="button" id="clear-lorem-btn">
+                  Clear
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Output Panel -->
+          <section class="tool-panel lorem-output-panel" aria-labelledby="lorem-output-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="lorem-output-title">Generated Output</h3>
+                <p>Your placeholder content will appear below.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="copy-lorem-mini-btn">
+                Copy
+              </button>
+            </div>
+
+            <pre class="tool-output lorem-output" id="lorem-output"><code>Your generated placeholder text will appear here.</code></pre>
+
+            <div class="lorem-stats-grid">
+              <div class="lorem-stat-card">
+                <span>Words</span>
+                <strong id="lorem-word-count">0</strong>
+              </div>
+
+              <div class="lorem-stat-card">
+                <span>Characters</span>
+                <strong id="lorem-char-count">0</strong>
+              </div>
+
+              <div class="lorem-stat-card">
+                <span>Lines</span>
+                <strong id="lorem-line-count">0</strong>
+              </div>
+            </div>
+
+            <div class="lorem-preview-box">
+              <h3>Preview Usage</h3>
+              <p id="lorem-preview-text">
+                Generate placeholder text to see how it can look inside a real website content area.
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- Lorem Generator Workspace End -->
+
+    <!-- Lorem Use Cases Start -->
+    <section class="lorem-usecases-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Use Cases</p>
+          <h2>Where Placeholder Text Helps</h2>
+          <p>
+            Lorem ipsum text is useful when designing layouts before final content is ready.
+          </p>
+        </div>
+
+        <div class="lorem-usecases-grid">
+          <article class="lorem-usecase-card">
+            <span>Web Design</span>
+            <strong>Test sections before real copy</strong>
+            <small>Use dummy text to check spacing, layout balance, and content flow.</small>
+          </article>
+
+          <article class="lorem-usecase-card">
+            <span>Portfolio</span>
+            <strong>Build project layouts faster</strong>
+            <small>Fill cards, service sections, and case studies while designing.</small>
+          </article>
+
+          <article class="lorem-usecase-card">
+            <span>UI Mockups</span>
+            <strong>Create realistic interfaces</strong>
+            <small>Use placeholder paragraphs for dashboards, blogs, and landing pages.</small>
+          </article>
+
+          <article class="lorem-usecase-card">
+            <span>Client Work</span>
+            <strong>Preview pages before content</strong>
+            <small>Show clients a complete layout even when final text is not ready.</small>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Lorem Use Cases End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Generate Lorem Ipsum Text</h2>
+
+            <p>
+              Lorem Ipsum Generator creates placeholder text for designs, websites, and mockups.
+              Choose the content type, select the amount, generate text, and copy it.
+            </p>
+
+            <ol class="guide-list">
+              <li>Select paragraphs, sentences, words, or bullet list.</li>
+              <li>Choose the amount and text length.</li>
+              <li>Click generate to create placeholder text.</li>
+              <li>Copy the result and paste it into your design or website.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Best Practice</p>
+
+            <h2>When Should You Use Dummy Text?</h2>
+
+            <p>
+              Placeholder text is useful during design, but final websites should use real,
+              meaningful content before publishing.
+            </p>
+
+            <ul class="feature-list">
+              <li>Use it during layout design</li>
+              <li>Replace it before final launch</li>
+              <li>Use realistic paragraph lengths</li>
+              <li>Check mobile spacing with long text</li>
+              <li>Test headings, cards, and sections</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Utility Tools</h2>
+          <p>
+            Continue working with other useful browser-based DevToolKit tools.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">Aa</div>
+            <div class="tool-content">
+              <h3>Text Case Converter</h3>
+              <p>Convert text into uppercase, lowercase, title case, slug format, and more.</p>
+            </div>
+            <a href="text-case.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">***</div>
+            <div class="tool-content">
+              <h3>Password Generator</h3>
+              <p>Generate strong passwords with length, symbols, numbers, and copy options.</p>
+            </div>
+            <a href="password-generator.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">QR</div>
+            <div class="tool-content">
+              <h3>QR Code Generator</h3>
+              <p>Create QR codes for links, text, emails, phone numbers, and quick sharing.</p>
+            </div>
+            <a href="qr-generator.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>Lorem Ipsum Generator FAQs</h2>
+          <p>
+            Common questions about placeholder text, dummy content, and layout testing.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is Lorem Ipsum?</summary>
+            <p>
+              Lorem Ipsum is placeholder text used in design and publishing to preview layouts
+              before final content is ready.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Why do designers use placeholder text?</summary>
+            <p>
+              Designers use placeholder text to test spacing, typography, layout balance,
+              and content flow before writing final copy.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I use Lorem Ipsum on a live website?</summary>
+            <p>
+              It is better to replace Lorem Ipsum with real content before publishing a live website.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can this generate paragraphs and bullet lists?</summary>
+            <p>
+              Yes, this page is structured to generate words, sentences, paragraphs, and bullet lists.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this Lorem Ipsum Generator free?</summary>
+            <p>
+              Yes, DevToolKit Lorem Ipsum Generator is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Building</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free tools for text formatting, passwords, QR codes,
+            coding, design, SEO, and image optimization.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="text-case.html" class="btn btn-outline">
+              Try Text Case Converter
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+  <!-- Footer Start -->
+<footer class="site-footer">
+  <div class="container footer-container">
+    <div class="footer-brand">
+      <a href="/index.html" class="footer-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">DevToolKit</span>
+      </a>
+
+      <p>
+        Free online developer, design, image, and utility tools built for faster web development.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-column">
+        <h3>Developer Tools</h3>
+
+        <ul>
+          <li><a href="/pages/json-formatter.html">JSON Formatter</a></li>
+          <li><a href="/pages/regex-tester.html">Regex Tester</a></li>
+          <li><a href="/pages/url-tools.html">URL Tools</a></li>
+          <li><a href="/pages/markdown-preview.html">Markdown Previewer</a></li>
+          <li><a href="/pages/meta-tags.html">Meta Tags Generator</a></li>
+          <li><a href="/pages/css-minifier.html">CSS Minifier</a></li>
+          <li><a href="/pages/html-entities.html">HTML Entities</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Design Tools</h3>
+
+        <ul>
+          <li><a href="/pages/gradient-generator.html">Gradient Generator</a></li>
+          <li><a href="/pages/color-palette.html">Color Palette Generator</a></li>
+          <li><a href="/pages/box-shadow.html">Box Shadow Generator</a></li>
+          <li><a href="/pages/glassmorphism-generator.html">Glassmorphism Generator</a></li>
+          <li><a href="/pages/css-clamp.html">CSS Clamp Generator</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Image Tools</h3>
+
+        <ul>
+          <li><a href="/pages/image-converter.html">Image Converter</a></li>
+          <li><a href="/pages/image-compressor.html">Image Compressor</a></li>
+          <li><a href="/pages/image-resizer.html">Image Resizer</a></li>
+          <li><a href="/pages/favicon-generator.html">Favicon Generator</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Utility Tools</h3>
+
+        <ul>
+          <li><a href="/pages/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="/pages/password-generator.html">Password Generator</a></li>
+          <li><a href="/pages/text-case.html">Text Case Converter</a></li>
+          <li><a href="/pages/lorem-generator.html">Lorem Ipsum Generator</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-container">
+      <p>&copy; 2026 DevToolKit. Built by Arjumand Ali.</p>
+
+      <div class="footer-bottom-links">
+        <a href="/index.html#tools">All Tools</a>
+        <a
+          href="https://github.com/arjumand-codes"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer End -->
+
+  <!-- JS Later -->
+  <script src="../js/lorem-generator.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

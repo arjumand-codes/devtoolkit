@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>JSON Formatter Online - Format, Validate & Minify JSON | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit JSON Formatter to format, validate, beautify, and minify JSON online. Free browser-based JSON formatter for developers."
+  />
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+
+  <meta
+    name="keywords"
+    content="JSON formatter online, JSON beautifier, JSON validator, JSON minifier, format JSON, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/json-formatter.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="JSON Formatter Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Format, validate, beautify, and minify JSON online for free using DevToolKit."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/json-formatter.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Favicon -->
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+<header class="site-header" id="site-header">
+  <nav class="navbar" aria-label="Main navigation">
+    <div class="container nav-container">
+      <a href="/index.html" class="site-logo" aria-label="DevToolKit Home">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">DevToolKit</span>
+      </a>
+
+      <ul class="nav-menu">
+        <li><a href="/index.html#tools">Tools</a></li>
+        <li><a href="/index.html#developer-tools">Developer</a></li>
+        <li><a href="/index.html#design-tools">Design</a></li>
+        <li><a href="/index.html#image-tools">Image</a></li>
+        <li><a href="/index.html#utility-tools">Utility</a></li>
+        <li><a href="/index.html#faq">FAQ</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="/index.html#tools" class="btn btn-outline">All Tools</a>
+
+        <a
+          href="https://github.com/arjumand-codes"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >
+          GitHub
+        </a>
+      </div>
+
+      <button class="mobile-menu-btn" type="button" aria-label="Open mobile menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#developer-tools">Developer Tools</a>
+            <span>/</span>
+            <span>JSON Formatter</span>
+          </nav>
+
+          <p class="section-badge">Developer Tool</p>
+
+          <h1>JSON Formatter Online</h1>
+
+          <p>
+            Format, validate, beautify, and minify JSON data instantly. Paste your messy JSON,
+            clean it with one click, and copy the result for your project.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#json-tool" class="btn btn-primary">Start Formatting</a>
+            <a href="../index.html#developer-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Format messy JSON</li>
+            <li>Minify JSON data</li>
+            <li>Validate JSON syntax</li>
+            <li>Copy formatted output</li>
+            <li>Clear input and output</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- JSON Formatter Tool Start -->
+    <section class="tool-workspace-section" id="json-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">JSON Workspace</p>
+            <h2>Paste JSON and Format It</h2>
+            <p>
+              Add your JSON below. The JavaScript functionality will be connected later.
+            </p>
+          </div>
+
+          <div class="tool-status" id="json-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="json-tool-layout">
+          <!-- Input Panel -->
+          <section class="tool-panel" aria-labelledby="json-input-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="json-input-title">Input JSON</h3>
+                <p>Paste raw or messy JSON here.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="sample-json-btn">
+                Sample
+              </button>
+            </div>
+
+            <textarea
+              class="tool-textarea"
+              id="json-input"
+              placeholder='Paste JSON here, example: {"name":"Arjumand","project":"DevToolKit"}'
+              spellcheck="false"
+            ></textarea>
+
+            <div class="tool-actions">
+              <button class="btn btn-primary" type="button" id="format-json-btn">
+                Format JSON
+              </button>
+
+              <button class="btn btn-outline" type="button" id="minify-json-btn">
+                Minify
+              </button>
+
+              <button class="btn btn-outline" type="button" id="clear-json-btn">
+                Clear
+              </button>
+            </div>
+          </section>
+
+          <!-- Output Panel -->
+          <section class="tool-panel" aria-labelledby="json-output-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="json-output-title">Formatted Output</h3>
+                <p>Your clean JSON result will appear here.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="copy-json-btn">
+                Copy
+              </button>
+            </div>
+
+            <pre class="tool-output" id="json-output"><code>{
+  "message": "Your formatted JSON will appear here"
+}</code></pre>
+
+            <div class="output-meta">
+              <span id="json-size">Size: 0 KB</span>
+              <span id="json-lines">Lines: 0</span>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- JSON Formatter Tool End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Format JSON Online</h2>
+
+            <p>
+              JSON Formatter helps developers clean and validate JSON data. You can paste
+              unformatted JSON into the input box, click the format button, and get a readable
+              version with proper indentation.
+            </p>
+
+            <ol class="guide-list">
+              <li>Paste your JSON data into the input box.</li>
+              <li>Click the <strong>Format JSON</strong> button.</li>
+              <li>Check the formatted result in the output panel.</li>
+              <li>Use the <strong>Copy</strong> button to copy the clean JSON.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Why Use a JSON Formatter?</h2>
+
+            <p>
+              JSON is commonly used in APIs, configuration files, databases, and frontend
+              development. A formatter makes JSON easier to read, debug, and share.
+            </p>
+
+            <ul class="feature-list">
+              <li>Debug API responses</li>
+              <li>Clean JSON from backend data</li>
+              <li>Validate configuration files</li>
+              <li>Prepare JSON for documentation</li>
+              <li>Minify JSON before production use</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Developer Tools</h2>
+          <p>
+            Continue working with other useful tools from DevToolKit.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">.*</div>
+            <div class="tool-content">
+              <h3>Regex Tester</h3>
+              <p>Test regular expressions and highlight matching text in real time.</p>
+            </div>
+            <a href="regex-tester.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">🔗</div>
+            <div class="tool-content">
+              <h3>URL Encoder / Decoder</h3>
+              <p>Encode URLs, decode URLs, create slugs, and handle Base64 text.</p>
+            </div>
+            <a href="url-tools.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">SEO</div>
+            <div class="tool-content">
+              <h3>Meta Tags Generator</h3>
+              <p>Create SEO, Open Graph, and Twitter card meta tags for websites.</p>
+            </div>
+            <a href="meta-tags.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>JSON Formatter FAQs</h2>
+          <p>
+            Common questions about formatting and validating JSON online.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is a JSON Formatter?</summary>
+            <p>
+              A JSON Formatter is a tool that converts messy or minified JSON into a readable
+              structure with proper indentation and spacing.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can this tool validate JSON?</summary>
+            <p>
+              Yes, the JavaScript functionality can check whether your JSON is valid. If the JSON
+              has syntax errors, the tool can show an error message.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is JSON minify?</summary>
+            <p>
+              JSON minify removes extra spaces, line breaks, and indentation to make JSON smaller
+              for production use.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Do I need to upload JSON to a server?</summary>
+            <p>
+              No. This tool is designed to run directly in your browser using JavaScript.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this JSON Formatter free?</summary>
+            <p>
+              Yes, DevToolKit JSON Formatter is free to use.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Building</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free online tools for coding, design, SEO, and image optimization.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="gradient-generator.html" class="btn btn-outline">
+              Try Gradient Generator
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+  <!-- Footer Start -->
+<footer class="site-footer">
+  <div class="container footer-container">
+    <div class="footer-brand">
+      <a href="/index.html" class="footer-logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">DevToolKit</span>
+      </a>
+
+      <p>
+        Free online developer, design, image, and utility tools built for faster web development.
+      </p>
+    </div>
+
+    <div class="footer-links">
+      <div class="footer-column">
+        <h3>Developer Tools</h3>
+
+        <ul>
+          <li><a href="/pages/json-formatter.html">JSON Formatter</a></li>
+          <li><a href="/pages/regex-tester.html">Regex Tester</a></li>
+          <li><a href="/pages/url-tools.html">URL Tools</a></li>
+          <li><a href="/pages/markdown-preview.html">Markdown Previewer</a></li>
+          <li><a href="/pages/meta-tags.html">Meta Tags Generator</a></li>
+          <li><a href="/pages/css-minifier.html">CSS Minifier</a></li>
+          <li><a href="/pages/html-entities.html">HTML Entities</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Design Tools</h3>
+
+        <ul>
+          <li><a href="/pages/gradient-generator.html">Gradient Generator</a></li>
+          <li><a href="/pages/color-palette.html">Color Palette Generator</a></li>
+          <li><a href="/pages/box-shadow.html">Box Shadow Generator</a></li>
+          <li><a href="/pages/glassmorphism-generator.html">Glassmorphism Generator</a></li>
+          <li><a href="/pages/css-clamp.html">CSS Clamp Generator</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Image Tools</h3>
+
+        <ul>
+          <li><a href="/pages/image-converter.html">Image Converter</a></li>
+          <li><a href="/pages/image-compressor.html">Image Compressor</a></li>
+          <li><a href="/pages/image-resizer.html">Image Resizer</a></li>
+          <li><a href="/pages/favicon-generator.html">Favicon Generator</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Utility Tools</h3>
+
+        <ul>
+          <li><a href="/pages/qr-generator.html">QR Code Generator</a></li>
+          <li><a href="/pages/password-generator.html">Password Generator</a></li>
+          <li><a href="/pages/text-case.html">Text Case Converter</a></li>
+          <li><a href="/pages/lorem-generator.html">Lorem Ipsum Generator</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-bottom-container">
+      <p>&copy; 2026 DevToolKit. Built by Arjumand Ali.</p>
+
+      <div class="footer-bottom-links">
+        <a href="/index.html#tools">All Tools</a>
+        <a
+          href="https://github.com/arjumand-codes"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Footer End -->
+
+  <!-- JS Later -->
+  <script src="../js/json-formatter.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
