@@ -128,9 +128,9 @@ Return JSON in exactly this structure (no extra keys, no markdown):
 Limits: summary max 70 words, skills max 16, experience bullets max 5 per role each under 22 words, project descriptions max 35 words. If a section is empty return empty array or empty string.
 `;
 
-    // Use gemini-1.5-flash — stable, fast, free-tier compatible
+    // Use gemini-2.5-flash — your working model
     const geminiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
