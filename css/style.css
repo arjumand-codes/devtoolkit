@@ -7945,3 +7945,698 @@ section {
     padding: 20px;
   }
 }
+
+
+/* ================================
+   Fix Mobile Horizontal Overflow
+================================ */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+}
+
+img,
+video,
+canvas,
+svg,
+iframe {
+  max-width: 100%;
+}
+
+.container,
+.nav-container,
+.hero-container,
+.tool-hero-container,
+.faceit-hero-container,
+.faceit-tool-wrapper,
+.footer-container {
+  max-width: 100%;
+}
+
+pre,
+code,
+.tool-output,
+.tool-textarea,
+.faceit-preview-body pre,
+.preview-card pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Fix mobile menu / header overflow */
+@media (max-width: 768px) {
+  .site-header,
+  .navbar,
+  .nav-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .nav-container {
+    overflow: hidden;
+  }
+
+  .hero-section,
+  .tool-hero-section,
+  .faceit-hero-section,
+  .tools-overview-section,
+  .features-section,
+  .how-it-works-section,
+  .seo-content-section,
+  .faq-section,
+  .cta-section,
+  .tool-workspace-section,
+  .tool-guide-section,
+  .related-tools-section {
+    overflow-x: hidden;
+  }
+
+  .preview-card,
+  .faceit-preview-card,
+  .tool-panel,
+  .faceit-tool-card,
+  .cta-box,
+  .content-wrapper {
+    max-width: 100%;
+  }
+
+  .hero-container,
+  .tool-hero-container,
+  .faceit-hero-container {
+    gap: 32px;
+  }
+}
+
+
+/* ================================
+   AI CV Maker Page Styles
+   Clean Professional Version
+================================ */
+
+/* Hero */
+
+.ai-cv-hero-section {
+  position: relative;
+}
+
+.ai-cv-hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 70px auto auto 50%;
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle, rgba(204, 243, 129, 0.14), transparent 70%);
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Workspace Layout */
+
+.ai-cv-workspace-section {
+  background: rgba(255, 255, 255, 0.018);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.ai-cv-layout {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.ai-cv-form-panel,
+.ai-cv-preview-panel {
+  min-height: auto;
+}
+
+.ai-cv-form {
+  display: grid;
+  gap: 22px;
+}
+
+.form-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.form-grid.two-columns {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.ai-cv-small-textarea {
+  min-height: 120px;
+}
+
+.ai-cv-medium-textarea {
+  min-height: 170px;
+}
+
+.ai-cv-note {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+/* Template Selector */
+
+.cv-template-selector {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.cv-template-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  background: rgba(0, 0, 0, 0.22);
+  color: var(--text-soft);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.cv-template-option:hover,
+.cv-template-option.active {
+  border-color: rgba(204, 243, 129, 0.42);
+  background: rgba(204, 243, 129, 0.08);
+  color: var(--accent);
+}
+
+.cv-template-option input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent);
+}
+
+.ai-cv-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.ai-cv-actions .btn {
+  width: 100%;
+}
+
+/* Preview Actions */
+
+.cv-preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Message Box */
+
+.ai-cv-message {
+  margin-bottom: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(204, 243, 129, 0.28);
+  background: rgba(204, 243, 129, 0.08);
+  color: var(--accent);
+  border-radius: var(--radius-md);
+  font-size: 0.92rem;
+  font-weight: 800;
+}
+
+.ai-cv-message.error {
+  border-color: rgba(248, 113, 113, 0.45);
+  background: rgba(248, 113, 113, 0.12);
+  color: #f87171;
+}
+
+.ai-cv-message.warning {
+  border-color: rgba(251, 191, 36, 0.45);
+  background: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+}
+
+/* CV Preview Shell */
+
+.cv-preview-shell {
+  overflow: auto;
+  max-height: 820px;
+  padding: 24px;
+  border: 1px solid var(--border);
+  background:
+    radial-gradient(circle at top left, rgba(124, 58, 237, 0.12), transparent 35%),
+    rgba(0, 0, 0, 0.22);
+  border-radius: var(--radius-lg);
+}
+
+.cv-preview {
+  width: 794px;
+  min-height: 1123px;
+  max-height: 1123px;
+  margin: 0 auto;
+  padding: 42px 46px;
+  overflow: hidden;
+  background: #ffffff;
+  color: #111827;
+  border-radius: 6px;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.36);
+  outline: none;
+  font-family: "Inter", Arial, sans-serif;
+}
+
+.cv-preview.is-editing {
+  box-shadow:
+    0 18px 60px rgba(0, 0, 0, 0.36),
+    0 0 0 4px rgba(204, 243, 129, 0.24);
+}
+
+.cv-empty-state {
+  min-height: 980px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #64748b;
+}
+
+.cv-empty-state span {
+  width: 86px;
+  height: 86px;
+  display: inline-grid;
+  place-items: center;
+  margin: 0 auto 20px;
+  background: #f1f5f9;
+  color: #7c3aed;
+  border-radius: 24px;
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.cv-empty-state h3 {
+  color: #111827;
+  font-size: 1.8rem;
+  letter-spacing: -0.04em;
+  margin-bottom: 10px;
+}
+
+.cv-empty-state p {
+  max-width: 420px;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* Professional One Page CV */
+
+.cv-template-professional {
+  background: #ffffff;
+}
+
+.cv-one-page-document {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #111827;
+}
+
+.cv-pro-header {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 24px;
+  padding-bottom: 16px;
+  margin-bottom: 18px;
+  border-bottom: 2px solid #111827;
+}
+
+.cv-pro-header h1 {
+  color: #111827;
+  font-size: 2.15rem;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  margin-bottom: 6px;
+}
+
+.cv-pro-header h2 {
+  color: #4f46e5;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.cv-pro-contact {
+  display: grid;
+  gap: 5px;
+  align-content: start;
+  text-align: right;
+}
+
+.cv-pro-contact span {
+  color: #475569;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.cv-pro-section {
+  margin-bottom: 13px;
+}
+
+.cv-pro-section h3 {
+  color: #111827;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.cv-pro-section p,
+.cv-pro-section li {
+  color: #334155;
+  font-size: 0.82rem;
+  line-height: 1.48;
+}
+
+.cv-pro-section ul {
+  display: grid;
+  gap: 4px;
+  padding-left: 18px;
+  list-style: disc;
+}
+
+.cv-pro-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cv-pro-skills span {
+  display: inline-flex;
+  padding: 5px 8px;
+  background: #eef2ff;
+  color: #3730a3;
+  border-radius: 999px;
+  font-size: 0.73rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.cv-pro-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+/* Features spacing */
+
+.ai-cv-features-section {
+  background: transparent;
+}
+
+/* Responsive */
+
+@media (max-width: 1100px) {
+  .ai-cv-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-preview-shell {
+    max-height: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .form-grid.two-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .ai-cv-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-preview-actions {
+    width: 100%;
+  }
+
+  .cv-preview-actions .mini-btn {
+    flex: 1;
+  }
+
+  .cv-preview-shell {
+    padding: 14px;
+  }
+
+  .cv-preview {
+    width: 100%;
+    min-height: 900px;
+    max-height: none;
+    padding: 30px 22px;
+  }
+
+  .cv-pro-header {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .cv-pro-contact {
+    text-align: left;
+  }
+
+  .cv-pro-two-col {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-cv-small-textarea,
+  .ai-cv-medium-textarea {
+    min-height: 130px;
+  }
+
+  .cv-preview {
+    padding: 26px 18px;
+  }
+
+  .cv-empty-state {
+    min-height: 560px;
+  }
+
+  .cv-empty-state h3 {
+    font-size: 1.4rem;
+  }
+
+  .cv-pro-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .cv-pro-section h3 {
+    font-size: 0.72rem;
+  }
+
+  .cv-pro-section p,
+  .cv-pro-section li {
+    font-size: 0.78rem;
+  }
+}
+
+/* ================================
+   AI CV Maker - Reliable Print Fix
+   Requires body.printing-cv from JS button
+================================ */
+
+body.printing-cv {
+  background: #ffffff !important;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+  }
+
+  body.printing-cv > :not(main) {
+    display: none !important;
+  }
+
+  body.printing-cv main > :not(.ai-cv-workspace-section) {
+    display: none !important;
+  }
+
+  body.printing-cv .ai-cv-workspace-section,
+  body.printing-cv .ai-cv-workspace-section .container,
+  body.printing-cv .ai-cv-layout,
+  body.printing-cv .ai-cv-preview-panel,
+  body.printing-cv .cv-preview-shell {
+    display: block !important;
+    width: 210mm !important;
+    max-width: 210mm !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    border: 0 !important;
+    background: #ffffff !important;
+    box-shadow: none !important;
+  }
+
+  body.printing-cv .tool-workspace-header,
+  body.printing-cv .ai-cv-form-panel,
+  body.printing-cv .ai-cv-preview-panel > .tool-panel-header,
+  body.printing-cv #cvMessageBox,
+  body.printing-cv .output-meta,
+  body.printing-cv .cv-empty-state {
+    display: none !important;
+  }
+
+  body.printing-cv #cvPreview,
+  body.printing-cv #cvPreview * {
+    visibility: visible !important;
+  }
+
+  body.printing-cv #cvPreview {
+    display: block !important;
+    position: static !important;
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 12mm 14mm !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  body.printing-cv .cv-one-page-document {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 273mm !important;
+    overflow: hidden !important;
+  }
+
+  body.printing-cv .cv-pro-header {
+    display: grid !important;
+    grid-template-columns: 1.15fr 0.85fr !important;
+    gap: 18px !important;
+    padding-bottom: 10px !important;
+    margin-bottom: 10px !important;
+    border-bottom: 2px solid #111827 !important;
+  }
+
+  body.printing-cv .cv-pro-header h1 {
+    display: block !important;
+    color: #111827 !important;
+    font-size: 22pt !important;
+    line-height: 1 !important;
+    margin: 0 0 4px !important;
+  }
+
+  body.printing-cv .cv-pro-header h2 {
+    display: block !important;
+    color: #4f46e5 !important;
+    font-size: 10pt !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+  }
+
+  body.printing-cv .cv-pro-contact {
+    display: grid !important;
+    gap: 3px !important;
+    text-align: right !important;
+  }
+
+  body.printing-cv .cv-pro-contact span {
+    display: block !important;
+    color: #475569 !important;
+    font-size: 7.5pt !important;
+    line-height: 1.25 !important;
+  }
+
+  body.printing-cv .cv-pro-section {
+    display: block !important;
+    margin-bottom: 7pt !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  body.printing-cv .cv-pro-section h3 {
+    display: block !important;
+    color: #111827 !important;
+    font-size: 7.5pt !important;
+    line-height: 1.2 !important;
+    margin: 0 0 3pt !important;
+  }
+
+  body.printing-cv .cv-pro-section p {
+    display: block !important;
+    color: #334155 !important;
+    font-size: 8pt !important;
+    line-height: 1.32 !important;
+    margin: 0 !important;
+  }
+
+  body.printing-cv .cv-pro-section ul {
+    display: block !important;
+    margin: 0 !important;
+    padding-left: 14px !important;
+    list-style: disc !important;
+  }
+
+  body.printing-cv .cv-pro-section li {
+    display: list-item !important;
+    color: #334155 !important;
+    font-size: 8pt !important;
+    line-height: 1.3 !important;
+    margin-bottom: 2pt !important;
+  }
+
+  body.printing-cv .cv-pro-skills {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 4px !important;
+  }
+
+  body.printing-cv .cv-pro-skills span {
+    display: inline-flex !important;
+    color: #3730a3 !important;
+    background: #eef2ff !important;
+    font-size: 7pt !important;
+    line-height: 1 !important;
+    padding: 3pt 5pt !important;
+  }
+
+  body.printing-cv .cv-pro-two-col {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+}
+
