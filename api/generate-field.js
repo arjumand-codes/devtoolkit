@@ -84,9 +84,9 @@ async function generateFieldWithGemini({ geminiApiKey, fieldType, context, targe
   try {
     const prompt = buildFieldPrompt(fieldType, context, targetIndex);
 
-    // Use gemini-1.5-flash — stable, fast, free-tier compatible
+    // Use gemini-2.5-flash — your working model
     const geminiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`,
       {
         method: "POST",
         headers: {
