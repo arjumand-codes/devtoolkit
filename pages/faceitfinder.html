@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="B_BY0aHc-bYNOh7rMJQ_B2EiU2n_liuHeeQvFiiaOPg" />
+
+  <title>FaceitFinder - CS2 FACEIT Stats, ELO & Profile Lookup Tool</title>
+
+  <meta
+    name="description"
+    content="FaceitFinder is a free CS2 FACEIT lookup tool by DevToolKit. Search FACEIT player profiles, ELO, skill level, win rate, K/D ratio, recent matches, and AI player summary."
+  />
+
+  <meta
+    name="keywords"
+    content="FaceitFinder, FACEIT finder, FACEIT stats, CS2 FACEIT stats, FACEIT ELO checker, FACEIT profile lookup, CS2 player stats, FACEIT skill level, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/faceitfinder.html" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+  <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon" />
+
+  <!-- Open Graph Meta -->
+  <meta property="og:title" content="FaceitFinder - CS2 FACEIT Stats, ELO & Profile Lookup Tool" />
+  <meta
+    property="og:description"
+    content="Search CS2 FACEIT player profiles, ELO, skill level, stats, recent matches, and AI player summary with FaceitFinder by DevToolKit."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/faceitfinder.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Twitter Card Meta -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FaceitFinder - CS2 FACEIT Stats Lookup Tool" />
+  <meta
+    name="twitter:description"
+    content="Use FaceitFinder to search FACEIT CS2 players, ELO, skill level, match history, and player stats."
+  />
+  <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="../css/faceitfinder.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Component -->
+  <div id="site-header"></div>
+
+  <!-- Main Content Start -->
+  <main id="main-content">
+    <!-- Tool Hero Section Start -->
+    <section class="faceit-hero-section">
+      <div class="container faceit-hero-container">
+        <div class="faceit-hero-content">
+          <p class="section-badge">CS2 FACEIT Lookup Tool</p>
+
+          <h1>FaceitFinder</h1>
+
+          <p class="faceit-hero-description">
+            Search any public FACEIT CS2 player profile and check ELO, skill level,
+            region, lifetime stats, recent matches, and a simple AI performance summary.
+          </p>
+
+          <div class="faceit-hero-actions">
+            <a href="#faceit-tool" class="btn btn-primary">
+              Search Player
+            </a>
+
+            <a href="../index.html#tools" class="btn btn-outline">
+              Back to Tools
+            </a>
+          </div>
+        </div>
+
+        <div class="faceit-hero-preview" aria-label="FaceitFinder preview">
+          <div class="faceit-preview-card">
+            <div class="preview-card-header">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="faceit-preview-body">
+              <p class="preview-label">FACEIT Player Preview</p>
+
+              <pre><code>{
+  "tool": "FaceitFinder",
+  "game": "CS2",
+  "data": [
+    "Profile",
+    "ELO",
+    "Skill Level",
+    "Stats",
+    "Recent Matches",
+    "AI Summary"
+  ],
+  "status": "Ready"
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Tool Hero Section End -->
+
+    <!-- FaceitFinder Tool Section Start -->
+    <section class="faceit-tool-section" id="faceit-tool">
+      <div class="container">
+        <div class="faceit-tool-wrapper">
+          <div class="section-header">
+            <p class="section-badge">Player Search</p>
+
+            <h2>Search FACEIT CS2 Player Stats</h2>
+
+            <p>
+              Enter a FACEIT username to find public CS2 profile data, ELO,
+              skill level, lifetime stats, recent match history, and AI analysis.
+            </p>
+          </div>
+
+          <div class="faceit-tool-card">
+            <form id="faceitForm" class="faceit-search-form">
+              <label for="nickname">FACEIT Username</label>
+
+              <div class="faceit-search-row">
+                <input
+                  type="text"
+                  id="nickname"
+                  name="nickname"
+                  placeholder="Example: FACEIT username"
+                  autocomplete="off"
+                  required
+                />
+
+                <button type="submit" id="searchBtn">
+                  Find Player
+                </button>
+              </div>
+            </form>
+
+            <div id="loadingBox" class="faceit-loading hidden">
+              Searching FACEIT player...
+            </div>
+
+            <div id="errorBox" class="faceit-error hidden"></div>
+
+            <div id="resultBox" class="faceit-result hidden"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- FaceitFinder Tool Section End -->
+
+    <!-- Tool Info Section Start -->
+    <section class="faceit-info-section">
+      <div class="container">
+        <div class="faceit-info-grid">
+          <article class="faceit-info-card">
+            <div class="feature-icon">🎯</div>
+            <h3>FACEIT ELO Lookup</h3>
+            <p>
+              Check a player’s CS2 FACEIT ELO, skill level, region, and basic profile information.
+            </p>
+          </article>
+
+          <article class="faceit-info-card">
+            <div class="feature-icon">📊</div>
+            <h3>Player Stats</h3>
+            <p>
+              View useful lifetime stats like matches, win rate, K/D ratio, and other available FACEIT data.
+            </p>
+          </article>
+
+          <article class="faceit-info-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Recent Matches</h3>
+            <p>
+              See recent FACEIT match history to understand player activity and latest performance.
+            </p>
+          </article>
+
+          <article class="faceit-info-card">
+            <div class="feature-icon">🤖</div>
+            <h3>AI Summary</h3>
+            <p>
+              Get a short AI-generated player summary based on public FACEIT stats and performance data.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Tool Info Section End -->
+
+    <!-- FAQ Section Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+
+          <h2>FaceitFinder Questions</h2>
+
+          <p>
+            Common questions about the FaceitFinder CS2 FACEIT lookup tool.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is FaceitFinder?</summary>
+            <p>
+              FaceitFinder is a DevToolKit tool that helps users search public FACEIT CS2 player profiles,
+              ELO, skill level, stats, and recent match history.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Do I need a FACEIT login to use this tool?</summary>
+            <p>
+              No, users only need to enter a public FACEIT username. The tool uses the DevToolKit backend
+              to request public data safely.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is the FACEIT API key visible?</summary>
+            <p>
+              No, the FACEIT API key is stored in Vercel Environment Variables and used only inside the
+              backend API route.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does FaceitFinder support CS2?</summary>
+            <p>
+              Yes, this version is built for CS2 FACEIT profile lookup and player stats.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Why does some player data show as N/A?</summary>
+            <p>
+              Some FACEIT profiles may not have complete public stats, or the requested stat may not be
+              available from the FACEIT API.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ Section End -->
+
+    <!-- CTA Section Start -->
+    <section class="cta-section" id="start">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Try Another Tool</p>
+
+          <h2>Explore More DevToolKit Tools</h2>
+
+          <p>
+            Use more free tools for JSON formatting, regex testing, CSS generation,
+            image optimization, QR codes, passwords, and daily web tasks.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              Explore All Tools
+            </a>
+
+            <a href="json-formatter.html" class="btn btn-outline">
+              Try JSON Formatter
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA Section End -->
+  </main>
+  <!-- Main Content End -->
+
+  <!-- Footer Component -->
+  <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="/js/components.js"></script>
+  <script src="../js/faceitfinder.js"></script>
+</body>
+</html>
