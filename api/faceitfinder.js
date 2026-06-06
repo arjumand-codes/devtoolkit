@@ -124,13 +124,17 @@ export default async function handler(req, res) {
        4. Generate Gemini AI Summary
     ================================ */
 
-    if (geminiApiKey && stats) {
-      aiSummary = await generateGeminiSummary({
-        geminiApiKey,
-        player,
-        stats,
-        history
-      });
+    if (stats) {
+      if (geminiApiKey) {
+        aiSummary = await generateGeminiSummary({
+          geminiApiKey,
+          player,
+          stats,
+          history
+        });
+      } else {
+        aiSummary = createFallbackSummary(player, stats);
+      }
     }
 
     return res.status(200).json({
@@ -153,15 +157,17 @@ export default async function handler(req, res) {
 ================================ */
 
 async function generateGeminiSummary({ geminiApiKey, player, stats, history }) {
+  const cs2 = player.games?.cs2 || {};
+  const lifetime = stats?.lifetime || {};
+  const recentMatchesCount = Array.isArray(history?.items) ? history.items.length : 0;
+
+  const fallbackSummary = createFallbackSummary(player, stats);
+
   try {
-    const cs2 = player.games?.cs2 || {};
-    const lifetime = stats?.lifetime || {};
-    const recentMatchesCount = Array.isArray(history?.items) ? history.items.length : 0;
-
     const prompt = `
-You are analyzing a CS2 FACEIT player using public FACEIT stats.
+Analyze this CS2 FACEIT player using the public stats below.
 
-Player:
+Player Stats:
 Nickname: ${player.nickname || "N/A"}
 Country: ${player.country || "N/A"}
 Skill Level: ${cs2.skill_level || "N/A"}
@@ -173,16 +179,21 @@ Average K/D Ratio: ${lifetime["Average K/D Ratio"] || "N/A"}
 Average Headshots %: ${lifetime["Average Headshots %"] || "N/A"}
 Recent Matches Loaded: ${recentMatchesCount}
 
-Write a useful but short player analysis in exactly 3 bullet points.
+Return exactly 3 complete bullet points.
+Each bullet point must be one full sentence.
+Keep the full answer under 80 words.
+
+Format:
+• Player level: ...
+• Main strength: ...
+• Improvement tip: ...
 
 Rules:
-- Do not use markdown headings.
-- Do not exaggerate.
-- Mention if the player looks beginner, average, strong, or elite.
-- Mention one strength based on the stats.
-- Mention one simple improvement suggestion.
-- Keep the full answer under 70 words.
-- If stats are missing or limited, say the stats are limited.
+Do not stop after the nickname.
+Do not write incomplete sentences.
+Do not use markdown headings.
+Do not exaggerate.
+If data is limited, say the stats are limited.
 `;
 
     const geminiResponse = await fetch(
@@ -203,23 +214,61 @@ Rules:
             }
           ],
           generationConfig: {
-            temperature: 0.35,
-            maxOutputTokens: 220
+            temperature: 0.2,
+            maxOutputTokens: 350
           }
         })
       }
     );
 
     if (!geminiResponse.ok) {
-      return null;
+      return fallbackSummary;
     }
 
     const geminiData = await geminiResponse.json();
 
-    return (
-      geminiData?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || null
-    );
+    const summary =
+      geminiData?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
+
+    if (!summary || summary.length < 80 || !summary.includes("•")) {
+      return fallbackSummary;
+    }
+
+    return summary;
   } catch (error) {
-    return null;
+    return fallbackSummary;
   }
+}
+
+/* ================================
+   Fallback AI Summary
+================================ */
+
+function createFallbackSummary(player, stats) {
+  const cs2 = player.games?.cs2 || {};
+  const lifetime = stats?.lifetime || {};
+
+  const nickname = player.nickname || "This player";
+  const skillLevel = Number(cs2.skill_level || 0);
+  const elo = Number(cs2.faceit_elo || 0);
+
+  const matches = lifetime.Matches || "N/A";
+  const winRate = lifetime["Win Rate %"] || "N/A";
+  const kdRatio = lifetime["Average K/D Ratio"] || "N/A";
+
+  let levelText = "has limited public CS2 FACEIT data";
+
+  if (skillLevel >= 10 || elo >= 2500) {
+    levelText = "looks like an elite FACEIT player";
+  } else if (skillLevel >= 7 || elo >= 1800) {
+    levelText = "looks like a strong FACEIT player";
+  } else if (skillLevel >= 4 || elo >= 1100) {
+    levelText = "looks like an average FACEIT player";
+  } else if (skillLevel > 0) {
+    levelText = "looks like a beginner or developing FACEIT player";
+  }
+
+  return `• Player level: ${nickname} ${levelText} based on skill level ${skillLevel || "N/A"} and ${elo || "N/A"} ELO.
+• Main strength: The profile shows ${matches} matches, ${winRate}% win rate, and ${kdRatio} average K/D ratio.
+• Improvement tip: Focus on consistency, smarter positioning, and reviewing recent losses to improve performance.`;
 }
