@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="B_BY0aHc-bYNOh7rMJQ_B2EiU2n_liuHeeQvFiiaOPg" />
+
+  <title>AI CV Maker - Free AI Resume Builder with Editable Templates</title>
+
+  <meta
+    name="description"
+    content="Create a professional CV with DevToolKit AI CV Maker. Enter your details, choose a CV template, generate an AI-improved resume, edit it, and download or print it as PDF."
+  />
+
+  <meta
+    name="keywords"
+    content="AI CV maker, free CV maker, AI resume builder, resume generator, CV generator, ATS CV maker, professional CV template, editable CV maker, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/ai-cv-maker.html" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+  <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon" />
+
+  <!-- Open Graph Meta -->
+  <meta property="og:title" content="AI CV Maker - Free AI Resume Builder" />
+  <meta
+    property="og:description"
+    content="Build a professional CV using AI. Add your details, choose a template, edit your CV, and download or print it as PDF."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/ai-cv-maker.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Twitter Card Meta -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="AI CV Maker - Free AI Resume Builder" />
+  <meta
+    name="twitter:description"
+    content="Create an AI-improved CV with editable templates and download it as PDF."
+  />
+  <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Component -->
+  <div id="site-header"></div>
+
+  <!-- Main Content Start -->
+  <main id="main-content">
+    <!-- Hero Section Start -->
+    <section class="tool-hero-section ai-cv-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#tools">Tools</a>
+            <span>/</span>
+            <span>AI CV Maker</span>
+          </nav>
+
+          <p class="section-badge">AI Resume Builder</p>
+
+          <h1>AI CV Maker</h1>
+
+          <p>
+            Create a professional CV from your details using AI. Choose a template,
+            improve your content, edit the result, and print or download your CV as PDF.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#ai-cv-workspace" class="btn btn-primary">
+              Start Building CV
+            </a>
+
+            <a href="../index.html#tools" class="btn btn-outline">
+              Explore More Tools
+            </a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card">
+          <h2>What You Can Create</h2>
+
+          <ul>
+            <li>AI-improved professional summary</li>
+            <li>ATS-friendly skills and experience</li>
+            <li>Editable CV preview</li>
+            <li>5 clean CV template styles</li>
+            <li>Print or save as PDF</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Hero Section End -->
+
+    <!-- Workspace Section Start -->
+    <section class="tool-workspace-section ai-cv-workspace-section" id="ai-cv-workspace">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">CV Builder</p>
+
+            <h2>Enter Your Details</h2>
+
+            <p>
+              Add your information below. AI will improve the wording and place it into
+              your selected CV format.
+            </p>
+          </div>
+
+          <div class="tool-status" id="cvLimitStatus">
+            3 AI Uses / Day
+          </div>
+        </div>
+
+        <div class="ai-cv-layout">
+          <!-- CV Form Panel Start -->
+          <section class="tool-panel ai-cv-form-panel">
+            <div class="tool-panel-header">
+                <div>
+                    <h3>Professional CV Preview</h3>
+                    <p>Generate your CV, then click Edit CV if you want to change anything.</p>
+                </div>
+
+                <div class="cv-preview-actions">
+                    <button type="button" class="mini-btn" id="editCvBtn">
+                    Edit CV
+                    </button>
+
+                    <button type="button" class="mini-btn" id="printCvBtn">
+                    Print / Save PDF
+                    </button>
+                </div>
+            </div>
+
+            <form id="aiCvForm" class="ai-cv-form">
+              <div class="form-grid two-columns">
+                <div class="form-group">
+                  <label for="fullName">Full Name</label>
+                  <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    class="tool-input"
+                    placeholder="Example: Arjumand Ali"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="jobTitle">Target Job Title</label>
+                  <input
+                    type="text"
+                    id="jobTitle"
+                    name="jobTitle"
+                    class="tool-input"
+                    placeholder="Example: Front-End Developer"
+                    required
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="tool-input"
+                    placeholder="you@example.com"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="phone">Phone</label>
+                  <input
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    class="tool-input"
+                    placeholder="+92 300 0000000"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="location">Location</label>
+                  <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    class="tool-input"
+                    placeholder="Lahore, Pakistan"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="portfolio">Portfolio / LinkedIn</label>
+                  <input
+                    type="url"
+                    id="portfolio"
+                    name="portfolio"
+                    class="tool-input"
+                    placeholder="https://yourportfolio.com"
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="summary">About You / Career Summary</label>
+                <textarea
+                  id="summary"
+                  name="summary"
+                  class="tool-textarea ai-cv-small-textarea"
+                  placeholder="Write a short rough summary about your experience, skills, and career goal."
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="skills">Skills</label>
+                <textarea
+                  id="skills"
+                  name="skills"
+                  class="tool-textarea ai-cv-small-textarea"
+                  placeholder="Example: HTML, CSS, JavaScript, Tailwind CSS, WordPress, Elementor, GitHub"
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="experience">Work Experience</label>
+                <textarea
+                  id="experience"
+                  name="experience"
+                  class="tool-textarea ai-cv-medium-textarea"
+                  placeholder="Example: Front-End Developer at Company Name - built responsive websites, fixed UI bugs, optimized pages..."
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="projects">Projects</label>
+                <textarea
+                  id="projects"
+                  name="projects"
+                  class="tool-textarea ai-cv-medium-textarea"
+                  placeholder="Example: Portfolio website, DevToolKit, WordPress client websites, landing pages..."
+                ></textarea>
+              </div>
+
+              <div class="form-grid two-columns">
+                <div class="form-group">
+                  <label for="education">Education</label>
+                  <textarea
+                    id="education"
+                    name="education"
+                    class="tool-textarea ai-cv-small-textarea"
+                    placeholder="Example: ICS, Govt. Islamia College Railway Road"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="certifications">Certifications</label>
+                  <textarea
+                    id="certifications"
+                    name="certifications"
+                    class="tool-textarea ai-cv-small-textarea"
+                    placeholder="Example: Web Development Course, WordPress Training"
+                  ></textarea>
+                </div>
+              </div>
+
+              <div class="form-grid two-columns">
+                <div class="form-group">
+                  <label for="languages">Languages</label>
+                  <input
+                    type="text"
+                    id="languages"
+                    name="languages"
+                    class="tool-input"
+                    placeholder="English, Urdu"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="cvTone">CV Tone</label>
+                  <select id="cvTone" name="cvTone" class="tool-select">
+                    <option value="professional">Professional</option>
+                    <option value="ats">ATS Friendly</option>
+                    <option value="modern">Modern</option>
+                    <option value="simple">Simple</option>
+                    <option value="creative">Creative</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label>Choose CV Template</label>
+
+                <div class="cv-template-selector" role="radiogroup" aria-label="Choose CV template">
+                    <label class="cv-template-option active">
+                        <input type="radio" name="template" value="professional" checked />
+                        <span>Professional Resume</span>
+                    </label>
+                </div>
+
+              <div class="tool-actions ai-cv-actions">
+                <button type="submit" class="btn btn-primary" id="generateCvBtn">
+                  Generate AI CV
+                </button>
+
+                <button type="button" class="btn btn-outline" id="previewManualCvBtn">
+                  Preview Without AI
+                </button>
+              </div>
+
+              <p class="ai-cv-note">
+                Daily AI generation is limited to save API credits. You can still edit and print manually.
+              </p>
+            </form>
+          </section>
+          <!-- CV Form Panel End -->
+
+          <!-- CV Preview Panel Start -->
+          <section class="tool-panel ai-cv-preview-panel">
+            <div class="tool-panel-header">
+              <div>
+                <h3>Editable CV Preview</h3>
+                <p>Edit the generated CV directly before printing or saving.</p>
+              </div>
+
+              <button type="button" class="mini-btn" id="printCvBtn">
+                Print / Save PDF
+              </button>
+            </div>
+
+            <div id="cvMessageBox" class="ai-cv-message hidden"></div>
+
+            <div class="cv-preview-shell">
+              <article id="cvPreview" class="cv-preview cv-template-professional" contenteditable="false">
+                <div class="cv-empty-state">
+                  <span>CV</span>
+                  <h3>Your CV Preview Will Appear Here</h3>
+                  <p>
+                    Fill the form, choose a template, then generate your CV with AI
+                    or preview it manually.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div class="output-meta">
+              <span id="cvTemplateMeta">Template: Classic ATS</span>
+              <span id="cvEditMeta">Editable preview enabled</span>
+            </div>
+          </section>
+          <!-- CV Preview Panel End -->
+        </div>
+      </div>
+    </section>
+    <!-- Workspace Section End -->
+
+    <!-- Features Section Start -->
+    <section class="features-section ai-cv-features-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Why Use This Tool?</p>
+
+          <h2>Build a Better CV Faster</h2>
+
+          <p>
+            AI CV Maker helps you turn rough career details into cleaner,
+            stronger, and more professional CV content.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>AI Improved Content</h3>
+            <p>
+              Convert rough text into a cleaner professional summary, skills, and experience sections.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📄</div>
+            <h3>Editable Templates</h3>
+            <p>
+              Choose from multiple CV formats and edit the final result before downloading.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>ATS Friendly</h3>
+            <p>
+              Generate simple, readable CV wording suitable for job applications and hiring systems.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🖨️</div>
+            <h3>Print as PDF</h3>
+            <p>
+              Use your browser’s print option to save your completed CV as a PDF file.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Features Section End -->
+
+    <!-- SEO Content Section Start -->
+    <section class="seo-content-section" id="ai-cv-maker-info">
+      <div class="container">
+        <div class="content-wrapper">
+          <p class="section-badge">Free AI CV Maker</p>
+
+          <h2>Create a Professional CV with AI</h2>
+
+          <p>
+            DevToolKit AI CV Maker is a free online resume builder that helps students,
+            developers, freelancers, and job seekers create professional CV content from
+            simple details. You can enter your name, contact information, skills, education,
+            experience, projects, and target job role, then generate an improved CV using AI.
+          </p>
+
+          <p>
+            The tool is designed to keep the process simple. Instead of starting from a blank
+            document, you can choose a CV template, generate a structured resume, edit the
+            preview, and print or save it as a PDF using your browser.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- SEO Content Section End -->
+
+    <!-- FAQ Section Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+
+          <h2>AI CV Maker Questions</h2>
+
+          <p>
+            Common questions about creating and editing your CV with DevToolKit AI CV Maker.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Is AI CV Maker free?</summary>
+            <p>
+              Yes, AI CV Maker is free to use. AI generations may be limited per day to control API usage.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I edit the generated CV?</summary>
+            <p>
+              Yes, the CV preview is editable. You can click inside the CV and change the text before printing.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I download the CV as PDF?</summary>
+            <p>
+              Yes, use the Print / Save PDF button. Your browser will let you save the CV as a PDF.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does this tool use my Gemini API key?</summary>
+            <p>
+              The AI generation runs through the DevToolKit backend using a protected API key stored in Vercel Environment Variables.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Should I add private information?</summary>
+            <p>
+              No. Only add normal CV information such as name, email, phone, city, skills, education,
+              projects, and work experience. Do not add CNIC, passport, bank, or private identity details.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ Section End -->
+
+    <!-- CTA Section Start -->
+    <section class="cta-section" id="start">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">More Tools</p>
+
+          <h2>Explore More DevToolKit Tools</h2>
+
+          <p>
+            Use more free tools for JSON formatting, CSS generation, FACEIT stats,
+            image optimization, QR codes, passwords, and daily web tasks.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              Explore All Tools
+            </a>
+
+            <a href="faceitfinder.html" class="btn btn-outline">
+              Try FaceitFinder
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA Section End -->
+  </main>
+  <!-- Main Content End -->
+
+  <!-- Footer Component -->
+  <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="/js/components.js"></script>
+  <script src="../js/ai-cv-maker.js"></script>
+</body>
+</html>
