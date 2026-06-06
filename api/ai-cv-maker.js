@@ -1,6 +1,7 @@
 /* ================================
-   AI CV Maker - Backend API Route
-   DevToolKit
+   DevToolKit - AI CV Generator API
+   File: api/generate-cv.js
+   Purpose: Full CV generation with Gemini
 ================================ */
 
 export default async function handler(req, res) {
@@ -8,7 +9,7 @@ export default async function handler(req, res) {
     if (req.method !== "POST") {
       return res.status(405).json({
         success: false,
-        message: "Method not allowed."
+        message: "Method not allowed. Use POST."
       });
     }
 
@@ -22,25 +23,22 @@ export default async function handler(req, res) {
     }
 
     const input = req.body || {};
-    const requiredFields = ["fullName", "jobTitle", "summary", "skills"];
 
-    for (const field of requiredFields) {
-      if (!input[field] || !String(input[field]).trim()) {
-        return res.status(400).json({
-          success: false,
-          message: "Full Name, Job Title, Summary, and Skills are required."
-        });
-      }
+    if (!input.fullName || !input.jobTitle) {
+      return res.status(400).json({
+        success: false,
+        message: "Full Name and Job Title are required."
+      });
     }
 
-    const cleanInput = sanitizeInput(input);
+    const cleanInput = sanitizeCvInput(input);
 
-    const cv = await generateAiCv({
+    const generatedCv = await generateCvWithGemini({
       geminiApiKey,
       input: cleanInput
     });
 
-    if (!cv) {
+    if (!generatedCv) {
       return res.status(500).json({
         success: false,
         message: "AI CV generation failed. Please try again."
@@ -49,94 +47,112 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       success: true,
-      cv
+      cv: generatedCv
     });
   } catch (error) {
     return res.status(500).json({
       success: false,
-      message: "Server error. Please try again later."
+      message: "Server error. Please try again later.",
+      error: error.message
     });
   }
 }
 
 /* ================================
-   Gemini CV Generator
+   Gemini Full CV Generation
 ================================ */
 
-async function generateAiCv({ geminiApiKey, input }) {
+async function generateCvWithGemini({ geminiApiKey, input }) {
   try {
     const prompt = `
-You are a senior professional resume writer.
+You are a senior professional resume writer and ATS resume optimizer.
 
-Create a clean, modern, professional, one-page CV from the user details below.
+Create an improved ATS-friendly CV from the user data below.
 
-Important:
-- The CV must fit on ONE A4 page.
-- Use concise professional wording.
-- Do not write long paragraphs.
-- Do not create too many bullet points.
-- Do not invent fake jobs, fake companies, fake degrees, fake dates, or fake certifications.
-- Keep it truthful to the user input.
-- Make it ATS-friendly.
+IMPORTANT RULES:
 - Return ONLY valid JSON.
-- Do not use markdown.
-- Do not wrap JSON in code fences.
+- Do not return markdown.
+- Do not wrap JSON inside code fences.
+- Do not add comments outside JSON.
+- Do not fabricate employer names, job titles, schools, degrees, dates, emails, phone numbers, or URLs.
+- You may improve wording, clarity, action verbs, grammar, structure, and ATS keywords.
+- You may suggest relevant skills only if they are clearly related to the user's role and experience.
+- Keep the CV concise and professional.
+- Keep experience bullet points action-focused and ATS-friendly.
+- Do not include private identity data such as CNIC, passport, bank details, or full home address.
+- Links must display as labels only, but keep URLs in the JSON.
 
-User Details:
-Full Name: ${input.fullName}
-Target Job Title: ${input.jobTitle}
-Email: ${input.email || "N/A"}
-Phone: ${input.phone || "N/A"}
-Location: ${input.location || "N/A"}
-Portfolio / LinkedIn: ${input.portfolio || "N/A"}
-CV Tone: Professional
+USER DATA:
+${JSON.stringify(input, null, 2)}
 
-Rough Summary:
-${input.summary}
+Return JSON in exactly this structure:
 
-Skills:
-${input.skills}
-
-Work Experience:
-${input.experience || "N/A"}
-
-Projects:
-${input.projects || "N/A"}
-
-Education:
-${input.education || "N/A"}
-
-Certifications:
-${input.certifications || "N/A"}
-
-Languages:
-${input.languages || "N/A"}
-
-Content limits:
-- summary: maximum 45 words.
-- skills: maximum 12 skills.
-- experience: maximum 4 bullet points, each under 18 words.
-- projects: maximum 3 bullet points, each under 18 words.
-- education: maximum 2 items.
-- certifications: maximum 2 items.
-- languages: maximum 1 short line.
-
-JSON format:
 {
   "fullName": "string",
   "jobTitle": "string",
   "email": "string",
   "phone": "string",
   "location": "string",
-  "portfolio": "string",
-  "summary": "maximum 45 words",
-  "skills": ["skill 1", "skill 2"],
-  "experience": ["bullet point 1", "bullet point 2"],
-  "projects": ["project bullet 1", "project bullet 2"],
-  "education": ["education item 1"],
-  "certifications": ["certification item 1"],
-  "languages": ["English, Urdu"]
+  "links": [
+    {
+      "type": "LinkedIn",
+      "url": "https://example.com"
+    }
+  ],
+  "summary": "ATS-friendly professional summary, 2-4 sentences maximum",
+  "skills": ["skill 1", "skill 2", "skill 3"],
+  "experience": [
+    {
+      "title": "string",
+      "company": "string",
+      "location": "string",
+      "startDate": "string",
+      "endDate": "string",
+      "responsibilities": "bullet points separated by new lines"
+    }
+  ],
+  "education": [
+    {
+      "degree": "string",
+      "field": "string",
+      "institution": "string",
+      "location": "string",
+      "year": "string",
+      "details": "string"
+    }
+  ],
+  "projects": [
+    {
+      "name": "string",
+      "description": "professional project description",
+      "techStack": "string",
+      "link": "string"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "string",
+      "issuer": "string",
+      "year": "string"
+    }
+  ],
+  "languages": [
+    {
+      "name": "string",
+      "level": "Basic | Conversational | Fluent | Native"
+    }
+  ],
+  "interests": "string"
 }
+
+Content guidelines:
+- Summary: maximum 70 words.
+- Skills: maximum 16 skills.
+- Experience: keep each responsibility line under 22 words.
+- Projects: keep descriptions under 35 words each.
+- Education details: keep concise.
+- Certifications: keep only real items from user input.
+- If a section is empty and cannot be improved truthfully, return an empty array or empty string.
 `;
 
     const geminiResponse = await fetch(
@@ -158,7 +174,7 @@ JSON format:
           ],
           generationConfig: {
             temperature: 0.25,
-            maxOutputTokens: 1200,
+            maxOutputTokens: 3000,
             responseMimeType: "application/json"
           }
         })
@@ -174,43 +190,51 @@ JSON format:
     const text =
       geminiData?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
 
-    if (!text) return null;
+    if (!text) {
+      return null;
+    }
 
-    const parsedCv = parseGeminiJson(text);
+    const parsed = parseJsonSafely(text);
 
-    if (!parsedCv) return null;
+    if (!parsed) {
+      return null;
+    }
 
-    return normalizeCvResponse(parsedCv, input);
+    return normalizeCvResponse(parsed, input);
   } catch (error) {
     return null;
   }
 }
 
 /* ================================
-   Sanitize Input
+   Input Sanitization
 ================================ */
 
-function sanitizeInput(input) {
+function sanitizeCvInput(input) {
   return {
-    fullName: cleanText(input.fullName, 80),
-    jobTitle: cleanText(input.jobTitle, 90),
-    email: cleanText(input.email, 120),
-    phone: cleanText(input.phone, 60),
-    location: cleanText(input.location, 120),
-    portfolio: cleanText(input.portfolio, 180),
-    summary: cleanText(input.summary, 1000),
-    skills: cleanText(input.skills, 1000),
-    experience: cleanText(input.experience, 1800),
-    projects: cleanText(input.projects, 1400),
-    education: cleanText(input.education, 800),
-    certifications: cleanText(input.certifications, 800),
-    languages: cleanText(input.languages, 300),
-    cvTone: "professional",
-    template: "professional"
+    fullName: cleanText(input.fullName, 90),
+    jobTitle: cleanText(input.jobTitle, 100),
+    email: cleanText(input.email, 130),
+    phone: cleanText(input.phone, 70),
+    location: cleanText(input.location, 130),
+
+    links: sanitizeLinks(input.links),
+
+    summary: cleanText(input.summary, 1600),
+    skills: sanitizeStringArray(input.skills, 30, 60),
+
+    experience: sanitizeExperience(input.experience),
+    education: sanitizeEducation(input.education),
+    projects: sanitizeProjects(input.projects),
+    certifications: sanitizeCertifications(input.certifications),
+    languages: sanitizeLanguages(input.languages),
+
+    interests: cleanText(input.interests, 500),
+    template: cleanText(input.template, 50)
   };
 }
 
-function cleanText(value, maxLength) {
+function cleanText(value, maxLength = 500) {
   if (!value) return "";
 
   return String(value)
@@ -220,20 +244,118 @@ function cleanText(value, maxLength) {
     .slice(0, maxLength);
 }
 
+function sanitizeStringArray(value, maxItems = 20, maxLength = 80) {
+  if (!value) return [];
+
+  const items = Array.isArray(value)
+    ? value
+    : String(value).split(/\n|,|•/);
+
+  return items
+    .map((item) => cleanText(item, maxLength))
+    .filter(Boolean)
+    .slice(0, maxItems);
+}
+
+function sanitizeLinks(links) {
+  if (!Array.isArray(links)) return [];
+
+  return links
+    .map((link) => ({
+      type: cleanText(link.type, 40),
+      url: cleanText(link.url, 220)
+    }))
+    .filter((link) => link.type && link.url)
+    .slice(0, 8);
+}
+
+function sanitizeExperience(experience) {
+  if (!Array.isArray(experience)) return [];
+
+  return experience
+    .map((item) => ({
+      title: cleanText(item.title, 100),
+      company: cleanText(item.company, 120),
+      location: cleanText(item.location, 120),
+      startDate: cleanText(item.startDate, 40),
+      endDate: cleanText(item.endDate, 40),
+      responsibilities: cleanText(item.responsibilities, 2200)
+    }))
+    .filter((item) => item.title || item.company || item.responsibilities)
+    .slice(0, 6);
+}
+
+function sanitizeEducation(education) {
+  if (!Array.isArray(education)) return [];
+
+  return education
+    .map((item) => ({
+      degree: cleanText(item.degree, 120),
+      field: cleanText(item.field, 120),
+      institution: cleanText(item.institution, 140),
+      location: cleanText(item.location, 120),
+      year: cleanText(item.year, 40),
+      details: cleanText(item.details, 700)
+    }))
+    .filter((item) => item.degree || item.institution || item.details)
+    .slice(0, 5);
+}
+
+function sanitizeProjects(projects) {
+  if (!Array.isArray(projects)) return [];
+
+  return projects
+    .map((item) => ({
+      name: cleanText(item.name, 120),
+      description: cleanText(item.description, 1000),
+      techStack: cleanText(item.techStack, 250),
+      link: cleanText(item.link, 220)
+    }))
+    .filter((item) => item.name || item.description || item.techStack)
+    .slice(0, 6);
+}
+
+function sanitizeCertifications(certifications) {
+  if (!Array.isArray(certifications)) return [];
+
+  return certifications
+    .map((item) => ({
+      name: cleanText(item.name, 140),
+      issuer: cleanText(item.issuer, 120),
+      year: cleanText(item.year, 40)
+    }))
+    .filter((item) => item.name || item.issuer || item.year)
+    .slice(0, 8);
+}
+
+function sanitizeLanguages(languages) {
+  if (!Array.isArray(languages)) return [];
+
+  return languages
+    .map((item) => ({
+      name: cleanText(item.name, 80),
+      level: cleanText(item.level, 40)
+    }))
+    .filter((item) => item.name)
+    .slice(0, 8);
+}
+
 /* ================================
-   Parse Gemini JSON Safely
+   JSON Parsing
 ================================ */
 
-function parseGeminiJson(text) {
+function parseJsonSafely(text) {
   try {
     return JSON.parse(text);
   } catch (error) {
     try {
-      const jsonMatch = text.match(/\{[\s\S]*\}/);
+      const match = text.match(/\{[\s\S]*\}/);
 
-      if (!jsonMatch) return null;
+      if (!match) {
+        return null;
+      }
 
-      return JSON.parse(jsonMatch[0]);
+      return JSON.parse(match[0]);
     } catch (innerError) {
       return null;
     }
@@ -241,57 +363,123 @@ function parseGeminiJson(text) {
 }
 
 /* ================================
-   Normalize CV Response
+   Output Normalization
 ================================ */
 
 function normalizeCvResponse(cv, fallback) {
   return {
-    fullName: safeString(cv.fullName || fallback.fullName),
-    jobTitle: safeString(cv.jobTitle || fallback.jobTitle),
-    email: safeString(cv.email || fallback.email),
-    phone: safeString(cv.phone || fallback.phone),
-    location: safeString(cv.location || fallback.location),
-    portfolio: safeString(cv.portfolio || fallback.portfolio),
-    summary: limitWords(safeString(cv.summary || fallback.summary), 45),
-    skills: normalizeArray(cv.skills || fallback.skills, 12, 5),
-    experience: normalizeArray(cv.experience || fallback.experience, 4, 18),
-    projects: normalizeArray(cv.projects || fallback.projects, 3, 18),
-    education: normalizeArray(cv.education || fallback.education, 2, 14),
-    certifications: normalizeArray(cv.certifications || fallback.certifications, 2, 14),
-    languages: normalizeArray(cv.languages || fallback.languages, 1, 8)
+    fullName: cleanText(cv.fullName || fallback.fullName, 90),
+    jobTitle: cleanText(cv.jobTitle || fallback.jobTitle, 100),
+    email: cleanText(cv.email || fallback.email, 130),
+    phone: cleanText(cv.phone || fallback.phone, 70),
+    location: cleanText(cv.location || fallback.location, 130),
+
+    links: normalizeLinks(cv.links || fallback.links),
+
+    summary: cleanText(cv.summary || fallback.summary, 900),
+    skills: sanitizeStringArray(cv.skills || fallback.skills, 16, 70),
+
+    experience: normalizeExperience(cv.experience || fallback.experience),
+    education: normalizeEducation(cv.education || fallback.education),
+    projects: normalizeProjects(cv.projects || fallback.projects),
+    certifications: normalizeCertifications(cv.certifications || fallback.certifications),
+    languages: normalizeLanguages(cv.languages || fallback.languages),
+
+    interests: cleanText(cv.interests || fallback.interests, 400)
   };
 }
 
-function normalizeArray(value, maxItems, maxWords) {
-  if (!value) return [];
-
-  let items = [];
-
-  if (Array.isArray(value)) {
-    items = value;
-  } else {
-    items = String(value).split(/\n|,|•/);
-  }
-
-  return items
-    .map((item) => limitWords(safeString(item), maxWords))
-    .filter(Boolean)
-    .slice(0, maxItems);
+function normalizeLinks(links) {
+  return sanitizeLinks(links);
 }
 
-function safeString(value) {
-  if (!value) return "";
+function normalizeExperience(experience) {
+  if (!Array.isArray(experience)) return [];
 
-  return String(value)
-    .replace(/[<>]/g, "")
-    .trim();
+  return experience
+    .map((item) => ({
+      title: cleanText(item.title, 100),
+      company: cleanText(item.company, 120),
+      location: cleanText(item.location, 120),
+      startDate: cleanText(item.startDate, 40),
+      endDate: cleanText(item.endDate, 40),
+      responsibilities: normalizeBulletText(item.responsibilities, 5, 24)
+    }))
+    .filter((item) => item.title || item.company || item.responsibilities)
+    .slice(0, 5);
+}
+
+function normalizeEducation(education) {
+  if (!Array.isArray(education)) return [];
+
+  return education
+    .map((item) => ({
+      degree: cleanText(item.degree, 120),
+      field: cleanText(item.field, 120),
+      institution: cleanText(item.institution, 140),
+      location: cleanText(item.location, 120),
+      year: cleanText(item.year, 40),
+      details: cleanText(item.details, 500)
+    }))
+    .filter((item) => item.degree || item.institution || item.details)
+    .slice(0, 4);
+}
+
+function normalizeProjects(projects) {
+  if (!Array.isArray(projects)) return [];
+
+  return projects
+    .map((item) => ({
+      name: cleanText(item.name, 120),
+      description: cleanText(item.description, 500),
+      techStack: cleanText(item.techStack, 250),
+      link: cleanText(item.link, 220)
+    }))
+    .filter((item) => item.name || item.description || item.techStack)
+    .slice(0, 5);
+}
+
+function normalizeCertifications(certifications) {
+  if (!Array.isArray(certifications)) return [];
+
+  return certifications
+    .map((item) => ({
+      name: cleanText(item.name, 140),
+      issuer: cleanText(item.issuer, 120),
+      year: cleanText(item.year, 40)
+    }))
+    .filter((item) => item.name || item.issuer || item.year)
+    .slice(0, 6);
+}
+
+function normalizeLanguages(languages) {
+  if (!Array.isArray(languages)) return [];
+
+  return languages
+    .map((item) => ({
+      name: cleanText(item.name, 80),
+      level: cleanText(item.level, 40)
+    }))
+    .filter((item) => item.name)
+    .slice(0, 6);
+}
+
+function normalizeBulletText(value, maxBullets = 5, maxWords = 24) {
+  const bullets = String(value || "")
+    .split(/\n|•/)
+    .map((item) => item.replace(/^[-*]\s*/, "").trim())
+    .filter(Boolean)
+    .slice(0, maxBullets)
+    .map((item) => limitWords(item, maxWords));
+
+  return bullets.join("\n");
 }
 
 function limitWords(text, maxWords) {
-  const words = String(text).trim().split(/\s+/);
+  const words = String(text || "").trim().split(/\s+/).filter(Boolean);
 
-  if (!text || words.length <= maxWords) {
-    return String(text).trim();
+  if (words.length <= maxWords) {
+    return String(text || "").trim();
   }
 
   return words.slice(0, maxWords).join(" ") + ".";
