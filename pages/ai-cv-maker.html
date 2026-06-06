@@ -6,16 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="B_BY0aHc-bYNOh7rMJQ_B2EiU2n_liuHeeQvFiiaOPg" />
 
-  <title>AI CV Maker - Free AI Resume Builder with Editable Templates</title>
+  <title>Free AI CV Generator - ATS Friendly Resume Builder | DevToolKit</title>
 
   <meta
     name="description"
-    content="Create a professional CV with DevToolKit AI CV Maker. Enter your details, choose a CV template, generate an AI-improved resume, edit it, and download or print it as PDF."
+    content="Create a professional ATS-friendly CV in minutes with DevToolKit's free AI CV Generator. Choose from 5 resume templates, auto-generate your summary and bullet points with AI, and download your CV as PDF. No signup required."
   />
 
   <meta
     name="keywords"
-    content="AI CV maker, free CV maker, AI resume builder, resume generator, CV generator, ATS CV maker, professional CV template, editable CV maker, DevToolKit"
+    content="free CV generator, AI resume builder, ATS friendly resume, CV maker online, resume generator, professional CV templates, AI CV builder, free resume maker, CV without signup"
   />
 
   <meta name="author" content="Arjumand Ali" />
@@ -30,27 +30,27 @@
   <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon" />
 
   <!-- Open Graph Meta -->
-  <meta property="og:title" content="AI CV Maker - Free AI Resume Builder" />
+  <meta property="og:title" content="Free AI CV Generator - ATS Resume Builder | DevToolKit" />
   <meta
     property="og:description"
-    content="Build a professional CV using AI. Add your details, choose a template, edit your CV, and download or print it as PDF."
+    content="Build a professional ATS-friendly resume in minutes. 5 templates, AI-powered summaries and bullet points, PDF download. Free and no login required."
   />
-  <meta property="og:type" content="website" />
   <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/ai-cv-maker.html" />
+  <meta property="og:type" content="website" />
   <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
 
   <!-- Twitter Card Meta -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="AI CV Maker - Free AI Resume Builder" />
+  <meta name="twitter:title" content="Free AI CV Generator | DevToolKit" />
   <meta
     name="twitter:description"
-    content="Create an AI-improved CV with editable templates and download it as PDF."
+    content="Create ATS-friendly resumes with AI assistance. 5 professional templates. Free, no signup."
   />
   <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
 
   <!-- CSS Files -->
   <link rel="stylesheet" href="../css/style.css" />
-  <link rel="stylesheet" href="../css/responsive.css" />
+  <link rel="stylesheet" href="cv-templates.css" />
 </head>
 
 <body>
@@ -60,10 +60,13 @@
   <!-- Header Component -->
   <div id="site-header"></div>
 
+  <!-- Toast -->
+  <div id="cvToast" class="cv-toast" role="status" aria-live="polite"></div>
+
   <!-- Main Content Start -->
   <main id="main-content">
     <!-- Hero Section Start -->
-    <section class="tool-hero-section ai-cv-hero-section">
+    <section class="tool-hero-section cv-generator-hero-section">
       <div class="container tool-hero-container">
         <div class="tool-hero-content">
           <nav class="breadcrumb" aria-label="Breadcrumb">
@@ -71,384 +74,615 @@
             <span>/</span>
             <a href="../index.html#tools">Tools</a>
             <span>/</span>
-            <span>AI CV Maker</span>
+            <span>AI CV Generator</span>
           </nav>
 
-          <p class="section-badge">AI Resume Builder</p>
+          <p class="section-badge">Free AI Resume Builder</p>
 
-          <h1>AI CV Maker</h1>
+          <h1>Free AI CV Generator — Build ATS-Friendly Resumes Instantly</h1>
 
           <p>
-            Create a professional CV from your details using AI. Choose a template,
-            improve your content, edit the result, and print or download your CV as PDF.
+            Create a professional CV with 5 ATS-friendly templates, AI-powered summaries,
+            improved bullet points, live preview, PDF download, HTML export, and clipboard copy.
           </p>
 
           <div class="tool-hero-actions">
-            <a href="#ai-cv-workspace" class="btn btn-primary">
-              Start Building CV
-            </a>
-
-            <a href="../index.html#tools" class="btn btn-outline">
-              Explore More Tools
-            </a>
+            <a href="#cv-builder" class="btn btn-primary">Start Building CV</a>
+            <a href="#cv-templates" class="btn btn-outline">View Templates</a>
           </div>
         </div>
 
         <aside class="tool-info-card">
-          <h2>What You Can Create</h2>
+          <h2>What This Tool Does</h2>
 
           <ul>
-            <li>AI-improved professional summary</li>
-            <li>ATS-friendly skills and experience</li>
-            <li>Editable CV preview</li>
-            <li>5 clean CV template styles</li>
-            <li>Print or save as PDF</li>
+            <li>5 ATS-friendly resume templates</li>
+            <li>Generate CV with or without AI</li>
+            <li>Inline AI summary and bullet improvements</li>
+            <li>Live editable preview</li>
+            <li>Download as PDF, HTML, or copy text</li>
           </ul>
         </aside>
       </div>
     </section>
     <!-- Hero Section End -->
 
-    <!-- Workspace Section Start -->
-    <section class="tool-workspace-section ai-cv-workspace-section" id="ai-cv-workspace">
+    <!-- SEO Intro Section Start -->
+    <section class="cv-seo-intro-section">
+      <div class="container">
+        <div class="content-wrapper">
+          <p class="section-badge">ATS Friendly CV Maker</p>
+
+          <h2>Create a Professional Resume Without Starting From Scratch</h2>
+
+          <p>
+            DevToolKit AI CV Generator helps students, developers, freelancers, and job seekers
+            build a clean ATS-friendly resume online. Add your personal details, work experience,
+            skills, education, projects, certifications, and links, then choose a professional CV
+            template and generate a polished resume. You can use the free non-AI mode anytime or
+            use AI to improve your professional summary, experience bullet points, project
+            descriptions, and skills.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- SEO Intro Section End -->
+
+    <!-- CV Templates Section Start -->
+    <section class="cv-template-section" id="cv-templates">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Choose Template</p>
+
+          <h2>5 Professional ATS-Friendly CV Templates</h2>
+
+          <p>
+            Select a resume style before generating your CV. You can switch templates anytime.
+          </p>
+        </div>
+
+        <div class="cv-template-cards" role="radiogroup" aria-label="Choose CV template">
+          <button type="button" class="cv-template-card active" data-template="classic-clean" aria-pressed="true">
+            <span class="cv-template-mini classic-clean-mini"></span>
+            <strong>Classic Clean</strong>
+            <small>Traditional single-column resume for finance, law, and formal roles.</small>
+          </button>
+
+          <button type="button" class="cv-template-card" data-template="modern-sidebar" aria-pressed="false">
+            <span class="cv-template-mini modern-sidebar-mini"></span>
+            <strong>Modern Sidebar</strong>
+            <small>Two-column resume with a dark sidebar for contact and skills.</small>
+          </button>
+
+          <button type="button" class="cv-template-card" data-template="minimalist-pro" aria-pressed="false">
+            <span class="cv-template-mini minimalist-pro-mini"></span>
+            <strong>Minimalist Pro</strong>
+            <small>Clean whitespace-focused layout for developers and designers.</small>
+          </button>
+
+          <button type="button" class="cv-template-card" data-template="executive-bold" aria-pressed="false">
+            <span class="cv-template-mini executive-bold-mini"></span>
+            <strong>Executive Bold</strong>
+            <small>Strong heading section and formal bold section styling.</small>
+          </button>
+
+          <button type="button" class="cv-template-card" data-template="tech-stack" aria-pressed="false">
+            <span class="cv-template-mini tech-stack-mini"></span>
+            <strong>Tech Stack</strong>
+            <small>Developer-focused resume with monospace accents and links.</small>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- CV Templates Section End -->
+
+    <!-- CV Builder Section Start -->
+    <section class="tool-workspace-section cv-builder-section" id="cv-builder">
       <div class="container">
         <div class="tool-workspace-header">
           <div>
             <p class="section-badge">CV Builder</p>
 
-            <h2>Enter Your Details</h2>
+            <h2>Fill Your Details</h2>
 
             <p>
-              Add your information below. AI will improve the wording and place it into
-              your selected CV format.
+              Use Generate Without AI for instant client-side CV rendering, or use Generate With AI
+              to improve your CV content through Gemini.
             </p>
           </div>
 
-          <div class="tool-status" id="cvLimitStatus">
-            3 AI Uses / Day
+          <div class="tool-status" id="cvAiLimitStatus">
+            3 AI Uses Left Today
           </div>
         </div>
 
-        <div class="ai-cv-layout">
-          <!-- CV Form Panel Start -->
-          <section class="tool-panel ai-cv-form-panel">
-            <div class="tool-panel-header">
-                <div>
-                    <h3>Professional CV Preview</h3>
-                    <p>Generate your CV, then click Edit CV if you want to change anything.</p>
-                </div>
-
-                <div class="cv-preview-actions">
-                    <button type="button" class="mini-btn" id="editCvBtn">
-                    Edit CV
-                    </button>
-
-                    <button type="button" class="mini-btn" id="printCvBtn">
-                    Print / Save PDF
-                    </button>
-                </div>
-            </div>
-
-            <form id="aiCvForm" class="ai-cv-form">
-              <div class="form-grid two-columns">
-                <div class="form-group">
-                  <label for="fullName">Full Name</label>
-                  <input
-                    type="text"
-                    id="fullName"
-                    name="fullName"
-                    class="tool-input"
-                    placeholder="Example: Arjumand Ali"
-                    required
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="jobTitle">Target Job Title</label>
-                  <input
-                    type="text"
-                    id="jobTitle"
-                    name="jobTitle"
-                    class="tool-input"
-                    placeholder="Example: Front-End Developer"
-                    required
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="tool-input"
-                    placeholder="you@example.com"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="phone">Phone</label>
-                  <input
-                    type="text"
-                    id="phone"
-                    name="phone"
-                    class="tool-input"
-                    placeholder="+92 300 0000000"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="location">Location</label>
-                  <input
-                    type="text"
-                    id="location"
-                    name="location"
-                    class="tool-input"
-                    placeholder="Lahore, Pakistan"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="portfolio">Portfolio / LinkedIn</label>
-                  <input
-                    type="url"
-                    id="portfolio"
-                    name="portfolio"
-                    class="tool-input"
-                    placeholder="https://yourportfolio.com"
-                  />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="summary">About You / Career Summary</label>
-                <textarea
-                  id="summary"
-                  name="summary"
-                  class="tool-textarea ai-cv-small-textarea"
-                  placeholder="Write a short rough summary about your experience, skills, and career goal."
-                  required
-                ></textarea>
-              </div>
-
-              <div class="form-group">
-                <label for="skills">Skills</label>
-                <textarea
-                  id="skills"
-                  name="skills"
-                  class="tool-textarea ai-cv-small-textarea"
-                  placeholder="Example: HTML, CSS, JavaScript, Tailwind CSS, WordPress, Elementor, GitHub"
-                  required
-                ></textarea>
-              </div>
-
-              <div class="form-group">
-                <label for="experience">Work Experience</label>
-                <textarea
-                  id="experience"
-                  name="experience"
-                  class="tool-textarea ai-cv-medium-textarea"
-                  placeholder="Example: Front-End Developer at Company Name - built responsive websites, fixed UI bugs, optimized pages..."
-                ></textarea>
-              </div>
-
-              <div class="form-group">
-                <label for="projects">Projects</label>
-                <textarea
-                  id="projects"
-                  name="projects"
-                  class="tool-textarea ai-cv-medium-textarea"
-                  placeholder="Example: Portfolio website, DevToolKit, WordPress client websites, landing pages..."
-                ></textarea>
-              </div>
-
-              <div class="form-grid two-columns">
-                <div class="form-group">
-                  <label for="education">Education</label>
-                  <textarea
-                    id="education"
-                    name="education"
-                    class="tool-textarea ai-cv-small-textarea"
-                    placeholder="Example: ICS, Govt. Islamia College Railway Road"
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label for="certifications">Certifications</label>
-                  <textarea
-                    id="certifications"
-                    name="certifications"
-                    class="tool-textarea ai-cv-small-textarea"
-                    placeholder="Example: Web Development Course, WordPress Training"
-                  ></textarea>
-                </div>
-              </div>
-
-              <div class="form-grid two-columns">
-                <div class="form-group">
-                  <label for="languages">Languages</label>
-                  <input
-                    type="text"
-                    id="languages"
-                    name="languages"
-                    class="tool-input"
-                    placeholder="English, Urdu"
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="cvTone">CV Tone</label>
-                  <select id="cvTone" name="cvTone" class="tool-select">
-                    <option value="professional">Professional</option>
-                    <option value="ats">ATS Friendly</option>
-                    <option value="modern">Modern</option>
-                    <option value="simple">Simple</option>
-                    <option value="creative">Creative</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label>Choose CV Template</label>
-
-                <div class="cv-template-selector" role="radiogroup" aria-label="Choose CV template">
-                    <label class="cv-template-option active">
-                        <input type="radio" name="template" value="professional" checked />
-                        <span>Professional Resume</span>
-                    </label>
-                </div>
-
-              <div class="tool-actions ai-cv-actions">
-                <button type="submit" class="btn btn-primary" id="generateCvBtn">
-                  Generate AI CV
-                </button>
-
-                <button type="button" class="btn btn-outline" id="previewManualCvBtn">
-                  Preview Without AI
-                </button>
-              </div>
-
-              <p class="ai-cv-note">
-                Daily AI generation is limited to save API credits. You can still edit and print manually.
-              </p>
-            </form>
-          </section>
-          <!-- CV Form Panel End -->
-
-          <!-- CV Preview Panel Start -->
-          <section class="tool-panel ai-cv-preview-panel">
+        <div class="cv-builder-layout">
+          <!-- Form Panel Start -->
+          <section class="tool-panel cv-form-panel">
             <div class="tool-panel-header">
               <div>
-                <h3>Editable CV Preview</h3>
-                <p>Edit the generated CV directly before printing or saving.</p>
+                <h3>CV Information</h3>
+                <p>Required fields are marked with an asterisk.</p>
               </div>
 
-              <button type="button" class="mini-btn" id="printCvBtn">
-                Print / Save PDF
+              <button type="button" class="mini-btn" id="clearCvFormBtn">
+                Clear Form
               </button>
             </div>
 
-            <div id="cvMessageBox" class="ai-cv-message hidden"></div>
+            <form id="cvGeneratorForm" class="cv-generator-form" novalidate>
+              <!-- Personal Information -->
+              <div class="cv-form-section">
+                <div class="cv-form-section-header">
+                  <h4>Personal Information</h4>
+                  <p>Basic details shown at the top of your CV.</p>
+                </div>
+
+                <div class="form-grid two-columns">
+                  <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input
+                      type="text"
+                      id="fullName"
+                      name="fullName"
+                      class="tool-input"
+                      placeholder="Example: Muhammad Arjumand Ali"
+                      data-required="true"
+                    />
+                    <small class="field-error"></small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="jobTitle">Job Title / Desired Role *</label>
+                    <input
+                      type="text"
+                      id="jobTitle"
+                      name="jobTitle"
+                      class="tool-input"
+                      placeholder="Example: Front-End Developer"
+                      data-required="true"
+                    />
+                    <small class="field-error"></small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="tool-input"
+                      placeholder="you@example.com"
+                      data-required="true"
+                    />
+                    <small class="field-error"></small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      name="phone"
+                      class="tool-input"
+                      placeholder="+92 300 0000000"
+                      data-required="true"
+                    />
+                    <small class="field-error"></small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="location">Location *</label>
+                    <input
+                      type="text"
+                      id="location"
+                      name="location"
+                      class="tool-input"
+                      placeholder="Lahore, Pakistan"
+                      data-required="true"
+                    />
+                    <small class="field-error"></small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Links -->
+              <div class="cv-form-section">
+                <div class="cv-form-section-header split-header">
+                  <div>
+                    <h4>Links</h4>
+                    <p>Add LinkedIn, GitHub, portfolio, or other professional links.</p>
+                  </div>
+
+                  <button type="button" class="mini-btn" id="addLinkBtn">
+                    Add Link
+                  </button>
+                </div>
+
+                <div id="linksList" class="repeatable-list" data-list="links">
+                  <div class="repeatable-row link-row">
+                    <select class="tool-select link-type" aria-label="Link type">
+                      <option value="LinkedIn">LinkedIn</option>
+                      <option value="GitHub">GitHub</option>
+                      <option value="Portfolio">Portfolio</option>
+                      <option value="Website">Website</option>
+                      <option value="Twitter/X">Twitter/X</option>
+                      <option value="Other">Other</option>
+                    </select>
+
+                    <input
+                      type="url"
+                      class="tool-input link-url"
+                      placeholder="https://example.com"
+                      aria-label="Link URL"
+                    />
+
+                    <button type="button" class="mini-btn remove-row-btn" aria-label="Remove link">
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Professional Summary -->
+              <div class="cv-form-section">
+                <div class="cv-field-label-row">
+                  <div>
+                    <label for="summary">Professional Summary *</label>
+                    <span id="summaryCounter" class="char-counter">0 characters</span>
+                  </div>
+
+                  <button type="button" class="mini-btn ai-field-btn" data-field-type="summary">
+                    ✨ Generate Summary
+                  </button>
+                </div>
+
+                <textarea
+                  id="summary"
+                  name="summary"
+                  class="tool-textarea cv-small-textarea"
+                  placeholder="Write a short rough summary. AI can improve it."
+                  data-required="true"
+                  maxlength="600"
+                ></textarea>
+                <small class="field-error"></small>
+              </div>
+
+              <!-- Skills -->
+              <div class="cv-form-section">
+                <div class="cv-field-label-row">
+                  <div>
+                    <label for="skillInput">Skills *</label>
+                    <p class="field-hint">Type a skill and press Enter or comma.</p>
+                  </div>
+
+                  <button type="button" class="mini-btn ai-field-btn" data-field-type="skills_suggestions">
+                    ✨ Suggest Skills
+                  </button>
+                </div>
+
+                <div class="skills-tags-box" id="skillsTagsBox">
+                  <div id="skillsTags" class="skills-tags"></div>
+
+                  <input
+                    type="text"
+                    id="skillInput"
+                    class="skills-tag-input"
+                    placeholder="Example: HTML, CSS, JavaScript"
+                  />
+                </div>
+
+                <input type="hidden" id="skills" name="skills" data-required="true" />
+                <small class="field-error" id="skillsError"></small>
+              </div>
+
+              <!-- Work Experience -->
+              <div class="cv-form-section">
+                <div class="cv-form-section-header split-header">
+                  <div>
+                    <h4>Work Experience *</h4>
+                    <p>Add at least one role for AI CV generation.</p>
+                  </div>
+
+                  <button type="button" class="mini-btn" id="addExperienceBtn">
+                    Add Experience
+                  </button>
+                </div>
+
+                <div id="experienceList" class="repeatable-list" data-list="experience">
+                  <article class="repeatable-card experience-item">
+                    <div class="repeatable-card-header">
+                      <strong>Experience 1</strong>
+                      <button type="button" class="mini-btn remove-row-btn">Remove</button>
+                    </div>
+
+                    <div class="form-grid two-columns">
+                      <div class="form-group">
+                        <label>Job Title *</label>
+                        <input type="text" class="tool-input exp-title" placeholder="Front-End Developer" />
+                        <small class="field-error"></small>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Company *</label>
+                        <input type="text" class="tool-input exp-company" placeholder="Company Name" />
+                        <small class="field-error"></small>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" class="tool-input exp-location" placeholder="Lahore, Pakistan" />
+                      </div>
+
+                      <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="text" class="tool-input exp-start" placeholder="Jan 2024" />
+                      </div>
+
+                      <div class="form-group">
+                        <label>End Date</label>
+                        <input type="text" class="tool-input exp-end" placeholder="Dec 2024" />
+                      </div>
+
+                      <label class="checkbox-control exp-present-control">
+                        <input type="checkbox" class="exp-present" />
+                        <span>Currently working here</span>
+                      </label>
+                    </div>
+
+                    <div class="cv-field-label-row">
+                      <label>Responsibilities / Achievements *</label>
+
+                      <button type="button" class="mini-btn ai-field-btn" data-field-type="experience_bullets">
+                        ✨ Improve Bullets
+                      </button>
+                    </div>
+
+                    <textarea
+                      class="tool-textarea cv-medium-textarea exp-responsibilities"
+                      placeholder="Write responsibilities or achievements. Separate points with new lines."
+                    ></textarea>
+                    <small class="field-error"></small>
+                  </article>
+                </div>
+              </div>
+
+              <!-- Education -->
+              <div class="cv-form-section">
+                <div class="cv-form-section-header split-header">
+                  <div>
+                    <h4>Education *</h4>
+                    <p>Add degree, institution, and graduation details.</p>
+                  </div>
+
+                  <button type="button" class="mini-btn" id="addEducationBtn">
+                    Add Education
+                  </button>
+                </div>
+
+                <div id="educationList" class="repeatable-list" data-list="education">
+                  <article class="repeatable-card education-item">
+                    <div class="repeatable-card-header">
+                      <strong>Education 1</strong>
+                      <button type="button" class="mini-btn remove-row-btn">Remove</button>
+                    </div>
+
+                    <div class="form-grid two-columns">
+                      <div class="form-group">
+                        <label>Degree *</label>
+                        <input type="text" class="tool-input edu-degree" placeholder="ICS / BS Computer Science" />
+                        <small class="field-error"></small>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Field of Study</label>
+                        <input type="text" class="tool-input edu-field" placeholder="Computer Science" />
+                      </div>
+
+                      <div class="form-group">
+                        <label>Institution *</label>
+                        <input type="text" class="tool-input edu-institution" placeholder="College / University Name" />
+                        <small class="field-error"></small>
+                      </div>
+
+                      <div class="form-group">
+                        <label>Location</label>
+                        <input type="text" class="tool-input edu-location" placeholder="Lahore, Pakistan" />
+                      </div>
+
+                      <div class="form-group">
+                        <label>Graduation Year</label>
+                        <input type="text" class="tool-input edu-year" placeholder="2024" />
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label>Relevant Courses or Achievements</label>
+                      <textarea class="tool-textarea cv-small-textarea edu-details" placeholder="Optional courses, marks, achievements, or activities."></textarea>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <!-- Projects -->
+              <div class="cv-form-section">
+                <div class="cv-form-section-header split-header">
+                  <div>
+                    <h4>Projects</h4>
+                    <p>Optional, but useful for developers, students, and freelancers.</p>
+                  </div>
+
+                  <button type="button" class="mini-btn" id="addProjectBtn">
+                    Add Project
+                  </button>
+                </div>
+
+                <div id="projectsList" class="repeatable-list" data-list="projects">
+                  <article class="repeatable-card project-item">
+                    <div class="repeatable-card-header">
+                      <strong>Project 1</strong>
+                      <button type="button" class="mini-btn remove-row-btn">Remove</button>
+                    </div>
+
+                    <div class="form-grid two-columns">
+                      <div class="form-group">
+                        <label>Project Name</label>
+                        <input type="text" class="tool-input project-name" placeholder="DevToolKit" />
+                      </div>
+
+                      <div class="form-group">
+                        <label>Tech Stack</label>
+                        <input type="text" class="tool-input project-tech" placeholder="HTML, CSS, JavaScript, Vercel" />
+                      </div>
+
+                      <div class="form-group">
+                        <label>Project Link</label>
+                        <input type="url" class="tool-input project-link" placeholder="https://example.com" />
+                      </div>
+                    </div>
+
+                    <div class="cv-field-label-row">
+                      <label>Project Description</label>
+
+                      <button type="button" class="mini-btn ai-field-btn" data-field-type="project_description">
+                        ✨ Improve Description
+                      </button>
+                    </div>
+
+                    <textarea class="tool-textarea cv-small-textarea project-description" placeholder="Write what the project does and what you built."></textarea>
+                  </article>
+                </div>
+              </div>
+
+              <!-- Certifications -->
+              <div class="cv-form-section">
+                <div class="cv-form-section-header split-header">
+                  <div>
+                    <h4>Certifications</h4>
+                    <p>Optional training, courses, or certificates.</p>
+                  </div>
+
+                  <button type="button" class="mini-btn" id="addCertificationBtn">
+                    Add Certification
+                  </button>
+                </div>
+
+                <div id="certificationsList" class="repeatable-list" data-list="certifications">
+                  <div class="repeatable-row certification-row">
+                    <input type="text" class="tool-input cert-name" placeholder="Certification Name" />
+                    <input type="text" class="tool-input cert-issuer" placeholder="Issuer" />
+                    <input type="text" class="tool-input cert-year" placeholder="Year" />
+                    <button type="button" class="mini-btn remove-row-btn">Remove</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Languages -->
+              <div class="cv-form-section">
+                <div class="cv-form-section-header split-header">
+                  <div>
+                    <h4>Languages</h4>
+                    <p>Optional language name and proficiency level.</p>
+                  </div>
+
+                  <button type="button" class="mini-btn" id="addLanguageBtn">
+                    Add Language
+                  </button>
+                </div>
+
+                <div id="languagesList" class="repeatable-list" data-list="languages">
+                  <div class="repeatable-row language-row">
+                    <input type="text" class="tool-input lang-name" placeholder="English" />
+
+                    <select class="tool-select lang-level">
+                      <option value="Basic">Basic</option>
+                      <option value="Conversational">Conversational</option>
+                      <option value="Fluent">Fluent</option>
+                      <option value="Native">Native</option>
+                    </select>
+
+                    <button type="button" class="mini-btn remove-row-btn">Remove</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Interests -->
+              <div class="cv-form-section">
+                <div class="form-group">
+                  <label for="interests">Interests / Hobbies</label>
+                  <input
+                    type="text"
+                    id="interests"
+                    name="interests"
+                    class="tool-input"
+                    placeholder="Example: Open-source, UI design, gaming, blogging"
+                  />
+                </div>
+              </div>
+
+              <!-- Actions -->
+              <div class="tool-actions cv-main-actions">
+                <button type="button" class="btn btn-outline" id="generateWithoutAiBtn">
+                  Generate Without AI
+                </button>
+
+                <button type="button" class="btn btn-primary" id="generateWithAiBtn">
+                  Generate CV With AI
+                </button>
+              </div>
+
+              <p class="cv-form-note">
+                Full AI generation is limited to 3 uses per day. Inline AI buttons are available for individual fields.
+              </p>
+            </form>
+          </section>
+          <!-- Form Panel End -->
+
+          <!-- Preview Panel Start -->
+          <aside class="tool-panel cv-preview-panel">
+            <div class="tool-panel-header">
+              <div>
+                <h3>Live CV Preview</h3>
+                <p>Preview updates as you type or after AI generation.</p>
+              </div>
+            </div>
+
+            <div class="cv-preview-toolbar">
+              <button type="button" class="mini-btn" id="downloadPdfBtn">
+                Download PDF
+              </button>
+
+              <button type="button" class="mini-btn" id="downloadHtmlBtn">
+                Download HTML
+              </button>
+
+              <button type="button" class="mini-btn" id="copyCvTextBtn">
+                Copy Text
+              </button>
+            </div>
 
             <div class="cv-preview-shell">
-              <article id="cvPreview" class="cv-preview cv-template-professional" contenteditable="false">
+              <article id="cvPreview" class="cv-preview cv-template-classic-clean" aria-label="CV preview">
                 <div class="cv-empty-state">
                   <span>CV</span>
-                  <h3>Your CV Preview Will Appear Here</h3>
+                  <h3>Your Resume Preview Will Appear Here</h3>
                   <p>
-                    Fill the form, choose a template, then generate your CV with AI
-                    or preview it manually.
+                    Fill the form and generate your CV. The selected professional template will appear here.
                   </p>
                 </div>
               </article>
             </div>
 
             <div class="output-meta">
-              <span id="cvTemplateMeta">Template: Classic ATS</span>
-              <span id="cvEditMeta">Editable preview enabled</span>
+              <span id="selectedTemplateMeta">Template: Classic Clean</span>
+              <span id="autosaveMeta">Autosave enabled</span>
             </div>
-          </section>
-          <!-- CV Preview Panel End -->
+          </aside>
+          <!-- Preview Panel End -->
         </div>
       </div>
     </section>
-    <!-- Workspace Section End -->
-
-    <!-- Features Section Start -->
-    <section class="features-section ai-cv-features-section">
-      <div class="container">
-        <div class="section-header">
-          <p class="section-badge">Why Use This Tool?</p>
-
-          <h2>Build a Better CV Faster</h2>
-
-          <p>
-            AI CV Maker helps you turn rough career details into cleaner,
-            stronger, and more professional CV content.
-          </p>
-        </div>
-
-        <div class="features-grid">
-          <article class="feature-card">
-            <div class="feature-icon">🤖</div>
-            <h3>AI Improved Content</h3>
-            <p>
-              Convert rough text into a cleaner professional summary, skills, and experience sections.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">📄</div>
-            <h3>Editable Templates</h3>
-            <p>
-              Choose from multiple CV formats and edit the final result before downloading.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">🎯</div>
-            <h3>ATS Friendly</h3>
-            <p>
-              Generate simple, readable CV wording suitable for job applications and hiring systems.
-            </p>
-          </article>
-
-          <article class="feature-card">
-            <div class="feature-icon">🖨️</div>
-            <h3>Print as PDF</h3>
-            <p>
-              Use your browser’s print option to save your completed CV as a PDF file.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-    <!-- Features Section End -->
-
-    <!-- SEO Content Section Start -->
-    <section class="seo-content-section" id="ai-cv-maker-info">
-      <div class="container">
-        <div class="content-wrapper">
-          <p class="section-badge">Free AI CV Maker</p>
-
-          <h2>Create a Professional CV with AI</h2>
-
-          <p>
-            DevToolKit AI CV Maker is a free online resume builder that helps students,
-            developers, freelancers, and job seekers create professional CV content from
-            simple details. You can enter your name, contact information, skills, education,
-            experience, projects, and target job role, then generate an improved CV using AI.
-          </p>
-
-          <p>
-            The tool is designed to keep the process simple. Instead of starting from a blank
-            document, you can choose a CV template, generate a structured resume, edit the
-            preview, and print or save it as a PDF using your browser.
-          </p>
-        </div>
-      </div>
-    </section>
-    <!-- SEO Content Section End -->
+    <!-- CV Builder Section End -->
 
     <!-- FAQ Section Start -->
     <section class="faq-section" id="faq">
@@ -456,47 +690,53 @@
         <div class="section-header">
           <p class="section-badge">FAQ</p>
 
-          <h2>AI CV Maker Questions</h2>
+          <h2>AI CV Generator Questions</h2>
 
           <p>
-            Common questions about creating and editing your CV with DevToolKit AI CV Maker.
+            Common questions about using DevToolKit’s free AI resume builder.
           </p>
         </div>
 
         <div class="faq-list">
           <details class="faq-item">
-            <summary>Is AI CV Maker free?</summary>
+            <summary>Is this CV generator free?</summary>
             <p>
-              Yes, AI CV Maker is free to use. AI generations may be limited per day to control API usage.
+              Yes. You can generate CVs without AI for free without any limit. Full AI generation is limited to 3 uses per day.
             </p>
           </details>
 
           <details class="faq-item">
-            <summary>Can I edit the generated CV?</summary>
+            <summary>Are the CV templates ATS friendly?</summary>
             <p>
-              Yes, the CV preview is editable. You can click inside the CV and change the text before printing.
+              Yes. The templates are built with clean semantic HTML, readable text, logical headings, and no image-based text.
             </p>
           </details>
 
           <details class="faq-item">
-            <summary>Can I download the CV as PDF?</summary>
+            <summary>What does Generate with AI do?</summary>
             <p>
-              Yes, use the Print / Save PDF button. Your browser will let you save the CV as a PDF.
+              It improves your summary, skills, experience bullet points, and project descriptions to make your resume more professional and ATS-friendly.
             </p>
           </details>
 
           <details class="faq-item">
-            <summary>Does this tool use my Gemini API key?</summary>
+            <summary>Can I download my CV as PDF?</summary>
             <p>
-              The AI generation runs through the DevToolKit backend using a protected API key stored in Vercel Environment Variables.
+              Yes. Click Download PDF and use your browser’s print dialog to save the resume as a PDF file.
             </p>
           </details>
 
           <details class="faq-item">
-            <summary>Should I add private information?</summary>
+            <summary>Do I need to create an account?</summary>
             <p>
-              No. Only add normal CV information such as name, email, phone, city, skills, education,
-              projects, and work experience. Do not add CNIC, passport, bank, or private identity details.
+              No. DevToolKit AI CV Generator works without signup or login.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How many times can I use the AI generation?</summary>
+            <p>
+              Full AI CV generation is limited to 3 uses per day per browser. The limit resets daily.
             </p>
           </details>
         </div>
@@ -505,7 +745,7 @@
     <!-- FAQ Section End -->
 
     <!-- CTA Section Start -->
-    <section class="cta-section" id="start">
+    <section class="cta-section">
       <div class="container">
         <div class="cta-box">
           <p class="section-badge">More Tools</p>
@@ -513,8 +753,8 @@
           <h2>Explore More DevToolKit Tools</h2>
 
           <p>
-            Use more free tools for JSON formatting, CSS generation, FACEIT stats,
-            image optimization, QR codes, passwords, and daily web tasks.
+            Try more free tools for FACEIT stats, JSON formatting, CSS generation, image optimization,
+            QR codes, passwords, and daily web development tasks.
           </p>
 
           <div class="cta-actions">
@@ -538,6 +778,6 @@
 
   <!-- JavaScript Files -->
   <script src="/js/components.js"></script>
-  <script src="../js/ai-cv-maker.js"></script>
+  <script src="/js/ai-cv-maker.js"></script>
 </body>
 </html>
