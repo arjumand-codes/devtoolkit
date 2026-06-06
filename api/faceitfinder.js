@@ -128,7 +128,8 @@ export default async function handler(req, res) {
       aiSummary = await generateGeminiSummary({
         geminiApiKey,
         player,
-        stats
+        stats,
+        history
       });
     }
 
@@ -151,35 +152,41 @@ export default async function handler(req, res) {
    Gemini AI Summary Function
 ================================ */
 
-async function generateGeminiSummary({ geminiApiKey, player, stats }) {
+async function generateGeminiSummary({ geminiApiKey, player, stats, history }) {
   try {
     const cs2 = player.games?.cs2 || {};
     const lifetime = stats?.lifetime || {};
+    const recentMatchesCount = Array.isArray(history?.items) ? history.items.length : 0;
 
     const prompt = `
-Analyze this CS2 FACEIT player in simple words.
+You are analyzing a CS2 FACEIT player using public FACEIT stats.
 
-Player data:
+Player:
 Nickname: ${player.nickname || "N/A"}
 Country: ${player.country || "N/A"}
 Skill Level: ${cs2.skill_level || "N/A"}
 FACEIT ELO: ${cs2.faceit_elo || "N/A"}
 Region: ${cs2.region || "N/A"}
 Matches: ${lifetime.Matches || "N/A"}
-Win Rate: ${lifetime["Win Rate %"] || "N/A"}
+Win Rate: ${lifetime["Win Rate %"] || "N/A"}%
 Average K/D Ratio: ${lifetime["Average K/D Ratio"] || "N/A"}
 Average Headshots %: ${lifetime["Average Headshots %"] || "N/A"}
+Recent Matches Loaded: ${recentMatchesCount}
 
-Write only 3 short lines:
-1. Overall player level
-2. Strength or weakness from stats
-3. Simple improvement suggestion
+Write a useful but short player analysis in exactly 3 bullet points.
 
-Do not exaggerate. If data is missing, say stats are limited.
+Rules:
+- Do not use markdown headings.
+- Do not exaggerate.
+- Mention if the player looks beginner, average, strong, or elite.
+- Mention one strength based on the stats.
+- Mention one simple improvement suggestion.
+- Keep the full answer under 70 words.
+- If stats are missing or limited, say the stats are limited.
 `;
 
     const geminiResponse = await fetch(
-        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`,
       {
         method: "POST",
         headers: {
@@ -196,8 +203,8 @@ Do not exaggerate. If data is missing, say stats are limited.
             }
           ],
           generationConfig: {
-            temperature: 0.4,
-            maxOutputTokens: 180
+            temperature: 0.35,
+            maxOutputTokens: 220
           }
         })
       }
