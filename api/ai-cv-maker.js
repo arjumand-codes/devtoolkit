@@ -5,6 +5,14 @@
 ================================ */
 
 export default async function handler(req, res) {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+
   try {
     if (req.method !== "POST") {
       return res.status(405).json({
@@ -70,108 +78,64 @@ You are a senior professional resume writer and ATS resume optimizer.
 Create an improved ATS-friendly CV from the user data below.
 
 IMPORTANT RULES:
-- Return ONLY valid JSON.
-- Do not return markdown.
-- Do not wrap JSON inside code fences.
-- Do not add comments outside JSON.
+- Return ONLY valid JSON. No markdown. No code fences. No comments outside JSON.
 - Do not fabricate employer names, job titles, schools, degrees, dates, emails, phone numbers, or URLs.
 - You may improve wording, clarity, action verbs, grammar, structure, and ATS keywords.
-- You may suggest relevant skills only if they are clearly related to the user's role and experience.
-- Keep the CV concise and professional.
-- Keep experience bullet points action-focused and ATS-friendly.
-- Do not include private identity data such as CNIC, passport, bank details, or full home address.
-- Links must display as labels only, but keep URLs in the JSON.
+- You may suggest relevant skills only if clearly related to the user's role and experience.
+- Keep experience bullet points action-focused and ATS-friendly, starting with strong verbs.
+- Do not include private identity data such as CNIC, passport, or bank details.
 
 USER DATA:
 ${JSON.stringify(input, null, 2)}
 
-Return JSON in exactly this structure:
-
+Return JSON in exactly this structure (no extra keys, no markdown):
 {
   "fullName": "string",
   "jobTitle": "string",
   "email": "string",
   "phone": "string",
   "location": "string",
-  "links": [
-    {
-      "type": "LinkedIn",
-      "url": "https://example.com"
-    }
-  ],
-  "summary": "ATS-friendly professional summary, 2-4 sentences maximum",
-  "skills": ["skill 1", "skill 2", "skill 3"],
-  "experience": [
-    {
-      "title": "string",
-      "company": "string",
-      "location": "string",
-      "startDate": "string",
-      "endDate": "string",
-      "responsibilities": "bullet points separated by new lines"
-    }
-  ],
-  "education": [
-    {
-      "degree": "string",
-      "field": "string",
-      "institution": "string",
-      "location": "string",
-      "year": "string",
-      "details": "string"
-    }
-  ],
-  "projects": [
-    {
-      "name": "string",
-      "description": "professional project description",
-      "techStack": "string",
-      "link": "string"
-    }
-  ],
-  "certifications": [
-    {
-      "name": "string",
-      "issuer": "string",
-      "year": "string"
-    }
-  ],
-  "languages": [
-    {
-      "name": "string",
-      "level": "Basic | Conversational | Fluent | Native"
-    }
-  ],
+  "links": [{ "type": "string", "url": "string" }],
+  "summary": "ATS-friendly 2-4 sentence summary, max 70 words",
+  "skills": ["skill1", "skill2"],
+  "experience": [{
+    "title": "string",
+    "company": "string",
+    "location": "string",
+    "startDate": "string",
+    "endDate": "string",
+    "responsibilities": "bullet points on new lines, each starting with action verb"
+  }],
+  "education": [{
+    "degree": "string",
+    "field": "string",
+    "institution": "string",
+    "location": "string",
+    "year": "string",
+    "details": "string"
+  }],
+  "projects": [{
+    "name": "string",
+    "description": "string, max 35 words",
+    "techStack": "string",
+    "link": "string"
+  }],
+  "certifications": [{ "name": "string", "issuer": "string", "year": "string" }],
+  "languages": [{ "name": "string", "level": "Basic|Conversational|Fluent|Native" }],
   "interests": "string"
 }
 
-Content guidelines:
-- Summary: maximum 70 words.
-- Skills: maximum 16 skills.
-- Experience: keep each responsibility line under 22 words.
-- Projects: keep descriptions under 35 words each.
-- Education details: keep concise.
-- Certifications: keep only real items from user input.
-- If a section is empty and cannot be improved truthfully, return an empty array or empty string.
+Limits: summary max 70 words, skills max 16, experience bullets max 5 per role each under 22 words, project descriptions max 35 words. If a section is empty return empty array or empty string.
 `;
 
+    // Use gemini-1.5-flash — stable, fast, free-tier compatible
     const geminiResponse = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`,
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${geminiApiKey}`,
       {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          contents: [
-            {
-              parts: [
-                {
-                  text: prompt
-                }
-              ]
-            }
-          ],
+          contents: [{ parts: [{ text: prompt }] }],
           generationConfig: {
             temperature: 0.25,
             maxOutputTokens: 3000,
@@ -182,26 +146,22 @@ Content guidelines:
     );
 
     if (!geminiResponse.ok) {
+      const errData = await geminiResponse.json().catch(() => ({}));
+      console.error("Gemini API error:", geminiResponse.status, errData);
       return null;
     }
 
     const geminiData = await geminiResponse.json();
+    const text = geminiData?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
 
-    const text =
-      geminiData?.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
-
-    if (!text) {
-      return null;
-    }
+    if (!text) return null;
 
     const parsed = parseJsonSafely(text);
-
-    if (!parsed) {
-      return null;
-    }
+    if (!parsed) return null;
 
     return normalizeCvResponse(parsed, input);
   } catch (error) {
+    console.error("generateCvWithGemini error:", error);
     return null;
   }
 }
@@ -217,18 +177,14 @@ function sanitizeCvInput(input) {
     email: cleanText(input.email, 130),
     phone: cleanText(input.phone, 70),
     location: cleanText(input.location, 130),
-
     links: sanitizeLinks(input.links),
-
     summary: cleanText(input.summary, 1600),
     skills: sanitizeStringArray(input.skills, 30, 60),
-
     experience: sanitizeExperience(input.experience),
     education: sanitizeEducation(input.education),
     projects: sanitizeProjects(input.projects),
     certifications: sanitizeCertifications(input.certifications),
     languages: sanitizeLanguages(input.languages),
-
     interests: cleanText(input.interests, 500),
     template: cleanText(input.template, 50)
   };
@@ -236,7 +192,6 @@ function sanitizeCvInput(input) {
 
 function cleanText(value, maxLength = 500) {
   if (!value) return "";
-
   return String(value)
     .replace(/[<>]/g, "")
     .replace(/\s{3,}/g, " ")
@@ -246,32 +201,20 @@ function cleanText(value, maxLength = 500) {
 
 function sanitizeStringArray(value, maxItems = 20, maxLength = 80) {
   if (!value) return [];
-
-  const items = Array.isArray(value)
-    ? value
-    : String(value).split(/\n|,|•/);
-
-  return items
-    .map((item) => cleanText(item, maxLength))
-    .filter(Boolean)
-    .slice(0, maxItems);
+  const items = Array.isArray(value) ? value : String(value).split(/\n|,|•/);
+  return items.map((i) => cleanText(i, maxLength)).filter(Boolean).slice(0, maxItems);
 }
 
 function sanitizeLinks(links) {
   if (!Array.isArray(links)) return [];
-
   return links
-    .map((link) => ({
-      type: cleanText(link.type, 40),
-      url: cleanText(link.url, 220)
-    }))
-    .filter((link) => link.type && link.url)
+    .map((l) => ({ type: cleanText(l.type, 40), url: cleanText(l.url, 220) }))
+    .filter((l) => l.type && l.url)
     .slice(0, 8);
 }
 
 function sanitizeExperience(experience) {
   if (!Array.isArray(experience)) return [];
-
   return experience
     .map((item) => ({
       title: cleanText(item.title, 100),
@@ -287,7 +230,6 @@ function sanitizeExperience(experience) {
 
 function sanitizeEducation(education) {
   if (!Array.isArray(education)) return [];
-
   return education
     .map((item) => ({
       degree: cleanText(item.degree, 120),
@@ -297,13 +239,12 @@ function sanitizeEducation(education) {
       year: cleanText(item.year, 40),
       details: cleanText(item.details, 700)
     }))
-    .filter((item) => item.degree || item.institution || item.details)
+    .filter((item) => item.degree || item.institution)
     .slice(0, 5);
 }
 
 function sanitizeProjects(projects) {
   if (!Array.isArray(projects)) return [];
-
   return projects
     .map((item) => ({
       name: cleanText(item.name, 120),
@@ -311,26 +252,24 @@ function sanitizeProjects(projects) {
       techStack: cleanText(item.techStack, 250),
       link: cleanText(item.link, 220)
     }))
-    .filter((item) => item.name || item.description || item.techStack)
+    .filter((item) => item.name || item.description)
     .slice(0, 6);
 }
 
 function sanitizeCertifications(certifications) {
   if (!Array.isArray(certifications)) return [];
-
   return certifications
     .map((item) => ({
       name: cleanText(item.name, 140),
       issuer: cleanText(item.issuer, 120),
       year: cleanText(item.year, 40)
     }))
-    .filter((item) => item.name || item.issuer || item.year)
+    .filter((item) => item.name)
     .slice(0, 8);
 }
 
 function sanitizeLanguages(languages) {
   if (!Array.isArray(languages)) return [];
-
   return languages
     .map((item) => ({
       name: cleanText(item.name, 80),
@@ -347,16 +286,12 @@ function sanitizeLanguages(languages) {
 function parseJsonSafely(text) {
   try {
     return JSON.parse(text);
-  } catch (error) {
+  } catch {
     try {
       const match = text.match(/\{[\s\S]*\}/);
-
-      if (!match) {
-        return null;
-      }
-
+      if (!match) return null;
       return JSON.parse(match[0]);
-    } catch (innerError) {
+    } catch {
       return null;
     }
   }
@@ -373,29 +308,20 @@ function normalizeCvResponse(cv, fallback) {
     email: cleanText(cv.email || fallback.email, 130),
     phone: cleanText(cv.phone || fallback.phone, 70),
     location: cleanText(cv.location || fallback.location, 130),
-
-    links: normalizeLinks(cv.links || fallback.links),
-
+    links: sanitizeLinks(cv.links || fallback.links),
     summary: cleanText(cv.summary || fallback.summary, 900),
     skills: sanitizeStringArray(cv.skills || fallback.skills, 16, 70),
-
     experience: normalizeExperience(cv.experience || fallback.experience),
     education: normalizeEducation(cv.education || fallback.education),
     projects: normalizeProjects(cv.projects || fallback.projects),
     certifications: normalizeCertifications(cv.certifications || fallback.certifications),
     languages: normalizeLanguages(cv.languages || fallback.languages),
-
     interests: cleanText(cv.interests || fallback.interests, 400)
   };
 }
 
-function normalizeLinks(links) {
-  return sanitizeLinks(links);
-}
-
 function normalizeExperience(experience) {
   if (!Array.isArray(experience)) return [];
-
   return experience
     .map((item) => ({
       title: cleanText(item.title, 100),
@@ -405,13 +331,12 @@ function normalizeExperience(experience) {
       endDate: cleanText(item.endDate, 40),
       responsibilities: normalizeBulletText(item.responsibilities, 5, 24)
     }))
-    .filter((item) => item.title || item.company || item.responsibilities)
+    .filter((item) => item.title || item.company)
     .slice(0, 5);
 }
 
 function normalizeEducation(education) {
   if (!Array.isArray(education)) return [];
-
   return education
     .map((item) => ({
       degree: cleanText(item.degree, 120),
@@ -421,13 +346,12 @@ function normalizeEducation(education) {
       year: cleanText(item.year, 40),
       details: cleanText(item.details, 500)
     }))
-    .filter((item) => item.degree || item.institution || item.details)
+    .filter((item) => item.degree || item.institution)
     .slice(0, 4);
 }
 
 function normalizeProjects(projects) {
   if (!Array.isArray(projects)) return [];
-
   return projects
     .map((item) => ({
       name: cleanText(item.name, 120),
@@ -435,26 +359,24 @@ function normalizeProjects(projects) {
       techStack: cleanText(item.techStack, 250),
       link: cleanText(item.link, 220)
     }))
-    .filter((item) => item.name || item.description || item.techStack)
+    .filter((item) => item.name || item.description)
     .slice(0, 5);
 }
 
 function normalizeCertifications(certifications) {
   if (!Array.isArray(certifications)) return [];
-
   return certifications
     .map((item) => ({
       name: cleanText(item.name, 140),
       issuer: cleanText(item.issuer, 120),
       year: cleanText(item.year, 40)
     }))
-    .filter((item) => item.name || item.issuer || item.year)
+    .filter((item) => item.name)
     .slice(0, 6);
 }
 
 function normalizeLanguages(languages) {
   if (!Array.isArray(languages)) return [];
-
   return languages
     .map((item) => ({
       name: cleanText(item.name, 80),
@@ -471,16 +393,11 @@ function normalizeBulletText(value, maxBullets = 5, maxWords = 24) {
     .filter(Boolean)
     .slice(0, maxBullets)
     .map((item) => limitWords(item, maxWords));
-
   return bullets.join("\n");
 }
 
 function limitWords(text, maxWords) {
   const words = String(text || "").trim().split(/\s+/).filter(Boolean);
-
-  if (words.length <= maxWords) {
-    return String(text || "").trim();
-  }
-
+  if (words.length <= maxWords) return String(text || "").trim();
   return words.slice(0, maxWords).join(" ") + ".";
 }
