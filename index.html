@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="google-site-verification" content="B_BY0aHc-bYNOh7rMJQ_B2EiU2n_liuHeeQvFiiaOPg" />
 
-  <title>DevToolKit - 21 Free Online Developer, Design, Image, Utility & Gaming Tools</title>
+  <title>DevToolKit - 22 Free Online Developer, AI, Design, Image, Utility & Gaming Tools</title>
 
   <meta
     name="description"
-    content="DevToolKit is a free online toolbox with 21 developer, design, image, utility, and gaming tools. Format JSON, test regex, generate CSS, preview Markdown, compress images, create passwords, generate QR codes, search FACEIT CS2 profiles, and more."
+    content="DevToolKit is a free online toolbox with 22 developer, AI, design, image, utility, and gaming tools. Create AI CVs, format JSON, test regex, generate CSS, preview Markdown, compress images, create passwords, generate QR codes, search FACEIT CS2 profiles, and more."
   />
 
   <link rel="icon" type="image/png" href="assets/images/favicon.png" />
@@ -18,7 +18,7 @@
 
   <meta
     name="keywords"
-    content="DevToolKit, free online developer tools, JSON formatter online, regex tester, CSS gradient generator, image compressor, image converter, markdown previewer, meta tags generator, QR code generator, password generator, CSS minifier, FACEIT finder, CS2 FACEIT stats, FACEIT ELO lookup"
+    content="DevToolKit, free online developer tools, AI CV maker, AI resume builder, free CV generator, ATS resume maker, JSON formatter online, regex tester, CSS gradient generator, image compressor, image converter, markdown previewer, meta tags generator, QR code generator, password generator, CSS minifier, FACEIT finder, CS2 FACEIT stats, FACEIT ELO lookup"
   />
 
   <meta name="author" content="Arjumand Ali" />
@@ -28,10 +28,10 @@
   <link rel="canonical" href="https://devtoolkit-tools.vercel.app/" />
 
   <!-- Open Graph Meta -->
-  <meta property="og:title" content="DevToolKit - 21 Free Online Developer Tools" />
+  <meta property="og:title" content="DevToolKit - 22 Free Online Developer & AI Tools" />
   <meta
     property="og:description"
-    content="A modern collection of 21 free online tools for developers, designers, image optimization, SEO, gaming stats, and daily web tasks."
+    content="A modern collection of 22 free online tools for AI CV creation, developers, designers, image optimization, SEO, gaming stats, and daily web tasks."
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://devtoolkit-tools.vercel.app/" />
@@ -39,10 +39,10 @@
 
   <!-- Twitter Card Meta -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DevToolKit - 21 Free Online Developer Tools" />
+  <meta name="twitter:title" content="DevToolKit - 22 Free Online Developer & AI Tools" />
   <meta
     name="twitter:description"
-    content="Free tools for developers, designers, creators, CS2 players, and web projects."
+    content="Free AI CV maker and tools for developers, designers, creators, CS2 players, and web projects."
   />
   <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
 
@@ -52,6 +52,215 @@
   <!-- CSS Files -->
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/responsive.css" />
+
+  <!-- Additional Homepage AI CV Maker CSS -->
+  <style>
+    /* ================================
+       Homepage AI CV Maker Highlight
+    ================================ */
+
+    .featured-ai-tool-section {
+      padding: 90px 0;
+      position: relative;
+    }
+
+    .featured-ai-tool-section::before {
+      content: "";
+      position: absolute;
+      inset: 20% auto auto 50%;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(204, 243, 129, 0.12), transparent 70%);
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .featured-ai-tool-card {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 34px;
+      align-items: center;
+      padding: 34px;
+      border: 1px solid rgba(204, 243, 129, 0.24);
+      background:
+        radial-gradient(circle at top left, rgba(204, 243, 129, 0.12), transparent 34%),
+        radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.14), transparent 38%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025)),
+        rgba(15, 23, 42, 0.82);
+      border-radius: var(--radius-xl);
+      box-shadow:
+        var(--shadow-card),
+        0 0 0 4px rgba(204, 243, 129, 0.04);
+      overflow: hidden;
+    }
+
+    .featured-ai-content h2 {
+      max-width: 760px;
+      margin: 12px 0 14px;
+      color: var(--text-main);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.02;
+      letter-spacing: -0.07em;
+    }
+
+    .featured-ai-content p {
+      max-width: 720px;
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .featured-ai-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .featured-ai-preview {
+      display: grid;
+      place-items: center;
+    }
+
+    .mini-cv-preview {
+      width: 100%;
+      max-width: 410px;
+      padding: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: #ffffff;
+      color: #111827;
+      border-radius: 24px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
+      transform: rotate(1deg);
+    }
+
+    .mini-cv-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 18px;
+      border-bottom: 2px solid #111827;
+    }
+
+    .mini-cv-header > span {
+      width: 54px;
+      height: 54px;
+      display: block;
+      background: linear-gradient(135deg, #7c3aed, #ccf381);
+      border-radius: 16px;
+    }
+
+    .mini-cv-header strong {
+      display: block;
+      color: #111827;
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .mini-cv-header small {
+      display: block;
+      margin-top: 4px;
+      color: #64748b;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .mini-cv-lines {
+      display: grid;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .mini-cv-lines .line {
+      display: block;
+      height: 10px;
+      background: #e2e8f0;
+      border-radius: 999px;
+    }
+
+    .mini-cv-lines .big {
+      width: 92%;
+      height: 14px;
+      background: #111827;
+    }
+
+    .mini-cv-lines .medium {
+      width: 72%;
+    }
+
+    .mini-cv-lines .small {
+      width: 52%;
+    }
+
+    .mini-cv-lines .full {
+      width: 100%;
+    }
+
+    .mini-cv-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .mini-cv-tags span {
+      padding: 7px 10px;
+      background: #eef2ff;
+      color: #3730a3;
+      border-radius: 999px;
+      font-size: 0.76rem;
+      font-weight: 900;
+    }
+
+    .ai-cv-tool-card {
+      border-color: rgba(204, 243, 129, 0.38) !important;
+      background:
+        radial-gradient(circle at top right, rgba(204, 243, 129, 0.13), transparent 42%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
+        rgba(15, 23, 42, 0.78) !important;
+    }
+
+    .ai-cv-tool-card .tool-icon {
+      background: rgba(204, 243, 129, 0.12);
+      color: var(--accent);
+      border-color: rgba(204, 243, 129, 0.25);
+    }
+
+    @media (max-width: 900px) {
+      .featured-ai-tool-card {
+        grid-template-columns: 1fr;
+        padding: 24px;
+      }
+
+      .featured-ai-preview {
+        order: -1;
+      }
+
+      .mini-cv-preview {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .featured-ai-tool-section {
+        padding: 64px 0;
+      }
+
+      .featured-ai-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .featured-ai-actions .btn {
+        width: 100%;
+      }
+
+      .mini-cv-preview {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -67,25 +276,31 @@
     <section class="hero-section" id="home">
       <div class="container hero-container">
         <div class="hero-content">
-          <p class="section-badge">21 Free Online Browser Tools</p>
+          <p class="section-badge">22 Free Online Browser Tools</p>
 
           <h1>
-            Developer, Design, Image, Utility, and Gaming Tools in One Place
+            Build AI CVs, Developer Tools, Design Assets, Images, and Gaming Stats in One Place
           </h1>
 
           <p class="hero-description">
-            DevToolKit helps you format JSON, test regex, generate CSS, preview Markdown,
-            create meta tags, compress images, convert images, generate passwords, create QR codes,
-            search FACEIT CS2 profiles, and complete daily web tasks faster.
+            DevToolKit helps you create professional AI CVs, format JSON, test regex,
+            generate CSS, preview Markdown, create meta tags, compress images, convert images,
+            generate passwords, create QR codes, search FACEIT CS2 profiles, and complete daily web tasks faster.
           </p>
 
           <div class="hero-actions">
-            <a href="#tools" class="btn btn-primary">
-              Explore 21 Tools
+            <a href="pages/ai-cv-maker.html" class="btn btn-primary">
+              Create AI CV
             </a>
+
+            <a href="#tools" class="btn btn-outline">
+              Explore 22 Tools
+            </a>
+
             <a href="pages/faceitfinder.html" class="btn btn-outline">
               Try FaceitFinder
             </a>
+
             <a href="https://github.com/arjumand-codes" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
               View on GitHub
             </a>
@@ -93,13 +308,13 @@
 
           <div class="hero-stats" aria-label="Project stats">
             <div class="stat-item">
-              <strong>21</strong>
+              <strong>22</strong>
               <span>Free Tools</span>
             </div>
 
             <div class="stat-item">
-              <strong>5</strong>
-              <span>Tool Categories</span>
+              <strong>AI</strong>
+              <span>CV Maker</span>
             </div>
 
             <div class="stat-item">
@@ -122,15 +337,15 @@
               <h2>DevToolKit</h2>
               <pre><code>{
   "project": "DevToolKit",
-  "tools": 21,
-  "categories": [
-    "Developer",
-    "Design",
-    "Image",
-    "Utility",
-    "Gaming"
+  "tools": 22,
+  "featuredTool": "AI CV Maker",
+  "features": [
+    "AI Resume Builder",
+    "ATS Friendly CV",
+    "PDF Download",
+    "5 Templates"
   ],
-  "newTool": "FaceitFinder",
+  "newTool": "AI CV Maker",
   "status": "Ready"
 }</code></pre>
             </div>
@@ -140,14 +355,69 @@
     </section>
     <!-- Hero Section End -->
 
+    <!-- Featured AI Tool Section Start -->
+    <section class="featured-ai-tool-section" id="ai-cv-maker-highlight">
+      <div class="container">
+        <div class="featured-ai-tool-card">
+          <div class="featured-ai-content">
+            <p class="section-badge">Featured AI Tool</p>
+
+            <h2>AI CV Maker — Create a Professional Resume in Minutes</h2>
+
+            <p>
+              Build an ATS-friendly CV with AI-powered summaries, improved bullet points,
+              skills suggestions, live preview, professional templates, HTML export, and direct PDF download.
+            </p>
+
+            <div class="featured-ai-actions">
+              <a href="pages/ai-cv-maker.html" class="btn btn-primary">
+                Open AI CV Maker
+              </a>
+
+              <a href="pages/ai-cv-maker.html#cv-templates" class="btn btn-outline">
+                View CV Templates
+              </a>
+            </div>
+          </div>
+
+          <div class="featured-ai-preview" aria-label="AI CV Maker preview">
+            <div class="mini-cv-preview">
+              <div class="mini-cv-header">
+                <span></span>
+                <div>
+                  <strong>Professional Resume</strong>
+                  <small>AI Generated • ATS Friendly</small>
+                </div>
+              </div>
+
+              <div class="mini-cv-lines">
+                <span class="line big"></span>
+                <span class="line medium"></span>
+                <span class="line small"></span>
+                <span class="line full"></span>
+                <span class="line medium"></span>
+              </div>
+
+              <div class="mini-cv-tags">
+                <span>Summary</span>
+                <span>Skills</span>
+                <span>PDF</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Featured AI Tool Section End -->
+
     <!-- Tools Overview Section Start -->
     <section class="tools-overview-section" id="tools">
       <div class="container">
         <div class="section-header">
           <p class="section-badge">All Tools</p>
-          <h2>Everything You Need for Daily Web Work and Game Stats</h2>
+          <h2>Everything You Need for AI CVs, Daily Web Work, and Game Stats</h2>
           <p>
-            Choose from 21 free tools for coding, CSS design, SEO, image optimization,
+            Choose from 22 free tools for AI resumes, coding, CSS design, SEO, image optimization,
             productivity, and CS2 FACEIT profile lookup. No signup and no installation required.
           </p>
         </div>
@@ -156,10 +426,21 @@
         <div class="tools-category" id="developer-tools">
           <div class="category-header">
             <h3>Developer Tools</h3>
-            <p>Useful utilities for coding, testing, formatting, minifying, and SEO work.</p>
+            <p>Useful utilities for coding, testing, formatting, minifying, AI resumes, and SEO work.</p>
           </div>
 
           <div class="tools-grid">
+            <article class="tool-card featured-tool-card ai-cv-tool-card">
+              <div class="tool-icon">AI</div>
+              <div class="tool-content">
+                <h4>AI CV Maker</h4>
+                <p>Create ATS-friendly resumes with AI summaries, skills, templates, PDF download, and HTML export.</p>
+              </div>
+              <a href="pages/ai-cv-maker.html" class="tool-link" aria-label="Open AI CV Maker">
+                Open Tool
+              </a>
+            </article>
+
             <article class="tool-card featured-tool-card">
               <div class="tool-icon">🎯</div>
               <div class="tool-content">
@@ -495,7 +776,7 @@
             <span class="step-number">01</span>
             <h3>Choose a Tool</h3>
             <p>
-              Select the tool you need from developer, design, image, or utility categories.
+              Select the tool you need from AI CV maker, developer, design, image, utility, or gaming categories.
             </p>
           </article>
 
@@ -503,7 +784,7 @@
             <span class="step-number">02</span>
             <h3>Add Your Input</h3>
             <p>
-              Paste code, type text, select colors, upload an image, or enter your settings.
+              Paste code, type text, select colors, upload an image, enter CV details, or enter your settings.
             </p>
           </article>
 
@@ -519,7 +800,7 @@
             <span class="step-number">04</span>
             <h3>Copy or Download</h3>
             <p>
-              Copy code, copy text, copy CSS, or download generated files for your project.
+              Copy code, copy text, copy CSS, download generated files, or export your CV.
             </p>
           </article>
         </div>
@@ -531,22 +812,22 @@
     <section class="seo-content-section" id="free-online-tools">
       <div class="container">
         <div class="content-wrapper">
-          <p class="section-badge">Free Online Developer Tools</p>
+          <p class="section-badge">Free Online Developer and AI Tools</p>
 
-          <h2>Build Faster with a Clean Developer Toolkit</h2>
+          <h2>Build Faster with a Clean Developer Toolkit and AI CV Maker</h2>
 
           <p>
             DevToolKit is a free online tools website created to help developers, designers,
             students, creators, CS2 players, and website owners complete common web tasks faster. Instead of
-            opening many different websites for JSON formatting, regex testing, CSS generation,
+            opening many different websites for AI CV creation, JSON formatting, regex testing, CSS generation,
             Markdown previewing, meta tag creation, image compression, image conversion, QR code
             generation, password creation, or FACEIT CS2 profile lookup, you can use one simple toolkit.
           </p>
 
           <p>
-            Every tool is designed for practical frontend work. You can use DevToolKit while
+            Every tool is designed for practical frontend work and everyday productivity. You can use DevToolKit while
             building portfolio websites, client websites, landing pages, GitHub README files,
-            SEO pages, responsive web interfaces, and image-optimized web projects.
+            SEO pages, responsive web interfaces, ATS-friendly resumes, and image-optimized web projects.
           </p>
         </div>
       </div>
@@ -568,14 +849,21 @@
           <details class="faq-item">
             <summary>Is DevToolKit free to use?</summary>
             <p>
-              Yes, DevToolKit is a free online toolbox for developers, designers, creators, and students.
+              Yes, DevToolKit is a free online toolbox for developers, designers, creators, students, and job seekers.
             </p>
           </details>
 
           <details class="faq-item">
             <summary>How many tools does DevToolKit include?</summary>
             <p>
-              DevToolKit includes 21 tools across developer tools, design tools, image tools, utility tools, and gaming tools.
+              DevToolKit includes 22 tools across AI tools, developer tools, design tools, image tools, utility tools, and gaming tools.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does DevToolKit include an AI CV Maker?</summary>
+            <p>
+              Yes, DevToolKit includes an AI CV Maker that helps create ATS-friendly resumes with AI summaries, skills, templates, HTML export, and PDF download.
             </p>
           </details>
 
@@ -589,14 +877,14 @@
           <details class="faq-item">
             <summary>Does DevToolKit need PHP or a backend?</summary>
             <p>
-              No PHP is required. Most tools run with HTML, CSS, and JavaScript in the browser. API-based tools like FaceitFinder use secure Vercel serverless routes.
+              No PHP is required. Most tools run with HTML, CSS, and JavaScript in the browser. API-based tools like AI CV Maker and FaceitFinder use secure Vercel serverless routes.
             </p>
           </details>
 
           <details class="faq-item">
             <summary>Can I use DevToolKit for real projects?</summary>
             <p>
-              Yes, you can use it for formatting code, generating CSS, creating SEO meta tags,
+              Yes, you can use it for creating AI CVs, formatting code, generating CSS, creating SEO meta tags,
               compressing images, generating passwords, creating QR codes, checking FACEIT CS2 stats, and other real web development tasks.
             </p>
           </details>
@@ -620,13 +908,18 @@
           <p class="section-badge">Start Now</p>
           <h2>Ready to Use DevToolKit?</h2>
           <p>
-            Choose any free tool and make your development workflow faster, cleaner, and easier.
+            Create a professional AI CV, check FACEIT stats, or choose any free tool to make your workflow faster.
           </p>
 
           <div class="cta-actions">
-            <a href="#tools" class="btn btn-primary">
+            <a href="pages/ai-cv-maker.html" class="btn btn-primary">
+              Create AI CV
+            </a>
+
+            <a href="#tools" class="btn btn-outline">
               Explore All Tools
             </a>
+
             <a href="pages/faceitfinder.html" class="btn btn-outline">
               Try FaceitFinder
             </a>
