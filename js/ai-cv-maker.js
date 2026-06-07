@@ -606,7 +606,15 @@ async function handleInlineAi(button, fieldType) {
 function applyFieldAiResult(button, fieldType, result) {
   if (fieldType === "summary") {
     if (summaryTextarea) {
-      summaryTextarea.value = result.trim();
+      const existingSummary = summaryTextarea.value.trim();
+      const aiSummary = result.trim();
+
+      if (existingSummary) {
+        summaryTextarea.value = `${existingSummary}\n\n${aiSummary}`;
+      } else {
+        summaryTextarea.value = aiSummary;
+      }
+
       summaryTextarea.dispatchEvent(new Event("input"));
     }
 
@@ -623,7 +631,10 @@ function applyFieldAiResult(button, fieldType, result) {
     const textarea = card?.querySelector(".exp-responsibilities");
 
     if (textarea) {
-      textarea.value = result.trim();
+      const existingText = textarea.value.trim();
+      const aiText = result.trim();
+
+      textarea.value = existingText ? `${existingText}\n${aiText}` : aiText;
     }
 
     return;
@@ -634,7 +645,10 @@ function applyFieldAiResult(button, fieldType, result) {
     const textarea = card?.querySelector(".project-description");
 
     if (textarea) {
-      textarea.value = result.trim();
+      const existingText = textarea.value.trim();
+      const aiText = result.trim();
+
+      textarea.value = existingText ? `${existingText}\n\n${aiText}` : aiText;
     }
   }
 }
@@ -685,11 +699,6 @@ if (generateWithAiBtn) {
       return;
     }
 
-    if (!canUseFullAi()) {
-      showToast("You've used all 3 AI generations for today. Come back tomorrow or use Generate Without AI.", "warning");
-      return;
-    }
-
     const formData = collectCvData();
 
     setButtonText(generateWithAiBtn, "Generating...");
@@ -712,13 +721,12 @@ if (generateWithAiBtn) {
         return;
       }
 
-      increaseFullAiUse();
-
       const improvedData = normalizeApiCvData(data.cv || formData);
+
+      fillFormFromData(improvedData);
       renderCv(improvedData);
 
       showToast("AI CV generated successfully.", "success");
-      updateAiLimitStatus();
       saveFormData();
     } catch (error) {
       setButtonText(generateWithAiBtn, "Generate CV With AI");
@@ -1302,63 +1310,10 @@ function normalizeApiCvData(cv) {
    AI Limit
 ================================ */
 
-function getAiLimitData() {
-  const today = new Date().toISOString().slice(0, 10);
-  const saved = localStorage.getItem(AI_LIMIT_KEY);
-
-  if (!saved) {
-    return {
-      count: 0,
-      date: today
-    };
-  }
-
-  try {
-    const data = JSON.parse(saved);
-
-    if (data.date !== today) {
-      return {
-        count: 0,
-        date: today
-      };
-    }
-
-    return {
-      count: Number(data.count || 0),
-      date: data.date
-    };
-  } catch (error) {
-    return {
-      count: 0,
-      date: today
-    };
-  }
-}
-
-function canUseFullAi() {
-  const data = getAiLimitData();
-  return data.count < FULL_AI_DAILY_LIMIT;
-}
-
-function increaseFullAiUse() {
-  const data = getAiLimitData();
-
-  localStorage.setItem(
-    AI_LIMIT_KEY,
-    JSON.stringify({
-      count: data.count + 1,
-      date: data.date
-    })
-  );
-}
-
 function updateAiLimitStatus() {
   if (!cvAiLimitStatus) return;
 
-  const data = getAiLimitData();
-  const remaining = Math.max(FULL_AI_DAILY_LIMIT - data.count, 0);
-
-  cvAiLimitStatus.textContent = `${remaining} AI Uses Left Today`;
+  cvAiLimitStatus.textContent = "AI Mode Active";
 }
 
 /* ================================
@@ -1856,53 +1811,17 @@ async function downloadCvAsPdf() {
   clonedCv.classList.add("cv-pdf-export");
 
   exportWrapper.className = "cv-pdf-export-wrapper";
-
-  exportWrapper.style.cssText = `
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 794px;
-    height: 1123px;
-    background: #ffffff;
-    z-index: 2147483647;
-    overflow: hidden;
-    pointer-events: none;
-    opacity: 1;
-  `;
-
-  clonedCv.style.cssText = `
-    width: 794px !important;
-    height: 1123px !important;
-    min-width: 794px !important;
-    max-width: 794px !important;
-    min-height: 1123px !important;
-    max-height: 1123px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #ffffff !important;
-    color: #111827 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    overflow: hidden !important;
-    transform: none !important;
-  `;
-
-  const clonedDoc = clonedCv.querySelector(".cv-doc");
-
-  if (clonedDoc) {
-    clonedDoc.style.width = "794px";
-    clonedDoc.style.maxWidth = "794px";
-    clonedDoc.style.minHeight = "1123px";
-    clonedDoc.style.maxHeight = "1123px";
-    clonedDoc.style.overflow = "hidden";
-    clonedDoc.style.background = "#ffffff";
-  }
-
   exportWrapper.appendChild(clonedCv);
   document.body.appendChild(exportWrapper);
 
   try {
     await waitForPdfRender();
+
+    const fullHeight = Math.max(
+      clonedCv.scrollHeight,
+      clonedCv.offsetHeight,
+      clonedCv.getBoundingClientRect().height
+    );
 
     const canvas = await window.html2canvas(clonedCv, {
       scale: 2,
@@ -1912,12 +1831,11 @@ async function downloadCvAsPdf() {
       scrollX: 0,
       scrollY: 0,
       width: 794,
-      height: 1123,
+      height: fullHeight,
       windowWidth: 794,
-      windowHeight: 1123
+      windowHeight: fullHeight
     });
 
-    const imageData = canvas.toDataURL("image/png", 1.0);
     const { jsPDF } = window.jspdf;
 
     const pdf = new jsPDF({
@@ -1927,7 +1845,52 @@ async function downloadCvAsPdf() {
       compress: true
     });
 
-    pdf.addImage(imageData, "PNG", 0, 0, 794, 1123);
+    const pageWidth = 794;
+    const pageHeight = 1123;
+
+    const canvasWidth = canvas.width;
+    const canvasHeight = canvas.height;
+
+    const pageCanvas = document.createElement("canvas");
+    const pageContext = pageCanvas.getContext("2d");
+
+    pageCanvas.width = canvasWidth;
+    pageCanvas.height = pageHeight * 2;
+
+    const pageCanvasHeight = pageCanvas.height;
+    let renderedHeight = 0;
+    let pageIndex = 0;
+
+    while (renderedHeight < canvasHeight) {
+      pageContext.clearRect(0, 0, pageCanvas.width, pageCanvas.height);
+
+      pageContext.fillStyle = "#ffffff";
+      pageContext.fillRect(0, 0, pageCanvas.width, pageCanvas.height);
+
+      pageContext.drawImage(
+        canvas,
+        0,
+        renderedHeight,
+        canvasWidth,
+        pageCanvasHeight,
+        0,
+        0,
+        canvasWidth,
+        pageCanvasHeight
+      );
+
+      const imageData = pageCanvas.toDataURL("image/png", 1.0);
+
+      if (pageIndex > 0) {
+        pdf.addPage([794, 1123], "portrait");
+      }
+
+      pdf.addImage(imageData, "PNG", 0, 0, pageWidth, pageHeight);
+
+      renderedHeight += pageCanvasHeight;
+      pageIndex++;
+    }
+
     pdf.save(fileName);
   } finally {
     exportWrapper.remove();
