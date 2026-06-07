@@ -92,7 +92,7 @@ async function generateFieldWithGemini({ geminiApiKey, fieldType, context }) {
           ],
           generationConfig: {
             temperature: 0.3,
-            maxOutputTokens: 900
+            maxOutputTokens: 1600
           }
         })
       }
@@ -131,23 +131,25 @@ Projects: ${JSON.stringify(context.projects || [], null, 2)}
 Education: ${JSON.stringify(context.education || [], null, 2)}
 `;
 
-  if (fieldType === "summary") {
-    return `
-You are an ATS resume writer.
+if (fieldType === "summary") {
+  return `
+You are an expert ATS resume writer.
 
-Using the CV context below, write one professional summary for the user.
+Using the CV context below, write a strong professional resume summary.
 
 Rules:
 - Return only the summary text.
-- 2 to 4 sentences.
-- 60 to 90 words maximum.
-- Use professional, ATS-friendly wording.
-- Mention the target role, key skills, and work/project strengths.
-- Do not invent fake employers, dates, degrees, or certifications.
+- Write 5 to 8 full lines.
+- Around 150 to 220 words.
+- Make it professional, confident, and ATS-friendly.
+- Mention target role, main skills, experience type, project strengths, and work style.
+- Do not invent fake employers, dates, degrees, certificates, or metrics.
+- If user already wrote a summary, expand it and improve it instead of replacing the meaning.
+- Use natural human wording, not robotic wording.
 
 ${baseContext}
 `;
-  }
+}
 
   if (fieldType === "experience_bullets") {
     return `
