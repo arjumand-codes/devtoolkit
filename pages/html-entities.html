@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>HTML Entity Encoder Decoder Online - Convert HTML Entities | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit HTML Entity Encoder Decoder to encode HTML characters, decode HTML entities, escape HTML code, and safely convert text for websites."
+  />
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+
+  <meta
+    name="keywords"
+    content="HTML entity encoder, HTML entity decoder, encode HTML online, decode HTML entities, HTML escape tool, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/html-entities.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="HTML Entity Encoder Decoder Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Encode HTML characters and decode HTML entities online using DevToolKit."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/html-entities.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HTML Entity Encoder Decoder Online - DevToolKit" />
+  <meta
+    name="twitter:description"
+    content="Encode and decode HTML entities directly in your browser."
+  />
+  <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+ 
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+  <div id="site-header"></div>
+
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#developer-tools">Developer Tools</a>
+            <span>/</span>
+            <span>HTML Entity Encoder / Decoder</span>
+          </nav>
+
+          <p class="section-badge">Developer Tool</p>
+
+          <h1>HTML Entity Encoder / Decoder Online</h1>
+
+          <p>
+            Encode HTML characters into safe entities and decode HTML entities back into readable text.
+            Useful for displaying code snippets, escaping HTML, and cleaning web content.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#html-entities-tool" class="btn btn-primary">Encode HTML</a>
+            <a href="../index.html#developer-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Encode HTML characters</li>
+            <li>Decode HTML entities</li>
+            <li>Escape HTML code safely</li>
+            <li>Copy converted output</li>
+            <li>Useful for code snippets</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- HTML Entities Workspace Start -->
+    <section class="tool-workspace-section" id="html-entities-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">Entity Workspace</p>
+            <h2>Encode or Decode HTML Entities</h2>
+            <p>
+              Paste HTML or encoded entities below. JavaScript functionality will be connected next.
+            </p>
+          </div>
+
+          <div class="tool-status" id="html-entities-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="html-entities-layout">
+          <!-- Input Panel -->
+          <section class="tool-panel html-entities-input-panel" aria-labelledby="html-entities-input-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="html-entities-input-title">Input Text</h3>
+                <p>Paste HTML code, normal text, or encoded entities.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="sample-html-entities-btn">
+                Sample
+              </button>
+            </div>
+
+            <textarea
+              class="tool-textarea html-entities-textarea"
+              id="html-entities-input"
+              placeholder="Example: <h1>Hello & Welcome</h1>"
+              spellcheck="false"
+            ></textarea>
+
+            <div class="html-entities-stats-grid">
+              <div class="html-entities-stat-card">
+                <span>Characters</span>
+                <strong id="html-entities-char-count">0</strong>
+              </div>
+
+              <div class="html-entities-stat-card">
+                <span>Entities</span>
+                <strong id="html-entities-count">0</strong>
+              </div>
+
+              <div class="html-entities-stat-card">
+                <span>Lines</span>
+                <strong id="html-entities-line-count">0</strong>
+              </div>
+            </div>
+          </section>
+
+          <!-- Output Panel -->
+          <section class="tool-panel html-entities-output-panel" aria-labelledby="html-entities-output-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="html-entities-output-title">Converted Output</h3>
+                <p>Your encoded or decoded result will appear here.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="copy-html-entities-btn">
+                Copy
+              </button>
+            </div>
+
+            <pre class="tool-output html-entities-output" id="html-entities-output"><code>Your converted output will appear here.</code></pre>
+
+            <div class="tool-actions html-entities-actions">
+              <button class="btn btn-primary" type="button" id="encode-html-entities-btn">
+                Encode HTML
+              </button>
+
+              <button class="btn btn-outline" type="button" id="decode-html-entities-btn">
+                Decode Entities
+              </button>
+
+              <button class="btn btn-outline" type="button" id="encode-all-html-entities-btn">
+                Encode All Characters
+              </button>
+
+              <button class="btn btn-outline" type="button" id="swap-html-entities-btn">
+                Swap Output to Input
+              </button>
+
+              <button class="btn btn-outline" type="button" id="clear-html-entities-btn">
+                Clear
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- HTML Entities Workspace End -->
+
+    <!-- Common Entities Start -->
+    <section class="html-entities-list-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Common Entities</p>
+          <h2>Popular HTML Entity Examples</h2>
+          <p>
+            These are common characters that are often converted into HTML entities.
+          </p>
+        </div>
+
+        <div class="html-entities-examples-grid">
+          <article class="html-entity-card">
+            <span>&lt;</span>
+            <strong>&amp;lt;</strong>
+            <small>Less-than symbol used in HTML tags.</small>
+          </article>
+
+          <article class="html-entity-card">
+            <span>&gt;</span>
+            <strong>&amp;gt;</strong>
+            <small>Greater-than symbol used in HTML tags.</small>
+          </article>
+
+          <article class="html-entity-card">
+            <span>&amp;</span>
+            <strong>&amp;amp;</strong>
+            <small>Ampersand symbol used before entities.</small>
+          </article>
+
+          <article class="html-entity-card">
+            <span>&quot;</span>
+            <strong>&amp;quot;</strong>
+            <small>Double quote used inside attributes.</small>
+          </article>
+
+          <article class="html-entity-card">
+            <span>&apos;</span>
+            <strong>&amp;apos;</strong>
+            <small>Single quote or apostrophe character.</small>
+          </article>
+
+          <article class="html-entity-card">
+            <span>&copy;</span>
+            <strong>&amp;copy;</strong>
+            <small>Copyright symbol for website footers.</small>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Common Entities End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Encode or Decode HTML Entities</h2>
+
+            <p>
+              HTML Entity Encoder / Decoder helps convert special HTML characters into safe text
+              and convert encoded entities back into readable characters.
+            </p>
+
+            <ol class="guide-list">
+              <li>Paste your HTML code or encoded entity text.</li>
+              <li>Click encode to escape HTML characters.</li>
+              <li>Click decode to convert entities back to text.</li>
+              <li>Copy the output and use it in your project.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Why Use HTML Entities?</h2>
+
+            <p>
+              HTML entities are useful when you want to display HTML code as text,
+              prevent markup from rendering, or safely handle special characters.
+            </p>
+
+            <ul class="feature-list">
+              <li>Show HTML code inside pages</li>
+              <li>Escape snippets for blog posts</li>
+              <li>Convert special symbols safely</li>
+              <li>Clean copied HTML entity text</li>
+              <li>Prepare documentation examples</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Developer Tools</h2>
+          <p>
+            Continue working with other useful browser-based DevToolKit tools.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">CSS</div>
+            <div class="tool-content">
+              <h3>CSS Minifier</h3>
+              <p>Minify or beautify CSS code for cleaner files and faster editing.</p>
+            </div>
+            <a href="css-minifier.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">{}</div>
+            <div class="tool-content">
+              <h3>JSON Formatter</h3>
+              <p>Format, validate, beautify, and minify JSON data instantly.</p>
+            </div>
+            <a href="json-formatter.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">MD</div>
+            <div class="tool-content">
+              <h3>Markdown Previewer</h3>
+              <p>Write Markdown and preview the rendered output side by side.</p>
+            </div>
+            <a href="markdown-preview.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>HTML Entity Encoder Decoder FAQs</h2>
+          <p>
+            Common questions about encoding HTML, decoding entities, and escaping special characters.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What are HTML entities?</summary>
+            <p>
+              HTML entities are special text codes used to display reserved characters,
+              symbols, and special characters safely in HTML.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Why should I encode HTML?</summary>
+            <p>
+              Encoding HTML lets you display code as text instead of letting the browser
+              render it as real HTML markup.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What does decoding HTML entities do?</summary>
+            <p>
+              Decoding converts entities like &amp;lt; and &amp;amp; back into normal characters
+              like less-than signs and ampersands.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can this help with blog code snippets?</summary>
+            <p>
+              Yes, encoding HTML is useful when preparing code snippets for blog posts,
+              documentation pages, and tutorials.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this HTML entity converter free?</summary>
+            <p>
+              Yes, DevToolKit HTML Entity Encoder / Decoder is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Building</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free tools for CSS, JSON, Markdown, SEO, text formatting,
+            image optimization, and frontend development.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="css-minifier.html" class="btn btn-outline">
+              Try CSS Minifier
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+   <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="/js/components.js"></script>
+
+  <!-- JS Later -->
+  <script src="../js/html-entities.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

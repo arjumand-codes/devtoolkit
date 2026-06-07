@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Image Converter Online - Convert PNG, JPG & WEBP | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit Image Converter to convert images online between PNG, JPG, and WEBP formats directly in your browser with preview and download options."
+  />
+
+<link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+
+  <meta
+    name="keywords"
+    content="image converter online, PNG to JPG, JPG to WEBP, WEBP to PNG, browser image converter, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/image-converter.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Image Converter Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Convert images between PNG, JPG, and WEBP online using DevToolKit Image Converter."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/image-converter.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+ 
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+  <div id="site-header"></div>
+
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#image-tools">Image Tools</a>
+            <span>/</span>
+            <span>Image Converter</span>
+          </nav>
+
+          <p class="section-badge">Image Tool</p>
+
+          <h1>Image Converter Online</h1>
+
+          <p>
+            Convert images between PNG, JPG, and WEBP formats directly in your browser.
+            Upload an image, choose the output format, preview the result, and download it.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#image-converter-tool" class="btn btn-primary">Convert Image</a>
+            <a href="../index.html#image-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>PNG, JPG, and WEBP support</li>
+            <li>Browser-based conversion</li>
+            <li>Image preview before download</li>
+            <li>Quality control for JPG/WEBP</li>
+            <li>No server upload needed</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- Image Converter Workspace Start -->
+    <section class="tool-workspace-section" id="image-converter-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">Image Workspace</p>
+            <h2>Upload and Convert Your Image</h2>
+            <p>
+              Choose an image file, select the output format, and convert it. JavaScript functionality will be connected next.
+            </p>
+          </div>
+
+          <div class="tool-status" id="image-converter-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="image-converter-layout">
+          <!-- Upload & Settings Panel -->
+          <section class="tool-panel image-converter-controls-panel" aria-labelledby="image-converter-controls-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="image-converter-controls-title">Upload Image</h3>
+                <p>Select your source image and output settings.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="clear-image-converter-btn">
+                Clear
+              </button>
+            </div>
+
+            <div class="image-upload-box" id="image-upload-box">
+              <input
+                type="file"
+                id="image-input"
+                accept="image/png, image/jpeg, image/webp"
+                hidden
+              />
+
+              <label for="image-input" class="image-upload-label">
+                <span class="upload-icon">⇪</span>
+                <strong>Upload Image</strong>
+                <small>Choose PNG, JPG, JPEG, or WEBP file</small>
+              </label>
+            </div>
+
+            <div class="uploaded-file-card" id="uploaded-file-card">
+              <div class="uploaded-file-icon">IMG</div>
+
+              <div class="uploaded-file-info">
+                <strong id="uploaded-file-name">No image selected</strong>
+                <span id="uploaded-file-size">File size: 0 KB</span>
+              </div>
+            </div>
+
+            <div class="image-converter-form">
+              <!-- Output Format -->
+              <div class="form-group">
+                <label for="output-format">Output Format</label>
+                <select id="output-format" class="tool-select">
+                  <option value="image/png">PNG</option>
+                  <option value="image/jpeg">JPG</option>
+                  <option value="image/webp">WEBP</option>
+                </select>
+              </div>
+
+              <!-- Quality -->
+              <div class="range-group">
+                <div class="range-label-row">
+                  <label for="image-quality">Image Quality</label>
+                  <span id="image-quality-value">90%</span>
+                </div>
+                <input type="range" id="image-quality" min="10" max="100" value="90" />
+                <small class="input-help">
+                  Quality affects JPG and WEBP output. PNG ignores quality.
+                </small>
+              </div>
+
+              <!-- Background Color for JPG -->
+              <div class="form-group color-control">
+                <label for="jpg-background-color">JPG Background Color</label>
+                <div class="color-input-row">
+                  <input type="color" id="jpg-background-color" value="#ffffff" />
+                  <input
+                    type="text"
+                    id="jpg-background-color-text"
+                    class="tool-input"
+                    value="#ffffff"
+                    spellcheck="false"
+                  />
+                </div>
+                <small class="input-help">
+                  Used when converting transparent PNG/WEBP to JPG.
+                </small>
+              </div>
+
+              <!-- Actions -->
+              <div class="tool-actions image-converter-actions">
+                <button class="btn btn-primary" type="button" id="convert-image-btn">
+                  Convert Image
+                </button>
+
+                <button class="btn btn-outline" type="button" id="download-image-btn" disabled>
+                  Download Image
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Preview Panel -->
+          <section class="tool-panel image-converter-preview-panel" aria-labelledby="image-converter-preview-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="image-converter-preview-title">Image Preview</h3>
+                <p>Preview original and converted image details.</p>
+              </div>
+            </div>
+
+            <div class="image-preview-grid">
+              <div class="image-preview-card">
+                <div class="image-preview-box" id="original-image-preview">
+                  <span>Original Preview</span>
+                </div>
+
+                <div class="image-preview-meta">
+                  <strong>Original Image</strong>
+                  <span id="original-image-info">No image selected</span>
+                </div>
+              </div>
+
+              <div class="image-preview-card">
+                <div class="image-preview-box" id="converted-image-preview">
+                  <span>Converted Preview</span>
+                </div>
+
+                <div class="image-preview-meta">
+                  <strong>Converted Image</strong>
+                  <span id="converted-image-info">Convert an image first</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="conversion-summary">
+              <div class="summary-item">
+                <span>Original Size</span>
+                <strong id="original-size">0 KB</strong>
+              </div>
+
+              <div class="summary-item">
+                <span>Converted Size</span>
+                <strong id="converted-size">0 KB</strong>
+              </div>
+
+              <div class="summary-item">
+                <span>Output Type</span>
+                <strong id="converted-type">None</strong>
+              </div>
+            </div>
+
+            <div class="image-note-box">
+              <h3>Privacy Note</h3>
+              <p>
+                This tool can be built with JavaScript Canvas API, so the image can be processed
+                locally inside the browser without uploading it to a server.
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- Image Converter Workspace End -->
+
+    <!-- Format Cards Start -->
+    <section class="image-formats-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Image Formats</p>
+          <h2>Supported Image Conversions</h2>
+          <p>
+            Convert common image formats for websites, portfolios, blogs, thumbnails, and social previews.
+          </p>
+        </div>
+
+        <div class="image-format-grid">
+          <article class="image-format-card">
+            <span>PNG</span>
+            <strong>Best for transparency</strong>
+            <small>Useful for logos, icons, UI images, and transparent graphics.</small>
+          </article>
+
+          <article class="image-format-card">
+            <span>JPG</span>
+            <strong>Best for photos</strong>
+            <small>Useful for images with many colors, photography, and smaller file sizes.</small>
+          </article>
+
+          <article class="image-format-card">
+            <span>WEBP</span>
+            <strong>Best for websites</strong>
+            <small>Modern format with strong compression and good quality for web pages.</small>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Format Cards End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Convert Images Online</h2>
+
+            <p>
+              Image Converter helps you change the file format of an image without installing software.
+              You can upload an image, choose a new format, and download the converted file.
+            </p>
+
+            <ol class="guide-list">
+              <li>Upload a PNG, JPG, JPEG, or WEBP image.</li>
+              <li>Select your output format.</li>
+              <li>Adjust quality if converting to JPG or WEBP.</li>
+              <li>Click convert and download the new image.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Why Use an Image Converter?</h2>
+
+            <p>
+              Image conversion is useful when preparing assets for websites, improving compatibility,
+              reducing image weight, or creating web-friendly image formats.
+            </p>
+
+            <ul class="feature-list">
+              <li>Convert images for websites</li>
+              <li>Create WEBP assets for better performance</li>
+              <li>Convert transparent images to JPG</li>
+              <li>Prepare images for portfolio projects</li>
+              <li>Change file type for upload requirements</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Image and Design Tools</h2>
+          <p>
+            Continue working with other useful tools from DevToolKit.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">↓KB</div>
+            <div class="tool-content">
+              <h3>Image Compressor</h3>
+              <p>Compress images, reduce file size, preview results, and download quickly.</p>
+            </div>
+            <a href="image-compressor.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">🌈</div>
+            <div class="tool-content">
+              <h3>Gradient Generator</h3>
+              <p>Create beautiful CSS gradients with live preview and copy-ready code.</p>
+            </div>
+            <a href="gradient-generator.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">🎨</div>
+            <div class="tool-content">
+              <h3>Color Palette Generator</h3>
+              <p>Generate modern color palettes and copy HEX values for your projects.</p>
+            </div>
+            <a href="color-palette.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>Image Converter FAQs</h2>
+          <p>
+            Common questions about PNG, JPG, WEBP, and browser-based image conversion.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What image formats are supported?</summary>
+            <p>
+              This tool is planned to support PNG, JPG/JPEG, and WEBP image formats.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I convert PNG to JPG?</summary>
+            <p>
+              Yes, you can convert PNG to JPG. If your PNG has transparency, a background color
+              can be used because JPG does not support transparency.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I convert images to WEBP?</summary>
+            <p>
+              Yes, WEBP is a good format for websites because it usually gives smaller file sizes
+              while keeping good visual quality.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does this upload my image to a server?</summary>
+            <p>
+              The tool can be built to process images directly in the browser using JavaScript,
+              so the image does not need to be uploaded to a server.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this image converter free?</summary>
+            <p>
+              Yes, DevToolKit Image Converter is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Optimizing</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free tools for image optimization, CSS design, SEO, and frontend development.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="image-compressor.html" class="btn btn-outline">
+              Try Image Compressor
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+   <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="/js/components.js"></script>
+
+  <!-- JS Later -->
+  <script src="../js/image-converter.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

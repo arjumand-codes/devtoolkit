@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Block private/serverless API endpoints from indexing
+Disallow: /api/
+
+# Allow public assets
+Allow: /assets/
+Allow: /css/
+Allow: /js/
+Allow: /pages/
+Allow: /components/
+
+Sitemap: https://devtoolkit-tools.vercel.app/sitemap.xml

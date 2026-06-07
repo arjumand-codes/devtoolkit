@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Box Shadow Generator Online - Create CSS Box Shadows | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit Box Shadow Generator to create modern CSS box shadows online with live preview, sliders, color controls, inset option, and copy-ready CSS."
+  />
+
+  <meta
+    name="keywords"
+    content="box shadow generator, CSS box shadow generator, box-shadow CSS, shadow generator online, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/box-shadow.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Box Shadow Generator Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Create smooth CSS box shadows with live preview and copy-ready CSS code using DevToolKit."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/box-shadow.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+  <!-- Header Start -->
+  <div id="site-header"></div>
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#design-tools">Design Tools</a>
+            <span>/</span>
+            <span>Box Shadow Generator</span>
+          </nav>
+
+          <p class="section-badge">Design Tool</p>
+
+          <h1>Box Shadow Generator Online</h1>
+
+          <p>
+            Create clean and modern CSS box shadows using simple controls.
+            Adjust offset, blur, spread, color, opacity, and inset shadow with live preview.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#shadow-tool" class="btn btn-primary">Create Shadow</a>
+            <a href="../index.html#design-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Live shadow preview</li>
+            <li>X and Y offset controls</li>
+            <li>Blur and spread sliders</li>
+            <li>Color and opacity controls</li>
+            <li>Copy-ready CSS output</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- Box Shadow Workspace Start -->
+    <section class="tool-workspace-section" id="shadow-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">Shadow Workspace</p>
+            <h2>Design Your CSS Box Shadow</h2>
+            <p>
+              Move the sliders and customize the shadow. JavaScript functionality will be connected later.
+            </p>
+          </div>
+
+          <div class="tool-status" id="shadow-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="shadow-tool-layout">
+          <!-- Controls Panel -->
+          <section class="tool-panel shadow-controls-panel" aria-labelledby="shadow-controls-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="shadow-controls-title">Shadow Controls</h3>
+                <p>Adjust values to create the perfect shadow.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="random-shadow-btn">
+                Random
+              </button>
+            </div>
+
+            <div class="shadow-form">
+              <!-- X Offset -->
+              <div class="range-group">
+                <div class="range-label-row">
+                  <label for="shadow-x">X Offset</label>
+                  <span id="shadow-x-value">0px</span>
+                </div>
+                <input type="range" id="shadow-x" min="-80" max="80" value="0" />
+              </div>
+
+              <!-- Y Offset -->
+              <div class="range-group">
+                <div class="range-label-row">
+                  <label for="shadow-y">Y Offset</label>
+                  <span id="shadow-y-value">24px</span>
+                </div>
+                <input type="range" id="shadow-y" min="-80" max="80" value="24" />
+              </div>
+
+              <!-- Blur -->
+              <div class="range-group">
+                <div class="range-label-row">
+                  <label for="shadow-blur">Blur Radius</label>
+                  <span id="shadow-blur-value">60px</span>
+                </div>
+                <input type="range" id="shadow-blur" min="0" max="120" value="60" />
+              </div>
+
+              <!-- Spread -->
+              <div class="range-group">
+                <div class="range-label-row">
+                  <label for="shadow-spread">Spread Radius</label>
+                  <span id="shadow-spread-value">0px</span>
+                </div>
+                <input type="range" id="shadow-spread" min="-60" max="60" value="0" />
+              </div>
+
+              <!-- Opacity -->
+              <div class="range-group">
+                <div class="range-label-row">
+                  <label for="shadow-opacity">Shadow Opacity</label>
+                  <span id="shadow-opacity-value">35%</span>
+                </div>
+                <input type="range" id="shadow-opacity" min="0" max="100" value="35" />
+              </div>
+
+              <!-- Color -->
+              <div class="form-group color-control">
+                <label for="shadow-color">Shadow Color</label>
+                <div class="color-input-row">
+                  <input type="color" id="shadow-color" value="#000000" />
+                  <input
+                    type="text"
+                    id="shadow-color-text"
+                    class="tool-input"
+                    value="#000000"
+                    spellcheck="false"
+                  />
+                </div>
+              </div>
+
+              <!-- Background -->
+              <div class="form-group color-control">
+                <label for="shadow-card-color">Preview Card Color</label>
+                <div class="color-input-row">
+                  <input type="color" id="shadow-card-color" value="#111827" />
+                  <input
+                    type="text"
+                    id="shadow-card-color-text"
+                    class="tool-input"
+                    value="#111827"
+                    spellcheck="false"
+                  />
+                </div>
+              </div>
+
+              <!-- Inset -->
+              <label class="checkbox-control shadow-checkbox">
+                <input type="checkbox" id="shadow-inset" />
+                <span>Use inset shadow</span>
+              </label>
+
+              <!-- Actions -->
+              <div class="tool-actions shadow-actions">
+                <button class="btn btn-primary" type="button" id="generate-shadow-btn">
+                  Generate Shadow
+                </button>
+
+                <button class="btn btn-outline" type="button" id="copy-shadow-btn">
+                  Copy CSS
+                </button>
+
+                <button class="btn btn-outline" type="button" id="reset-shadow-btn">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Preview Panel -->
+          <section class="tool-panel shadow-preview-panel" aria-labelledby="shadow-preview-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="shadow-preview-title">Live Preview</h3>
+                <p>Your generated CSS box shadow preview.</p>
+              </div>
+            </div>
+
+            <div class="shadow-preview-stage">
+              <div class="shadow-preview-card" id="shadow-preview-card">
+                <span>Preview Card</span>
+                <h3>Modern Shadow</h3>
+                <p>
+                  This card shows how your CSS box shadow will look on a real UI component.
+                </p>
+              </div>
+            </div>
+
+            <div class="shadow-code-wrapper">
+              <div class="tool-panel-header small-header">
+                <div>
+                  <h3>CSS Output</h3>
+                  <p>Copy this CSS and use it in your project.</p>
+                </div>
+              </div>
+
+              <pre class="tool-output shadow-output" id="shadow-output"><code>box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);</code></pre>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- Box Shadow Workspace End -->
+
+    <!-- Presets Start -->
+    <section class="shadow-presets-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Shadow Presets</p>
+          <h2>Quick Shadow Styles</h2>
+          <p>
+            These preset cards can later be connected with JavaScript for one-click shadow selection.
+          </p>
+        </div>
+
+        <div class="shadow-presets-grid">
+          <button
+            class="shadow-preset-card"
+            type="button"
+            data-shadow="0 10px 30px rgba(0, 0, 0, 0.18)"
+          >
+            <span class="preset-preview soft-shadow"></span>
+            <strong>Soft Shadow</strong>
+            <small>Clean card shadow for simple UI.</small>
+          </button>
+
+          <button
+            class="shadow-preset-card"
+            type="button"
+            data-shadow="0 24px 70px rgba(0, 0, 0, 0.35)"
+          >
+            <span class="preset-preview deep-shadow"></span>
+            <strong>Deep Shadow</strong>
+            <small>Strong depth for large cards.</small>
+          </button>
+
+          <button
+            class="shadow-preset-card"
+            type="button"
+            data-shadow="0 0 40px rgba(124, 58, 237, 0.35)"
+          >
+            <span class="preset-preview glow-shadow"></span>
+            <strong>Glow Shadow</strong>
+            <small>Purple glow for modern sections.</small>
+          </button>
+
+          <button
+            class="shadow-preset-card"
+            type="button"
+            data-shadow="inset 0 2px 18px rgba(255, 255, 255, 0.16)"
+          >
+            <span class="preset-preview inset-shadow"></span>
+            <strong>Inset Shadow</strong>
+            <small>Inner shadow for glass panels.</small>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Presets End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Generate CSS Box Shadow</h2>
+
+            <p>
+              A box shadow generator helps you create CSS shadows visually instead of
+              writing values manually. Adjust the controls, preview the result, and copy the CSS.
+            </p>
+
+            <ol class="guide-list">
+              <li>Adjust the X and Y offset values.</li>
+              <li>Set blur and spread for softness and size.</li>
+              <li>Choose shadow color and opacity.</li>
+              <li>Copy the generated CSS box-shadow code.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Where to Use Box Shadows?</h2>
+
+            <p>
+              Box shadows are useful for cards, buttons, modals, dropdowns, pricing boxes,
+              images, dashboards, and modern website sections.
+            </p>
+
+            <ul class="feature-list">
+              <li>Website cards and containers</li>
+              <li>CTA buttons and badges</li>
+              <li>Modal and popup designs</li>
+              <li>Dashboard panels</li>
+              <li>Portfolio project cards</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Design Tools</h2>
+          <p>
+            Continue designing better interfaces with other DevToolKit design tools.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">🌈</div>
+            <div class="tool-content">
+              <h3>Gradient Generator</h3>
+              <p>Create beautiful CSS gradients with live preview and copy-ready code.</p>
+            </div>
+            <a href="gradient-generator.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">🎨</div>
+            <div class="tool-content">
+              <h3>Color Palette Generator</h3>
+              <p>Generate modern color palettes and copy HEX values for your projects.</p>
+            </div>
+            <a href="color-palette.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">◇</div>
+            <div class="tool-content">
+              <h3>Glassmorphism Generator</h3>
+              <p>Generate modern glass UI effects with blur, opacity, border, and shadow.</p>
+            </div>
+            <a href="glassmorphism-generator.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>Box Shadow Generator FAQs</h2>
+          <p>
+            Common questions about CSS box-shadow values and shadow design.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is CSS box-shadow?</summary>
+            <p>
+              CSS box-shadow is a CSS property used to add shadow effects around an element,
+              such as cards, buttons, containers, or images.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What does X offset mean?</summary>
+            <p>
+              X offset controls the horizontal shadow position. Positive values move the shadow
+              right, while negative values move it left.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What does Y offset mean?</summary>
+            <p>
+              Y offset controls the vertical shadow position. Positive values move the shadow
+              downward, while negative values move it upward.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is blur radius in box-shadow?</summary>
+            <p>
+              Blur radius controls how soft or sharp the shadow looks. Higher values create
+              softer and more spread-out shadows.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this box shadow generator free?</summary>
+            <p>
+              Yes, DevToolKit Box Shadow Generator is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Designing</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free tools for gradients, colors, glass effects, CSS, SEO, and frontend development.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="glassmorphism-generator.html" class="btn btn-outline">
+              Try Glassmorphism
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+    
+    <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="/js/components.js"></script>
+
+
+  <!-- JS Later -->
+  <script src="../js/box-shadow.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Image Compressor Online - Compress JPG, PNG & WEBP | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit Image Compressor to reduce image file size online. Compress JPG, PNG, and WEBP images directly in your browser with preview and download."
+  />
+
+<link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+  <meta
+    name="keywords"
+    content="image compressor online, compress image online, reduce image size, JPG compressor, PNG compressor, WEBP compressor, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/image-compressor.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Image Compressor Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Compress images online and reduce file size using DevToolKit Image Compressor."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/image-compressor.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+ 
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+  <div id="site-header"></div>
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#image-tools">Image Tools</a>
+            <span>/</span>
+            <span>Image Compressor</span>
+          </nav>
+
+          <p class="section-badge">Image Tool</p>
+
+          <h1>Image Compressor Online</h1>
+
+          <p>
+            Reduce image file size for websites, portfolios, blogs, and social previews.
+            Upload an image, adjust compression quality, preview the result, and download
+            the optimized image.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#image-compressor-tool" class="btn btn-primary">Compress Image</a>
+            <a href="../index.html#image-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Compress JPG, PNG, and WEBP</li>
+            <li>Quality slider control</li>
+            <li>Before and after preview</li>
+            <li>Size saving calculation</li>
+            <li>Browser-based compression</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- Image Compressor Workspace Start -->
+    <section class="tool-workspace-section" id="image-compressor-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">Compressor Workspace</p>
+            <h2>Upload and Compress Your Image</h2>
+            <p>
+              Choose an image, adjust quality, compress it, and download the optimized file.
+              JavaScript functionality will be connected next.
+            </p>
+          </div>
+
+          <div class="tool-status" id="image-compressor-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="image-compressor-layout">
+          <!-- Upload & Settings Panel -->
+          <section class="tool-panel image-compressor-controls-panel" aria-labelledby="image-compressor-controls-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="image-compressor-controls-title">Upload Image</h3>
+                <p>Select your image and compression settings.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="clear-image-compressor-btn">
+                Clear
+              </button>
+            </div>
+
+            <div class="image-compressor-upload-box" id="image-compressor-upload-box">
+              <input
+                type="file"
+                id="compressor-image-input"
+                accept="image/png, image/jpeg, image/webp"
+                hidden
+              />
+
+              <label for="compressor-image-input" class="image-compressor-upload-label">
+                <span class="upload-icon">⇪</span>
+                <strong>Upload Image</strong>
+                <small>Choose PNG, JPG, JPEG, or WEBP file</small>
+              </label>
+            </div>
+
+            <div class="uploaded-file-card" id="compressor-uploaded-file-card">
+              <div class="uploaded-file-icon">IMG</div>
+
+              <div class="uploaded-file-info">
+                <strong id="compressor-file-name">No image selected</strong>
+                <span id="compressor-file-size">File size: 0 KB</span>
+              </div>
+            </div>
+
+            <div class="image-compressor-form">
+              <!-- Compression Quality -->
+              <div class="range-group">
+                <div class="range-label-row">
+                  <label for="compression-quality">Compression Quality</label>
+                  <span id="compression-quality-value">75%</span>
+                </div>
+                <input type="range" id="compression-quality" min="10" max="100" value="75" />
+                <small class="input-help">
+                  Lower quality usually gives a smaller file size.
+                </small>
+              </div>
+
+              <!-- Output Format -->
+              <div class="form-group">
+                <label for="compressor-output-format">Output Format</label>
+                <select id="compressor-output-format" class="tool-select">
+                  <option value="original">Keep Original Format</option>
+                  <option value="image/jpeg">JPG</option>
+                  <option value="image/webp">WEBP</option>
+                  <option value="image/png">PNG</option>
+                </select>
+              </div>
+
+              <!-- Resize Width -->
+              <div class="form-group">
+                <label for="resize-width">Resize Width Optional</label>
+                <input
+                  type="number"
+                  id="resize-width"
+                  class="tool-input"
+                  placeholder="Example: 1200"
+                  min="1"
+                  step="1"
+                />
+                <small class="input-help">
+                  Leave empty to keep original width.
+                </small>
+              </div>
+
+              <!-- Keep Aspect Ratio -->
+              <label class="checkbox-control image-compressor-checkbox">
+                <input type="checkbox" id="keep-aspect-ratio" checked />
+                <span>Keep aspect ratio</span>
+              </label>
+
+              <!-- Background Color for JPG -->
+              <div class="form-group color-control">
+                <label for="compressor-bg-color">JPG Background Color</label>
+                <div class="color-input-row">
+                  <input type="color" id="compressor-bg-color" value="#ffffff" />
+                  <input
+                    type="text"
+                    id="compressor-bg-color-text"
+                    class="tool-input"
+                    value="#ffffff"
+                    spellcheck="false"
+                  />
+                </div>
+                <small class="input-help">
+                  Used when compressing transparent images into JPG.
+                </small>
+              </div>
+
+              <!-- Actions -->
+              <div class="tool-actions image-compressor-actions">
+                <button class="btn btn-primary" type="button" id="compress-image-btn">
+                  Compress Image
+                </button>
+
+                <button class="btn btn-outline" type="button" id="download-compressed-image-btn" disabled>
+                  Download Image
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Preview Panel -->
+          <section class="tool-panel image-compressor-preview-panel" aria-labelledby="image-compressor-preview-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="image-compressor-preview-title">Compression Preview</h3>
+                <p>Compare original and compressed image details.</p>
+              </div>
+            </div>
+
+            <div class="compressor-preview-grid">
+              <div class="compressor-preview-card">
+                <div class="compressor-preview-box" id="compressor-original-preview">
+                  <span>Original Preview</span>
+                </div>
+
+                <div class="image-preview-meta">
+                  <strong>Original Image</strong>
+                  <span id="compressor-original-info">No image selected</span>
+                </div>
+              </div>
+
+              <div class="compressor-preview-card">
+                <div class="compressor-preview-box" id="compressor-result-preview">
+                  <span>Compressed Preview</span>
+                </div>
+
+                <div class="image-preview-meta">
+                  <strong>Compressed Image</strong>
+                  <span id="compressor-result-info">Compress an image first</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="compression-results-grid">
+              <div class="compression-result-card">
+                <span>Original Size</span>
+                <strong id="compressor-original-size">0 KB</strong>
+              </div>
+
+              <div class="compression-result-card">
+                <span>Compressed Size</span>
+                <strong id="compressor-compressed-size">0 KB</strong>
+              </div>
+
+              <div class="compression-result-card">
+                <span>Saved</span>
+                <strong id="compressor-saved-percent">0%</strong>
+              </div>
+
+              <div class="compression-result-card">
+                <span>Output Type</span>
+                <strong id="compressor-output-type">None</strong>
+              </div>
+            </div>
+
+            <div class="compression-bar-wrapper">
+              <div class="compression-bar-header">
+                <span>Compression Saving</span>
+                <strong id="compression-bar-label">0%</strong>
+              </div>
+
+              <div class="compression-bar">
+                <span id="compression-bar-fill"></span>
+              </div>
+            </div>
+
+            <div class="image-note-box">
+              <h3>Performance Note</h3>
+              <p>
+                Smaller image files can improve website loading speed, reduce bandwidth,
+                and help pages perform better in tools like PageSpeed Insights.
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- Image Compressor Workspace End -->
+
+    <!-- Compression Tips Start -->
+    <section class="compression-tips-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Compression Tips</p>
+          <h2>Best Image Optimization Practices</h2>
+          <p>
+            Use these simple rules when preparing images for websites and portfolio projects.
+          </p>
+        </div>
+
+        <div class="compression-tips-grid">
+          <article class="compression-tip-card">
+            <span>WEBP</span>
+            <strong>Use WEBP for websites</strong>
+            <small>WEBP usually gives smaller file sizes with good visual quality.</small>
+          </article>
+
+          <article class="compression-tip-card">
+            <span>Quality</span>
+            <strong>Use 70–85% quality</strong>
+            <small>This range often gives a good balance between quality and file size.</small>
+          </article>
+
+          <article class="compression-tip-card">
+            <span>Resize</span>
+            <strong>Resize large images</strong>
+            <small>Do not upload 4000px images if your website only displays them at 1200px.</small>
+          </article>
+
+          <article class="compression-tip-card">
+            <span>SEO</span>
+            <strong>Optimize for speed</strong>
+            <small>Smaller images can help improve loading time and user experience.</small>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Compression Tips End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Compress Images Online</h2>
+
+            <p>
+              Image Compressor helps you reduce image file size without installing software.
+              You can upload an image, adjust the quality, optionally resize it, and download the optimized result.
+            </p>
+
+            <ol class="guide-list">
+              <li>Upload a PNG, JPG, JPEG, or WEBP image.</li>
+              <li>Choose compression quality and output format.</li>
+              <li>Optionally enter a smaller width for resizing.</li>
+              <li>Click compress and download the optimized image.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Why Compress Images?</h2>
+
+            <p>
+              Image compression is useful for website speed, SEO, client websites,
+              portfolios, blog thumbnails, landing pages, and social sharing images.
+            </p>
+
+            <ul class="feature-list">
+              <li>Improve website loading speed</li>
+              <li>Reduce portfolio image size</li>
+              <li>Optimize blog thumbnails</li>
+              <li>Prepare images for Vercel deployment</li>
+              <li>Improve PageSpeed score</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Image and Design Tools</h2>
+          <p>
+            Continue working with other useful tools from DevToolKit.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">IMG</div>
+            <div class="tool-content">
+              <h3>Image Converter</h3>
+              <p>Convert images between PNG, JPG, and WEBP directly in the browser.</p>
+            </div>
+            <a href="image-converter.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">🌈</div>
+            <div class="tool-content">
+              <h3>Gradient Generator</h3>
+              <p>Create beautiful CSS gradients with live preview and copy-ready code.</p>
+            </div>
+            <a href="gradient-generator.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">SEO</div>
+            <div class="tool-content">
+              <h3>Meta Tags Generator</h3>
+              <p>Create SEO, Open Graph, and Twitter card meta tags for websites.</p>
+            </div>
+            <a href="meta-tags.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>Image Compressor FAQs</h2>
+          <p>
+            Common questions about image compression, quality, WEBP, and website performance.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What does image compression do?</summary>
+            <p>
+              Image compression reduces file size by lowering quality, changing format,
+              resizing dimensions, or optimizing image data.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Will compression reduce image quality?</summary>
+            <p>
+              Yes, lower quality settings can reduce visual quality, but a range between
+              70% and 85% often keeps images looking good while reducing file size.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Which format is best for websites?</summary>
+            <p>
+              WEBP is usually a strong choice for websites because it offers good quality
+              with smaller file sizes.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does this upload my image to a server?</summary>
+            <p>
+              The tool can be built to compress images directly inside your browser using JavaScript,
+              so the image does not need to be uploaded to a server.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this image compressor free?</summary>
+            <p>
+              Yes, DevToolKit Image Compressor is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Optimizing</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free tools for image conversion, CSS design, SEO, and frontend development.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="image-converter.html" class="btn btn-outline">
+              Try Image Converter
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+   <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="/js/components.js"></script>
+
+  <!-- JS Later -->
+  <script src="../js/image-compressor.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

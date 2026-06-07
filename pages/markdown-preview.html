@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Markdown Previewer Online - Live Markdown Editor | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit Markdown Previewer to write Markdown and preview formatted output live. Perfect for GitHub README files, notes, docs, and content writing."
+  />
+
+  <meta
+    name="keywords"
+    content="markdown previewer online, markdown editor, live markdown preview, GitHub README previewer, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/markdown-preview.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Markdown Previewer Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Write Markdown and preview formatted output live with DevToolKit Markdown Previewer."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/markdown-preview.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+  <div id="site-header"></div>
+
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#developer-tools">Developer Tools</a>
+            <span>/</span>
+            <span>Markdown Previewer</span>
+          </nav>
+
+          <p class="section-badge">Developer Tool</p>
+
+          <h1>Markdown Previewer Online</h1>
+
+          <p>
+            Write Markdown and preview formatted output live. Use it for GitHub README files,
+            project documentation, notes, blog drafts, and developer content.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#markdown-tool" class="btn btn-primary">Start Writing</a>
+            <a href="../index.html#developer-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Live Markdown preview</li>
+            <li>GitHub README friendly</li>
+            <li>Copy Markdown text</li>
+            <li>Copy rendered HTML later</li>
+            <li>Clean writing workspace</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- Markdown Workspace Start -->
+    <section class="tool-workspace-section" id="markdown-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">Markdown Workspace</p>
+            <h2>Write and Preview Markdown</h2>
+            <p>
+              Type Markdown on the left and preview the formatted result on the right.
+              JavaScript functionality will be connected later.
+            </p>
+          </div>
+
+          <div class="tool-status" id="markdown-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="markdown-tool-layout">
+          <!-- Editor Panel -->
+          <section class="tool-panel markdown-editor-panel" aria-labelledby="markdown-editor-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="markdown-editor-title">Markdown Editor</h3>
+                <p>Write headings, lists, links, code blocks, and more.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="sample-markdown-btn">
+                Sample
+              </button>
+            </div>
+
+            <textarea
+              class="tool-textarea markdown-textarea"
+              id="markdown-input"
+              placeholder="# Hello DevToolKit&#10;&#10;Write your **Markdown** here..."
+              spellcheck="false"
+            ></textarea>
+
+            <div class="tool-actions markdown-actions">
+              <button class="btn btn-primary" type="button" id="preview-markdown-btn">
+                Preview Markdown
+              </button>
+
+              <button class="btn btn-outline" type="button" id="copy-markdown-btn">
+                Copy Markdown
+              </button>
+
+              <button class="btn btn-outline" type="button" id="clear-markdown-btn">
+                Clear
+              </button>
+            </div>
+          </section>
+
+          <!-- Preview Panel -->
+          <section class="tool-panel markdown-preview-panel" aria-labelledby="markdown-preview-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="markdown-preview-title">Live Preview</h3>
+                <p>Your rendered Markdown output will appear here.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="copy-html-btn">
+                Copy HTML
+              </button>
+            </div>
+
+            <div class="markdown-stats-grid">
+              <div class="markdown-stat-card">
+                <span>Words</span>
+                <strong id="markdown-word-count">0</strong>
+              </div>
+
+              <div class="markdown-stat-card">
+                <span>Characters</span>
+                <strong id="markdown-char-count">0</strong>
+              </div>
+
+              <div class="markdown-stat-card">
+                <span>Lines</span>
+                <strong id="markdown-line-count">0</strong>
+              </div>
+            </div>
+
+            <article class="markdown-preview-box" id="markdown-preview">
+              <p>Your Markdown preview will appear here.</p>
+            </article>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- Markdown Workspace End -->
+
+    <!-- Markdown Cheat Sheet Start -->
+    <section class="markdown-cheatsheet-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Markdown Cheat Sheet</p>
+          <h2>Common Markdown Syntax</h2>
+          <p>
+            Use these quick examples while writing README files, docs, and notes.
+          </p>
+        </div>
+
+        <div class="markdown-cheatsheet-grid">
+          <article class="markdown-cheat-card">
+            <span>Heading</span>
+            <code># Main Heading</code>
+            <small>Creates an H1 heading.</small>
+          </article>
+
+          <article class="markdown-cheat-card">
+            <span>Bold Text</span>
+            <code>**Bold text**</code>
+            <small>Makes text bold.</small>
+          </article>
+
+          <article class="markdown-cheat-card">
+            <span>Link</span>
+            <code>[Visit Site](https://example.com)</code>
+            <small>Creates a clickable link.</small>
+          </article>
+
+          <article class="markdown-cheat-card">
+            <span>Image</span>
+            <code>![Alt text](image.png)</code>
+            <small>Adds an image.</small>
+          </article>
+
+          <article class="markdown-cheat-card">
+            <span>List</span>
+            <code>- First item<br>- Second item</code>
+            <small>Creates a bullet list.</small>
+          </article>
+
+          <article class="markdown-cheat-card">
+            <span>Code</span>
+            <code>`inline code`</code>
+            <small>Creates inline code text.</small>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Markdown Cheat Sheet End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Preview Markdown Online</h2>
+
+            <p>
+              Markdown Previewer helps you write formatted content using simple plain-text syntax.
+              It is useful for GitHub README files, documentation, notes, and project guides.
+            </p>
+
+            <ol class="guide-list">
+              <li>Write Markdown in the editor box.</li>
+              <li>Click preview or type live after JavaScript is connected.</li>
+              <li>Review the formatted output in the preview panel.</li>
+              <li>Copy your Markdown or rendered HTML.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Why Use a Markdown Previewer?</h2>
+
+            <p>
+              Markdown is widely used by developers for GitHub, documentation, blogs,
+              project notes, changelogs, and technical writing.
+            </p>
+
+            <ul class="feature-list">
+              <li>Write GitHub README files</li>
+              <li>Create project documentation</li>
+              <li>Preview blog drafts</li>
+              <li>Write changelog files</li>
+              <li>Format notes quickly</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Developer Tools</h2>
+          <p>
+            Continue working with other useful tools from DevToolKit.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">{}</div>
+            <div class="tool-content">
+              <h3>JSON Formatter</h3>
+              <p>Format, validate, beautify, and minify JSON data instantly.</p>
+            </div>
+            <a href="json-formatter.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">.*</div>
+            <div class="tool-content">
+              <h3>Regex Tester</h3>
+              <p>Test regular expressions and highlight matching text in real time.</p>
+            </div>
+            <a href="regex-tester.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">SEO</div>
+            <div class="tool-content">
+              <h3>Meta Tags Generator</h3>
+              <p>Create SEO, Open Graph, and Twitter card meta tags for websites.</p>
+            </div>
+            <a href="meta-tags.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>Markdown Previewer FAQs</h2>
+          <p>
+            Common questions about Markdown, README files, and live preview tools.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is Markdown?</summary>
+            <p>
+              Markdown is a simple text formatting syntax used to create headings,
+              lists, links, bold text, code blocks, and documentation.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I use this for GitHub README files?</summary>
+            <p>
+              Yes, this tool is useful for writing and previewing GitHub README files
+              before uploading them to your repository.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does Markdown support code blocks?</summary>
+            <p>
+              Yes, Markdown supports inline code and multi-line code blocks using backticks.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I copy the generated HTML?</summary>
+            <p>
+              Yes, the page structure includes a Copy HTML button. The JavaScript functionality
+              can be connected to copy rendered HTML.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this Markdown Previewer free?</summary>
+            <p>
+              Yes, DevToolKit Markdown Previewer is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Building</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free online tools for JSON, regex, URLs, SEO, CSS, and frontend development.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="meta-tags.html" class="btn btn-outline">
+              Try Meta Tags Generator
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+  <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="/js/components.js"></script>
+
+  <!-- JS Later -->
+  <script src="../js/markdown-preview.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

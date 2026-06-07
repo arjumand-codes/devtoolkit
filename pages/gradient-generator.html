@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CSS Gradient Generator Online - Create Linear & Radial Gradients | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit CSS Gradient Generator to create beautiful linear and radial gradients online with live preview and copy-ready CSS code."
+  />
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+
+  <meta
+    name="keywords"
+    content="CSS gradient generator, linear gradient generator, radial gradient generator, CSS background generator, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/gradient-generator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CSS Gradient Generator Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Create beautiful CSS gradients with live preview and copy-ready CSS code using DevToolKit."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/gradient-generator.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+ 
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+  <div id="site-header"></div>
+
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#design-tools">Design Tools</a>
+            <span>/</span>
+            <span>Gradient Generator</span>
+          </nav>
+
+          <p class="section-badge">Design Tool</p>
+
+          <h1>CSS Gradient Generator Online</h1>
+
+          <p>
+            Create beautiful linear and radial CSS gradients with live preview.
+            Choose colors, direction, type, and copy the generated CSS for your website.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#gradient-tool" class="btn btn-primary">Create Gradient</a>
+            <a href="../index.html#design-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Live gradient preview</li>
+            <li>Linear gradient support</li>
+            <li>Radial gradient support</li>
+            <li>Custom color controls</li>
+            <li>Copy-ready CSS output</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- Gradient Generator Workspace Start -->
+    <section class="tool-workspace-section" id="gradient-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">Gradient Workspace</p>
+            <h2>Design Your CSS Gradient</h2>
+            <p>
+              Select colors and settings. The JavaScript functionality will be connected later.
+            </p>
+          </div>
+
+          <div class="tool-status" id="gradient-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="gradient-tool-layout">
+          <!-- Controls Panel -->
+          <section class="tool-panel gradient-controls-panel" aria-labelledby="gradient-controls-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="gradient-controls-title">Gradient Controls</h3>
+                <p>Choose type, colors, and direction.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="random-gradient-btn">
+                Random
+              </button>
+            </div>
+
+            <div class="gradient-form">
+              <!-- Gradient Type -->
+              <div class="form-group">
+                <label for="gradient-type">Gradient Type</label>
+                <select id="gradient-type" class="tool-select">
+                  <option value="linear">Linear Gradient</option>
+                  <option value="radial">Radial Gradient</option>
+                </select>
+              </div>
+
+              <!-- Direction -->
+              <div class="form-group" id="gradient-direction-group">
+                <label for="gradient-direction">Direction</label>
+                <select id="gradient-direction" class="tool-select">
+                  <option value="135deg">135deg</option>
+                  <option value="90deg">90deg</option>
+                  <option value="180deg">180deg</option>
+                  <option value="to right">To Right</option>
+                  <option value="to left">To Left</option>
+                  <option value="to bottom">To Bottom</option>
+                  <option value="to top">To Top</option>
+                  <option value="to bottom right">To Bottom Right</option>
+                  <option value="to top right">To Top Right</option>
+                </select>
+              </div>
+
+              <!-- Color One -->
+              <div class="form-group color-control">
+                <label for="gradient-color-one">First Color</label>
+                <div class="color-input-row">
+                  <input type="color" id="gradient-color-one" value="#7c3aed" />
+                  <input
+                    type="text"
+                    id="gradient-color-one-text"
+                    class="tool-input"
+                    value="#7c3aed"
+                    spellcheck="false"
+                  />
+                </div>
+              </div>
+
+              <!-- Color Two -->
+              <div class="form-group color-control">
+                <label for="gradient-color-two">Second Color</label>
+                <div class="color-input-row">
+                  <input type="color" id="gradient-color-two" value="#ccf381" />
+                  <input
+                    type="text"
+                    id="gradient-color-two-text"
+                    class="tool-input"
+                    value="#ccf381"
+                    spellcheck="false"
+                  />
+                </div>
+              </div>
+
+              <!-- Color Three -->
+              <div class="form-group color-control">
+                <label for="gradient-color-three">Third Color Optional</label>
+                <div class="color-input-row">
+                  <input type="color" id="gradient-color-three" value="#00d4ff" />
+                  <input
+                    type="text"
+                    id="gradient-color-three-text"
+                    class="tool-input"
+                    value="#00d4ff"
+                    spellcheck="false"
+                  />
+                </div>
+
+                <label class="checkbox-control">
+                  <input type="checkbox" id="enable-third-color" />
+                  <span>Enable third color</span>
+                </label>
+              </div>
+
+              <!-- Actions -->
+              <div class="tool-actions gradient-actions">
+                <button class="btn btn-primary" type="button" id="generate-gradient-btn">
+                  Generate Gradient
+                </button>
+
+                <button class="btn btn-outline" type="button" id="copy-gradient-btn">
+                  Copy CSS
+                </button>
+
+                <button class="btn btn-outline" type="button" id="reset-gradient-btn">
+                  Reset
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Preview Panel -->
+          <section class="tool-panel gradient-preview-panel" aria-labelledby="gradient-preview-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="gradient-preview-title">Live Preview</h3>
+                <p>Your generated background gradient preview.</p>
+              </div>
+            </div>
+
+            <div
+              class="gradient-preview-box"
+              id="gradient-preview"
+              aria-label="Gradient preview"
+            >
+              <div class="gradient-preview-content">
+                <span>Preview</span>
+                <strong>Beautiful CSS Gradient</strong>
+              </div>
+            </div>
+
+            <div class="gradient-code-wrapper">
+              <div class="tool-panel-header small-header">
+                <div>
+                  <h3>CSS Output</h3>
+                  <p>Copy this CSS and use it in your project.</p>
+                </div>
+              </div>
+
+              <pre class="tool-output gradient-output" id="gradient-output"><code>background: linear-gradient(135deg, #7c3aed, #ccf381);</code></pre>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- Gradient Generator Workspace End -->
+
+    <!-- Presets Start -->
+    <section class="gradient-presets-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Gradient Presets</p>
+          <h2>Quick Gradient Ideas</h2>
+          <p>
+            These preset cards can later be connected with JavaScript for one-click gradient selection.
+          </p>
+        </div>
+
+        <div class="gradient-presets-grid">
+          <button class="gradient-preset-card preset-one" type="button" data-gradient="linear-gradient(135deg, #667eea, #764ba2)">
+            <span>Royal Purple</span>
+          </button>
+
+          <button class="gradient-preset-card preset-two" type="button" data-gradient="linear-gradient(135deg, #00c6ff, #0072ff)">
+            <span>Ocean Blue</span>
+          </button>
+
+          <button class="gradient-preset-card preset-three" type="button" data-gradient="linear-gradient(135deg, #f7971e, #ffd200)">
+            <span>Golden Hour</span>
+          </button>
+
+          <button class="gradient-preset-card preset-four" type="button" data-gradient="linear-gradient(135deg, #11998e, #38ef7d)">
+            <span>Fresh Mint</span>
+          </button>
+
+          <button class="gradient-preset-card preset-five" type="button" data-gradient="linear-gradient(135deg, #fc466b, #3f5efb)">
+            <span>Neon Pink</span>
+          </button>
+
+          <button class="gradient-preset-card preset-six" type="button" data-gradient="linear-gradient(135deg, #0f2027, #203a43, #2c5364)">
+            <span>Dark Space</span>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Presets End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Generate CSS Gradients</h2>
+
+            <p>
+              A CSS gradient generator helps you create modern backgrounds without writing
+              gradient syntax manually. Choose colors, select a direction, preview the result,
+              and copy the CSS.
+            </p>
+
+            <ol class="guide-list">
+              <li>Choose linear or radial gradient type.</li>
+              <li>Select two or three colors for your gradient.</li>
+              <li>Choose the gradient direction or angle.</li>
+              <li>Copy the generated CSS and paste it into your stylesheet.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Where to Use CSS Gradients?</h2>
+
+            <p>
+              Gradients are useful for hero sections, cards, buttons, banners, portfolio
+              sections, app backgrounds, and modern landing page designs.
+            </p>
+
+            <ul class="feature-list">
+              <li>Hero section backgrounds</li>
+              <li>CTA banners and pricing cards</li>
+              <li>Buttons and badges</li>
+              <li>Portfolio project cards</li>
+              <li>Modern SaaS UI sections</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Design Tools</h2>
+          <p>
+            Continue designing better interfaces with other DevToolKit design tools.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">🎨</div>
+            <div class="tool-content">
+              <h3>Color Palette Generator</h3>
+              <p>Generate modern color palettes and copy HEX values for your projects.</p>
+            </div>
+            <a href="color-palette.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">▣</div>
+            <div class="tool-content">
+              <h3>Box Shadow Generator</h3>
+              <p>Create smooth CSS shadows using offset, blur, spread, and color controls.</p>
+            </div>
+            <a href="box-shadow.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">◇</div>
+            <div class="tool-content">
+              <h3>Glassmorphism Generator</h3>
+              <p>Generate modern glass UI effects with blur, opacity, border, and shadow.</p>
+            </div>
+            <a href="glassmorphism-generator.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>CSS Gradient Generator FAQs</h2>
+          <p>
+            Common questions about CSS gradients and gradient backgrounds.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is a CSS gradient?</summary>
+            <p>
+              A CSS gradient is a background effect that smoothly blends two or more colors
+              without using an image file.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is a linear gradient?</summary>
+            <p>
+              A linear gradient blends colors in a straight direction, such as left to right,
+              top to bottom, or at a custom angle.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is a radial gradient?</summary>
+            <p>
+              A radial gradient blends colors outward from a center point, creating a circular
+              or ellipse-like background effect.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I use gradients in website backgrounds?</summary>
+            <p>
+              Yes, gradients are commonly used in website hero sections, cards, buttons,
+              banners, and landing page backgrounds.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this CSS gradient generator free?</summary>
+            <p>
+              Yes, DevToolKit CSS Gradient Generator is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Designing</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free online tools for CSS, colors, shadows, SEO, and frontend development.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="color-palette.html" class="btn btn-outline">
+              Try Color Palette
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+    <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="/js/components.js"></script>
+
+  <!-- JS Later -->
+  <script src="../js/gradient-generator.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

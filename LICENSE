@@ -1,0 +1,36 @@
+PROPRIETARY SOFTWARE LICENSE
+
+Copyright (c) 2026 Arjumand Ali.
+All Rights Reserved.
+
+Project Name: DevToolKit
+Website: https://devtoolkit-tools.vercel.app/
+Owner: Arjumand Ali
+
+This software, source code, design, user interface, API integration logic, documentation, branding, and related assets are proprietary and confidential property of the copyright holder.
+
+Permission is NOT granted to copy, reproduce, modify, distribute, sublicense, sell, resell, publish, host, deploy, reverse engineer, scrape, mirror, or create derivative works from this project or any part of it without prior written permission from the copyright holder.
+
+This project includes integrations with third-party APIs and services, including but not limited to AI APIs and gaming/statistics APIs. API keys, serverless functions, API usage logic, request handling, and related implementation details are protected and must not be reused, extracted, exposed, or redistributed.
+
+You may view the code only if access is explicitly provided by the owner for review purposes. Viewing the code does not grant permission to use, copy, modify, distribute, or deploy it.
+
+The following are strictly prohibited without written permission:
+
+1. Copying the full project or any substantial part of it.
+2. Reusing the design, layout, tool logic, API routes, or branding.
+3. Rehosting or deploying this project under another domain.
+4. Selling or offering this project as a template, SaaS product, or service.
+5. Removing copyright notices or ownership references.
+6. Extracting or attempting to extract API keys, server environment variables, backend logic, or private integrations.
+7. Using this code to build a competing or cloned tool website.
+
+Third-party libraries, APIs, packages, fonts, icons, and external services used by this project remain subject to their own respective licenses and terms of service.
+
+THIS SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY CLAIM, DAMAGE, API COST, DATA LOSS, SERVICE INTERRUPTION, OR OTHER LIABILITY ARISING FROM THE USE, MISUSE, OR UNAUTHORIZED USE OF THIS SOFTWARE.
+
+For permission requests, contact:
+
+Arjumand Ali
+GitHub: https://github.com/arjumand-codes
+Website: https://devtoolkit-tools.vercel.app/

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>CSS Minifier Beautifier Online - Minify and Format CSS | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit CSS Minifier Beautifier to minify CSS code, beautify messy CSS, reduce file size, format stylesheets, and copy clean CSS online."
+  />
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+
+  <meta
+    name="keywords"
+    content="CSS minifier, CSS beautifier, minify CSS online, format CSS online, CSS formatter, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/css-minifier.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="CSS Minifier Beautifier Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Minify CSS code or beautify messy CSS online with DevToolKit."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/css-minifier.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CSS Minifier Beautifier Online - DevToolKit" />
+  <meta
+    name="twitter:description"
+    content="Minify, beautify, format, and copy CSS code directly in your browser."
+  />
+  <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+ 
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+  <div id="site-header"></div>
+
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#developer-tools">Developer Tools</a>
+            <span>/</span>
+            <span>CSS Minifier / Beautifier</span>
+          </nav>
+
+          <p class="section-badge">Developer Tool</p>
+
+          <h1>CSS Minifier / Beautifier Online</h1>
+
+          <p>
+            Minify CSS to reduce file size or beautify compressed CSS for easier editing.
+            Paste your CSS, choose an action, preview the result, and copy clean output.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#css-minifier-tool" class="btn btn-primary">Minify CSS</a>
+            <a href="../index.html#developer-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Minify CSS code</li>
+            <li>Beautify compressed CSS</li>
+            <li>Remove CSS comments</li>
+            <li>Copy formatted output</li>
+            <li>Show size reduction stats</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- CSS Minifier Workspace Start -->
+    <section class="tool-workspace-section" id="css-minifier-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">CSS Workspace</p>
+            <h2>Minify or Beautify CSS Code</h2>
+            <p>
+              Paste your CSS below and choose minify, beautify, or remove comments. JavaScript will be connected next.
+            </p>
+          </div>
+
+          <div class="tool-status" id="css-minifier-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="css-minifier-layout">
+          <!-- Input Panel -->
+          <section class="tool-panel css-minifier-input-panel" aria-labelledby="css-minifier-input-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="css-minifier-input-title">Input CSS</h3>
+                <p>Paste your CSS stylesheet or style block here.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="sample-css-btn">
+                Sample
+              </button>
+            </div>
+
+            <textarea
+              class="tool-textarea css-minifier-textarea"
+              id="css-input"
+              placeholder="Example: .card { padding: 20px; color: #fff; }"
+              spellcheck="false"
+            ></textarea>
+
+            <div class="css-minifier-stats-grid">
+              <div class="css-minifier-stat-card">
+                <span>Input Size</span>
+                <strong id="css-input-size">0 B</strong>
+              </div>
+
+              <div class="css-minifier-stat-card">
+                <span>Lines</span>
+                <strong id="css-input-lines">0</strong>
+              </div>
+
+              <div class="css-minifier-stat-card">
+                <span>Rules</span>
+                <strong id="css-input-rules">0</strong>
+              </div>
+            </div>
+          </section>
+
+          <!-- Output Panel -->
+          <section class="tool-panel css-minifier-output-panel" aria-labelledby="css-minifier-output-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="css-minifier-output-title">Output CSS</h3>
+                <p>Your minified or beautified CSS will appear here.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="copy-css-output-btn">
+                Copy
+              </button>
+            </div>
+
+            <pre class="tool-output css-minifier-output" id="css-output"><code>Your converted CSS will appear here.</code></pre>
+
+            <div class="css-result-stats-grid">
+              <div class="css-result-stat-card">
+                <span>Output Size</span>
+                <strong id="css-output-size">0 B</strong>
+              </div>
+
+              <div class="css-result-stat-card">
+                <span>Saved</span>
+                <strong id="css-saved-size">0 B</strong>
+              </div>
+
+              <div class="css-result-stat-card">
+                <span>Reduction</span>
+                <strong id="css-reduction-percent">0%</strong>
+              </div>
+            </div>
+
+            <div class="tool-actions css-minifier-actions">
+              <button class="btn btn-primary" type="button" id="minify-css-btn">
+                Minify CSS
+              </button>
+
+              <button class="btn btn-outline" type="button" id="beautify-css-btn">
+                Beautify CSS
+              </button>
+
+              <button class="btn btn-outline" type="button" id="remove-css-comments-btn">
+                Remove Comments
+              </button>
+
+              <button class="btn btn-outline" type="button" id="swap-css-output-btn">
+                Swap Output to Input
+              </button>
+
+              <button class="btn btn-outline" type="button" id="clear-css-btn">
+                Clear
+              </button>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- CSS Minifier Workspace End -->
+
+    <!-- CSS Tips Start -->
+    <section class="css-minifier-tips-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">CSS Tips</p>
+          <h2>When to Minify or Beautify CSS</h2>
+          <p>
+            Use minified CSS for production and beautified CSS when editing or debugging styles.
+          </p>
+        </div>
+
+        <div class="css-minifier-tips-grid">
+          <article class="css-tip-card">
+            <span>Minify</span>
+            <strong>Reduce production file size</strong>
+            <small>Remove spaces, comments, and extra line breaks before deploying CSS.</small>
+          </article>
+
+          <article class="css-tip-card">
+            <span>Beautify</span>
+            <strong>Make CSS easier to edit</strong>
+            <small>Format compressed CSS with indentation and line breaks for readability.</small>
+          </article>
+
+          <article class="css-tip-card">
+            <span>Comments</span>
+            <strong>Clean unnecessary notes</strong>
+            <small>Remove CSS comments when preparing files for final website upload.</small>
+          </article>
+
+          <article class="css-tip-card">
+            <span>Speed</span>
+            <strong>Improve loading performance</strong>
+            <small>Smaller CSS files can help reduce transfer size on web pages.</small>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- CSS Tips End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Minify or Beautify CSS</h2>
+
+            <p>
+              CSS Minifier / Beautifier helps you compress CSS for production or format CSS
+              for easier editing. Paste your CSS, choose the action, and copy the result.
+            </p>
+
+            <ol class="guide-list">
+              <li>Paste your CSS into the input box.</li>
+              <li>Click minify to compress CSS.</li>
+              <li>Click beautify to format CSS with readable spacing.</li>
+              <li>Copy the output and use it in your project.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Why Use a CSS Minifier?</h2>
+
+            <p>
+              CSS minification is useful for production websites, portfolio projects,
+              client sites, landing pages, and speed optimization work.
+            </p>
+
+            <ul class="feature-list">
+              <li>Compress CSS before deployment</li>
+              <li>Format messy CSS for editing</li>
+              <li>Remove unnecessary comments</li>
+              <li>Compare input and output sizes</li>
+              <li>Clean copied stylesheet code</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Developer Tools</h2>
+          <p>
+            Continue working with other useful browser-based DevToolKit tools.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">&lt;&gt;</div>
+            <div class="tool-content">
+              <h3>HTML Entities</h3>
+              <p>Encode HTML characters or decode HTML entities safely and quickly.</p>
+            </div>
+            <a href="html-entities.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">MD</div>
+            <div class="tool-content">
+              <h3>Markdown Previewer</h3>
+              <p>Write Markdown and preview the rendered output side by side.</p>
+            </div>
+            <a href="markdown-preview.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">SEO</div>
+            <div class="tool-content">
+              <h3>Meta Tags Generator</h3>
+              <p>Create SEO, Open Graph, and Twitter card meta tags for websites.</p>
+            </div>
+            <a href="meta-tags.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>CSS Minifier Beautifier FAQs</h2>
+          <p>
+            Common questions about CSS minification, formatting, comments, and production CSS files.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What does CSS minification do?</summary>
+            <p>
+              CSS minification removes unnecessary spaces, comments, line breaks, and extra formatting
+              to reduce CSS file size.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What does CSS beautify mean?</summary>
+            <p>
+              CSS beautify means formatting CSS with indentation, line breaks, and spacing
+              so the code becomes easier to read and edit.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Should I use minified CSS on my website?</summary>
+            <p>
+              Yes, minified CSS is commonly used in production because smaller files can load faster.
+              Keep a readable version for editing.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can this remove CSS comments?</summary>
+            <p>
+              Yes, this page is structured to include a remove comments option for cleaning CSS code.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this CSS minifier free?</summary>
+            <p>
+              Yes, DevToolKit CSS Minifier / Beautifier is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Building</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free tools for HTML entities, JSON formatting, Markdown previewing,
+            SEO, CSS design, image optimization, and utility tasks.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="html-entities.html" class="btn btn-outline">
+              Try HTML Entities
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+  <!-- Footer Start -->
+    <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="/js/components.js"></script>
+<!-- Footer End -->
+  <!-- Footer End -->
+   <script src="../js/main.js"></script>
+
+  <!-- JS Later -->
+  <script src="../js/css-minifier.js"></script>
+</body>
+</html>
