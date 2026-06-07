@@ -9716,3 +9716,168 @@ code,
     gap: 5px !important;
   }
 }
+
+/* ================================
+   CV Generator Mobile/Desktop Print Fix
+   Print only CV preview
+================================ */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
+  }
+
+  body.print-cv * {
+    visibility: hidden !important;
+  }
+
+  body.print-cv #cvPreview,
+  body.print-cv #cvPreview * {
+    visibility: visible !important;
+  }
+
+  body.print-cv #cvPreview {
+    position: fixed !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 210mm !important;
+    max-width: none !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    transform: none !important;
+  }
+
+  body.print-cv #cvPreview .cv-doc {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    overflow: hidden !important;
+    box-shadow: none !important;
+  }
+
+  body.print-cv .cv-preview-shell,
+  body.print-cv .cv-preview-panel,
+  body.print-cv main,
+  body.print-cv body {
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+  }
+
+  body.print-cv .cv-section,
+  body.print-cv .cv-item {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  body.print-cv .cv-empty-state {
+    display: none !important;
+  }
+}
+
+/* ================================
+   CV Direct PDF Export - No Blank Fix
+================================ */
+
+body.is-generating-pdf {
+  overflow: hidden !important;
+}
+
+.cv-pdf-export-wrapper {
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 794px !important;
+  height: 1123px !important;
+  background: #ffffff !important;
+  z-index: 2147483647 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.cv-pdf-export-wrapper .cv-preview,
+.cv-pdf-export {
+  width: 794px !important;
+  height: 1123px !important;
+  min-width: 794px !important;
+  max-width: 794px !important;
+  min-height: 1123px !important;
+  max-height: 1123px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: #ffffff !important;
+  color: #111827 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+  transform: none !important;
+}
+
+.cv-pdf-export-wrapper .cv-doc {
+  width: 794px !important;
+  max-width: 794px !important;
+  min-height: 1123px !important;
+  max-height: 1123px !important;
+  overflow: hidden !important;
+  background: #ffffff !important;
+  transform: none !important;
+}
+
+.cv-pdf-export-wrapper .cv-template-classic-clean .cv-doc {
+  padding: 54px 58px !important;
+}
+
+.cv-pdf-export-wrapper .cv-template-minimalist-pro .cv-doc {
+  padding: 64px 70px !important;
+}
+
+.cv-pdf-export-wrapper .cv-template-tech-stack .cv-doc {
+  padding: 48px 54px !important;
+}
+
+.cv-pdf-export-wrapper .cv-template-modern-sidebar .cv-doc {
+  display: grid !important;
+  grid-template-columns: 245px 1fr !important;
+  gap: 34px !important;
+  padding: 0 !important;
+}
+
+.cv-pdf-export-wrapper .cv-template-executive-bold .cv-doc {
+  padding: 0 !important;
+}
+
+.cv-pdf-export-wrapper * {
+  box-sizing: border-box !important;
+}
+
+.cv-pdf-export-wrapper .cv-contact-list,
+.cv-pdf-export-wrapper .cv-link-list {
+  max-width: 100% !important;
+  flex-wrap: wrap !important;
+}
+
+.cv-pdf-export-wrapper .cv-section,
+.cv-pdf-export-wrapper .cv-item {
+  break-inside: avoid !important;
+  page-break-inside: avoid !important;
+}
