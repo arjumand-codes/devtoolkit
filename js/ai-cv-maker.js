@@ -424,19 +424,39 @@ function initSkillsInput() {
   if (!skillInput) return;
 
   skillInput.addEventListener("keydown", (event) => {
-    if (event.key === "Enter" || event.key === ",") {
+    const isMobile = window.innerWidth <= 768;
+    const key = event.key;
+
+    const shouldAddSkill =
+      key === "Enter" ||
+      key === "," ||
+      (isMobile && key === " ");
+
+    if (shouldAddSkill) {
       event.preventDefault();
 
       const value = skillInput.value.trim().replace(/,$/, "");
-      addSkill(value);
-      skillInput.value = "";
+
+      if (value) {
+        addSkill(value);
+        skillInput.value = "";
+      }
     }
 
-    if (event.key === "Backspace" && !skillInput.value && skills.length > 0) {
+    if (key === "Backspace" && !skillInput.value && skills.length > 0) {
       skills.pop();
       renderSkills();
       renderPreviewFromForm();
       saveFormData();
+    }
+  });
+
+  skillInput.addEventListener("blur", () => {
+    const value = skillInput.value.trim().replace(/,$/, "");
+
+    if (value) {
+      addSkill(value);
+      skillInput.value = "";
     }
   });
 
@@ -1346,21 +1366,27 @@ function updateAiLimitStatus() {
 ================================ */
 
 if (downloadPdfBtn) {
-  downloadPdfBtn.addEventListener("click", () => {
+  downloadPdfBtn.addEventListener("click", async () => {
     if (!cvPreview || cvPreview.querySelector(".cv-empty-state")) {
-      showToast("Generate CV first.", "warning");
+      showToast("Generate a CV first.", "warning");
       return;
     }
 
-    document.body.classList.add("print-cv");
+    downloadPdfBtn.disabled = true;
+    downloadPdfBtn.textContent = "Preparing PDF...";
 
-    setTimeout(() => {
-      window.print();
+    try {
+      await loadPdfLibraries();
+      await downloadCvAsPdf();
 
-      setTimeout(() => {
-        document.body.classList.remove("print-cv");
-      }, 800);
-    }, 150);
+      showToast("PDF downloaded successfully.", "success");
+    } catch (error) {
+      console.error("PDF download error:", error);
+      showToast("PDF download failed. Use Download HTML for now.", "error");
+    } finally {
+      downloadPdfBtn.disabled = false;
+      downloadPdfBtn.textContent = "Download PDF";
+    }
   });
 }
 
@@ -1735,6 +1761,187 @@ body {
 ${cvHtml}
 </body>
 </html>`;
+}
+
+/* ================================
+   Direct PDF Download
+   Uses html2pdf.js
+================================ */
+
+
+
+/* ================================
+   Direct PDF Download
+   html2canvas + jsPDF
+================================ */
+
+function loadPdfLibraries() {
+  return new Promise((resolve, reject) => {
+    const scriptsToLoad = [];
+
+    if (!window.html2canvas) {
+      scriptsToLoad.push({
+        id: "html2canvas-cdn",
+        src: "https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+      });
+    }
+
+    if (!window.jspdf) {
+      scriptsToLoad.push({
+        id: "jspdf-cdn",
+        src: "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"
+      });
+    }
+
+    if (!scriptsToLoad.length) {
+      resolve();
+      return;
+    }
+
+    let loadedCount = 0;
+
+    scriptsToLoad.forEach((scriptData) => {
+      const existingScript = document.getElementById(scriptData.id);
+
+      if (existingScript) {
+        if (window.html2canvas && window.jspdf) {
+          loadedCount++;
+
+          if (loadedCount === scriptsToLoad.length) {
+            resolve();
+          }
+
+          return;
+        }
+
+        existingScript.addEventListener("load", handleLoaded);
+        existingScript.addEventListener("error", reject);
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.id = scriptData.id;
+      script.src = scriptData.src;
+      script.async = true;
+
+      script.onload = handleLoaded;
+      script.onerror = () => reject(new Error(`Failed to load ${scriptData.id}`));
+
+      document.body.appendChild(script);
+    });
+
+    function handleLoaded() {
+      loadedCount++;
+
+      if (loadedCount === scriptsToLoad.length) {
+        setTimeout(() => {
+          if (window.html2canvas && window.jspdf) {
+            resolve();
+          } else {
+            reject(new Error("PDF libraries are not available."));
+          }
+        }, 250);
+      }
+    }
+  });
+}
+
+async function downloadCvAsPdf() {
+  const fileName = `${slugify(getValue("fullName") || "cv")}.pdf`;
+
+  const exportWrapper = document.createElement("div");
+  const clonedCv = cvPreview.cloneNode(true);
+
+  clonedCv.removeAttribute("id");
+  clonedCv.classList.add("cv-pdf-export");
+
+  exportWrapper.className = "cv-pdf-export-wrapper";
+
+  exportWrapper.style.cssText = `
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 794px;
+    height: 1123px;
+    background: #ffffff;
+    z-index: 2147483647;
+    overflow: hidden;
+    pointer-events: none;
+    opacity: 1;
+  `;
+
+  clonedCv.style.cssText = `
+    width: 794px !important;
+    height: 1123px !important;
+    min-width: 794px !important;
+    max-width: 794px !important;
+    min-height: 1123px !important;
+    max-height: 1123px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    transform: none !important;
+  `;
+
+  const clonedDoc = clonedCv.querySelector(".cv-doc");
+
+  if (clonedDoc) {
+    clonedDoc.style.width = "794px";
+    clonedDoc.style.maxWidth = "794px";
+    clonedDoc.style.minHeight = "1123px";
+    clonedDoc.style.maxHeight = "1123px";
+    clonedDoc.style.overflow = "hidden";
+    clonedDoc.style.background = "#ffffff";
+  }
+
+  exportWrapper.appendChild(clonedCv);
+  document.body.appendChild(exportWrapper);
+
+  try {
+    await waitForPdfRender();
+
+    const canvas = await window.html2canvas(clonedCv, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: "#ffffff",
+      scrollX: 0,
+      scrollY: 0,
+      width: 794,
+      height: 1123,
+      windowWidth: 794,
+      windowHeight: 1123
+    });
+
+    const imageData = canvas.toDataURL("image/png", 1.0);
+    const { jsPDF } = window.jspdf;
+
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "px",
+      format: [794, 1123],
+      compress: true
+    });
+
+    pdf.addImage(imageData, "PNG", 0, 0, 794, 1123);
+    pdf.save(fileName);
+  } finally {
+    exportWrapper.remove();
+  }
+}
+
+function waitForPdfRender() {
+  return new Promise((resolve) => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setTimeout(resolve, 500);
+      });
+    });
+  });
 }
 
 /* ================================
