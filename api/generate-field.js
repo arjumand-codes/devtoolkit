@@ -5,14 +5,6 @@
 ================================ */
 
 export default async function handler(req, res) {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-
-  if (req.method === "OPTIONS") {
-    return res.status(200).end();
-  }
-
   try {
     if (req.method !== "POST") {
       return res.status(405).json({
@@ -30,7 +22,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const { fieldType, context, targetIndex } = req.body || {};
+    const { fieldType, context } = req.body || {};
 
     const allowedTypes = [
       "summary",
@@ -47,13 +39,10 @@ export default async function handler(req, res) {
     }
 
     const cleanContext = sanitizeContext(context || {});
-
-    // Pass targetIndex so we can target the right experience/project entry
     const result = await generateFieldWithGemini({
       geminiApiKey,
       fieldType,
-      context: cleanContext,
-      targetIndex: typeof targetIndex === "number" ? targetIndex : 0
+      context: cleanContext
     });
 
     if (!result) {
@@ -80,11 +69,10 @@ export default async function handler(req, res) {
    Gemini Field Generation
 ================================ */
 
-async function generateFieldWithGemini({ geminiApiKey, fieldType, context, targetIndex }) {
+async function generateFieldWithGemini({ geminiApiKey, fieldType, context }) {
   try {
-    const prompt = buildFieldPrompt(fieldType, context, targetIndex);
+    const prompt = buildFieldPrompt(fieldType, context);
 
-    // Use gemini-2.5-flash — your working model
     const geminiResponse = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${geminiApiKey}`,
       {
@@ -111,8 +99,6 @@ async function generateFieldWithGemini({ geminiApiKey, fieldType, context, targe
     );
 
     if (!geminiResponse.ok) {
-      const errData = await geminiResponse.json().catch(() => ({}));
-      console.error("Gemini API error:", geminiResponse.status, errData);
       return null;
     }
 
@@ -125,7 +111,6 @@ async function generateFieldWithGemini({ geminiApiKey, fieldType, context, targe
 
     return cleanAiText(text);
   } catch (error) {
-    console.error("generateFieldWithGemini error:", error);
     return null;
   }
 }
@@ -134,120 +119,94 @@ async function generateFieldWithGemini({ geminiApiKey, fieldType, context, targe
    Prompt Builder
 ================================ */
 
-function buildFieldPrompt(fieldType, context, targetIndex) {
+function buildFieldPrompt(fieldType, context) {
   const baseContext = `
+User CV Context:
 Full Name: ${context.fullName || "N/A"}
 Job Title / Desired Role: ${context.jobTitle || "N/A"}
+Summary: ${context.summary || "N/A"}
 Skills: ${Array.isArray(context.skills) ? context.skills.join(", ") : "N/A"}
+Experience: ${JSON.stringify(context.experience || [], null, 2)}
+Projects: ${JSON.stringify(context.projects || [], null, 2)}
+Education: ${JSON.stringify(context.education || [], null, 2)}
 `;
 
   if (fieldType === "summary") {
-    const expSummary = Array.isArray(context.experience) && context.experience.length
-      ? context.experience.map((e, i) => `  ${i + 1}. ${e.title || ""} at ${e.company || ""}: ${e.responsibilities || ""}`).join("\n")
-      : "N/A";
+    return `
+You are an ATS resume writer.
 
-    const projSummary = Array.isArray(context.projects) && context.projects.length
-      ? context.projects.map((p) => `  - ${p.name || ""}: ${p.description || ""}`).join("\n")
-      : "N/A";
-
-    return `You are an ATS resume writer. Write one professional summary for the candidate below.
+Using the CV context below, write one professional summary for the user.
 
 Rules:
-- Return ONLY the summary text, nothing else.
+- Return only the summary text.
 - 2 to 4 sentences.
 - 60 to 90 words maximum.
 - Use professional, ATS-friendly wording.
-- Mention the target role, key skills, and strongest experience.
+- Mention the target role, key skills, and work/project strengths.
 - Do not invent fake employers, dates, degrees, or certifications.
 
-Candidate Info:
 ${baseContext}
-Work Experience:
-${expSummary}
-Projects:
-${projSummary}
-Existing Summary (improve this if provided): ${context.summary || "None"}
 `;
   }
 
   if (fieldType === "experience_bullets") {
-    // Target the specific experience entry by index
-    const expList = Array.isArray(context.experience) ? context.experience : [];
-    const targetExp = expList[targetIndex] || expList[0] || {};
+    return `
+You are improving resume work experience bullet points.
 
-    return `You are improving resume work experience bullet points.
-
-Rewrite the responsibilities for this specific role into ATS-friendly bullet points.
+Rewrite the relevant responsibilities into ATS-friendly bullet points.
 
 Rules:
-- Return ONLY bullet points, one per line.
-- Do NOT include any intro text, explanations, or numbering.
-- Start each bullet with a strong action verb (e.g. Developed, Led, Optimized, Designed).
-- Write 3 to 5 bullets maximum.
-- Keep each bullet under 20 words.
+- Return only bullet points.
+- Use each bullet on a new line.
+- Start with strong action verbs.
+- Keep 3 to 5 bullets.
+- Keep each bullet under 22 words.
 - Quantify results only when the user gave enough context.
 - Do not invent fake metrics, tools, employers, or achievements.
 
-Job Role: ${targetExp.title || "N/A"}
-Company: ${targetExp.company || "N/A"}
-Current Responsibilities Text:
-${targetExp.responsibilities || "No responsibilities provided."}
-
-Candidate Context:
 ${baseContext}
 `;
   }
 
   if (fieldType === "project_description") {
-    const projList = Array.isArray(context.projects) ? context.projects : [];
-    const targetProj = projList[targetIndex] || projList[0] || {};
+    return `
+You are improving a resume project description.
 
-    return `You are improving a resume project description.
-
-Rewrite the description for this specific project professionally.
+Rewrite the project description professionally.
 
 Rules:
-- Return ONLY the improved project description text, nothing else.
+- Return only the improved project description.
 - 1 to 2 sentences maximum.
-- Mention purpose, tools or tech stack, and result if available.
-- Make it ATS-friendly and impactful.
+- Mention purpose, tools/tech, and result if available.
+- Make it ATS-friendly.
 - Do not invent fake numbers or fake features.
 
-Project Name: ${targetProj.name || "N/A"}
-Tech Stack: ${targetProj.techStack || "N/A"}
-Current Description:
-${targetProj.description || "No description provided."}
-
-Candidate Context:
 ${baseContext}
 `;
   }
 
   if (fieldType === "skills_suggestions") {
-    const expRoles = Array.isArray(context.experience)
-      ? context.experience.map((e) => `${e.title || ""} at ${e.company || ""}`).join(", ")
-      : "N/A";
+    return `
+You are suggesting ATS-friendly skills for a resume.
 
-    return `You are suggesting ATS-friendly skills for a resume.
-
-Suggest relevant technical and soft skills based on the target role and experience.
+Suggest relevant skills based on the target role and experience.
 
 Rules:
-- Return ONLY a comma-separated list of skills, nothing else.
-- No intro text, no explanations, no numbering.
+- Return only a comma-separated list of skills.
 - Maximum 14 skills.
-- Do not include skills that are obviously unrelated to the role.
-- Keep each skill name short and concise.
-- Do not repeat skills already listed below.
+- Do not include explanations.
+- Do not suggest unrelated skills.
+- Keep skills concise.
 
-Target Role: ${context.jobTitle || "N/A"}
-Experience: ${expRoles}
-Already Listed Skills: ${Array.isArray(context.skills) ? context.skills.join(", ") : "None"}
+${baseContext}
 `;
   }
 
-  return `Write a short ATS-friendly resume improvement based on:
-${baseContext}`;
+  return `
+Return a short ATS-friendly resume improvement based on this context.
+
+${baseContext}
+`;
 }
 
 /* ================================
@@ -258,19 +217,30 @@ function sanitizeContext(context) {
   return {
     fullName: cleanText(context.fullName, 90),
     jobTitle: cleanText(context.jobTitle, 100),
-    summary: cleanText(context.summary, 800),
+    email: cleanText(context.email, 130),
+    phone: cleanText(context.phone, 70),
+    location: cleanText(context.location, 130),
+    links: Array.isArray(context.links) ? context.links.slice(0, 8) : [],
+    summary: cleanText(context.summary, 1600),
     skills: Array.isArray(context.skills)
-      ? context.skills.map((s) => cleanText(s, 70)).filter(Boolean).slice(0, 30)
+      ? context.skills.map((skill) => cleanText(skill, 70)).filter(Boolean).slice(0, 30)
       : [],
     experience: Array.isArray(context.experience)
       ? context.experience.map(sanitizeExperienceItem).slice(0, 6)
       : [],
+    education: Array.isArray(context.education)
+      ? context.education.slice(0, 5)
+      : [],
     projects: Array.isArray(context.projects)
       ? context.projects.map(sanitizeProjectItem).slice(0, 6)
       : [],
-    education: Array.isArray(context.education)
-      ? context.education.slice(0, 5)
-      : []
+    certifications: Array.isArray(context.certifications)
+      ? context.certifications.slice(0, 8)
+      : [],
+    languages: Array.isArray(context.languages)
+      ? context.languages.slice(0, 8)
+      : [],
+    interests: cleanText(context.interests, 500)
   };
 }
 
@@ -288,7 +258,7 @@ function sanitizeExperienceItem(item) {
 function sanitizeProjectItem(item) {
   return {
     name: cleanText(item.name, 120),
-    description: cleanText(item.description, 800),
+    description: cleanText(item.description, 1000),
     techStack: cleanText(item.techStack, 250),
     link: cleanText(item.link, 220)
   };
@@ -296,6 +266,7 @@ function sanitizeProjectItem(item) {
 
 function cleanText(value, maxLength = 500) {
   if (!value) return "";
+
   return String(value)
     .replace(/[<>]/g, "")
     .replace(/\s{3,}/g, " ")
@@ -308,6 +279,5 @@ function cleanAiText(text) {
     .replace(/```[\s\S]*?```/g, "")
     .replace(/^["']|["']$/g, "")
     .replace(/[<>]/g, "")
-    .replace(/^\s*[\*\-]\s*/gm, "")  // strip leading bullets AI sometimes adds
     .trim();
 }
