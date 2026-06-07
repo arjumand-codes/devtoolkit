@@ -1,6 +1,6 @@
 /* ================================
    DevToolKit - AI CV Generator
-   File: js/ai-cv-maker.js
+   File: js/cv-generator.js
 ================================ */
 
 const cvForm = document.getElementById("cvGeneratorForm");
@@ -58,10 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initRepeatableButtons();
   initSkillsInput();
   initSummaryCounter();
-  initInlineAiButtons(); // ← now uses event delegation, called once only
+  initInlineAiButtons();
   initLivePreview();
   initAutosave();
   updateAiLimitStatus();
+
   renderPreviewFromForm();
 });
 
@@ -121,6 +122,7 @@ function initRepeatableButtons() {
     addExperienceBtn.addEventListener("click", () => {
       experienceList.insertAdjacentHTML("beforeend", getExperienceHtml(getItemCount(".experience-item") + 1));
       renumberCards(".experience-item", "Experience");
+      initInlineAiButtons();
       saveFormData();
     });
   }
@@ -137,6 +139,7 @@ function initRepeatableButtons() {
     addProjectBtn.addEventListener("click", () => {
       projectsList.insertAdjacentHTML("beforeend", getProjectHtml(getItemCount(".project-item") + 1));
       renumberCards(".project-item", "Project");
+      initInlineAiButtons();
       saveFormData();
     });
   }
@@ -228,8 +231,17 @@ function getLinkRowHtml() {
         <option value="Twitter/X">Twitter/X</option>
         <option value="Other">Other</option>
       </select>
-      <input type="url" class="tool-input link-url" placeholder="https://example.com" aria-label="Link URL" />
-      <button type="button" class="mini-btn remove-row-btn" aria-label="Remove link">Remove</button>
+
+      <input
+        type="url"
+        class="tool-input link-url"
+        placeholder="https://example.com"
+        aria-label="Link URL"
+      />
+
+      <button type="button" class="mini-btn remove-row-btn" aria-label="Remove link">
+        Remove
+      </button>
     </div>
   `;
 }
@@ -241,41 +253,53 @@ function getExperienceHtml(index) {
         <strong>Experience ${index}</strong>
         <button type="button" class="mini-btn remove-row-btn">Remove</button>
       </div>
+
       <div class="form-grid two-columns">
         <div class="form-group">
           <label>Job Title *</label>
           <input type="text" class="tool-input exp-title" placeholder="Front-End Developer" />
           <small class="field-error"></small>
         </div>
+
         <div class="form-group">
           <label>Company *</label>
           <input type="text" class="tool-input exp-company" placeholder="Company Name" />
           <small class="field-error"></small>
         </div>
+
         <div class="form-group">
           <label>Location</label>
           <input type="text" class="tool-input exp-location" placeholder="Lahore, Pakistan" />
         </div>
+
         <div class="form-group">
           <label>Start Date</label>
           <input type="text" class="tool-input exp-start" placeholder="Jan 2024" />
         </div>
+
         <div class="form-group">
           <label>End Date</label>
           <input type="text" class="tool-input exp-end" placeholder="Dec 2024" />
         </div>
+
         <label class="checkbox-control exp-present-control">
           <input type="checkbox" class="exp-present" />
           <span>Currently working here</span>
         </label>
       </div>
+
       <div class="cv-field-label-row">
         <label>Responsibilities / Achievements *</label>
+
         <button type="button" class="mini-btn ai-field-btn" data-field-type="experience_bullets">
           ✨ Improve Bullets
         </button>
       </div>
-      <textarea class="tool-textarea cv-medium-textarea exp-responsibilities" placeholder="Write responsibilities or achievements. Separate points with new lines."></textarea>
+
+      <textarea
+        class="tool-textarea cv-medium-textarea exp-responsibilities"
+        placeholder="Write responsibilities or achievements. Separate points with new lines."
+      ></textarea>
       <small class="field-error"></small>
     </article>
   `;
@@ -288,30 +312,36 @@ function getEducationHtml(index) {
         <strong>Education ${index}</strong>
         <button type="button" class="mini-btn remove-row-btn">Remove</button>
       </div>
+
       <div class="form-grid two-columns">
         <div class="form-group">
           <label>Degree *</label>
           <input type="text" class="tool-input edu-degree" placeholder="ICS / BS Computer Science" />
           <small class="field-error"></small>
         </div>
+
         <div class="form-group">
           <label>Field of Study</label>
           <input type="text" class="tool-input edu-field" placeholder="Computer Science" />
         </div>
+
         <div class="form-group">
           <label>Institution *</label>
           <input type="text" class="tool-input edu-institution" placeholder="College / University Name" />
           <small class="field-error"></small>
         </div>
+
         <div class="form-group">
           <label>Location</label>
           <input type="text" class="tool-input edu-location" placeholder="Lahore, Pakistan" />
         </div>
+
         <div class="form-group">
           <label>Graduation Year</label>
           <input type="text" class="tool-input edu-year" placeholder="2024" />
         </div>
       </div>
+
       <div class="form-group">
         <label>Relevant Courses or Achievements</label>
         <textarea class="tool-textarea cv-small-textarea edu-details" placeholder="Optional courses, marks, achievements, or activities."></textarea>
@@ -327,26 +357,32 @@ function getProjectHtml(index) {
         <strong>Project ${index}</strong>
         <button type="button" class="mini-btn remove-row-btn">Remove</button>
       </div>
+
       <div class="form-grid two-columns">
         <div class="form-group">
           <label>Project Name</label>
           <input type="text" class="tool-input project-name" placeholder="DevToolKit" />
         </div>
+
         <div class="form-group">
           <label>Tech Stack</label>
           <input type="text" class="tool-input project-tech" placeholder="HTML, CSS, JavaScript, Vercel" />
         </div>
+
         <div class="form-group">
           <label>Project Link</label>
           <input type="url" class="tool-input project-link" placeholder="https://example.com" />
         </div>
       </div>
+
       <div class="cv-field-label-row">
         <label>Project Description</label>
+
         <button type="button" class="mini-btn ai-field-btn" data-field-type="project_description">
           ✨ Improve Description
         </button>
       </div>
+
       <textarea class="tool-textarea cv-small-textarea project-description" placeholder="Write what the project does and what you built."></textarea>
     </article>
   `;
@@ -367,12 +403,14 @@ function getLanguageRowHtml() {
   return `
     <div class="repeatable-row language-row">
       <input type="text" class="tool-input lang-name" placeholder="English" />
+
       <select class="tool-select lang-level">
         <option value="Basic">Basic</option>
         <option value="Conversational">Conversational</option>
         <option value="Fluent">Fluent</option>
         <option value="Native">Native</option>
       </select>
+
       <button type="button" class="mini-btn remove-row-btn">Remove</button>
     </div>
   `;
@@ -388,6 +426,7 @@ function initSkillsInput() {
   skillInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter" || event.key === ",") {
       event.preventDefault();
+
       const value = skillInput.value.trim().replace(/,$/, "");
       addSkill(value);
       skillInput.value = "";
@@ -482,61 +521,39 @@ function initSummaryCounter() {
 }
 
 /* ================================
-   Inline Field AI — EVENT DELEGATION
-   This replaces the old initInlineAiButtons().
-   Called ONCE. Works for all current and future
-   dynamically-added cards automatically.
+   Inline Field AI
 ================================ */
 
 function initInlineAiButtons() {
-  // Use a single delegated listener on the document.
-  // This handles buttons in cards added later (experience 2, 3, project 2, etc.)
-  document.addEventListener("click", async (event) => {
-    const button = event.target.closest(".ai-field-btn");
+  document.querySelectorAll(".ai-field-btn").forEach((button) => {
+    if (button.dataset.bound === "true") return;
 
-    if (!button) return;
+    button.dataset.bound = "true";
 
-    // Prevent double-fire if already loading
-    if (button.disabled) return;
+    button.addEventListener("click", async () => {
+      const fieldType = button.dataset.fieldType;
 
-    const fieldType = button.dataset.fieldType;
+      if (!fieldType) return;
 
-    if (!fieldType) return;
-
-    await handleInlineAi(button, fieldType);
+      await handleInlineAi(button, fieldType);
+    });
   });
 }
 
 async function handleInlineAi(button, fieldType) {
   const context = collectCvData();
 
-  // Figure out which card index this button belongs to
-  let targetIndex = 0;
-
-  if (fieldType === "experience_bullets") {
-    const card = button.closest(".experience-item");
-    const allCards = [...document.querySelectorAll(".experience-item")];
-    targetIndex = allCards.indexOf(card);
-    if (targetIndex < 0) targetIndex = 0;
-  }
-
-  if (fieldType === "project_description") {
-    const card = button.closest(".project-item");
-    const allCards = [...document.querySelectorAll(".project-item")];
-    targetIndex = allCards.indexOf(card);
-    if (targetIndex < 0) targetIndex = 0;
-  }
-
   setButtonLoading(button, true);
 
   try {
     const response = await fetch("/api/generate-field", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
         fieldType,
-        context,
-        targetIndex
+        context
       })
     });
 
@@ -572,6 +589,7 @@ function applyFieldAiResult(button, fieldType, result) {
       summaryTextarea.value = result.trim();
       summaryTextarea.dispatchEvent(new Event("input"));
     }
+
     return;
   }
 
@@ -585,15 +603,9 @@ function applyFieldAiResult(button, fieldType, result) {
     const textarea = card?.querySelector(".exp-responsibilities");
 
     if (textarea) {
-      // Clean up AI output — strip lines that start with common bullet chars
-      const cleaned = result
-        .split("\n")
-        .map((line) => line.replace(/^[\-\*•]\s*/, "").trim())
-        .filter(Boolean)
-        .join("\n");
-
-      textarea.value = cleaned;
+      textarea.value = result.trim();
     }
+
     return;
   }
 
@@ -613,13 +625,9 @@ function setButtonLoading(button, isLoading) {
   if (isLoading) {
     button.classList.add("is-loading");
     button.disabled = true;
-    button.setAttribute("data-original-text", button.textContent);
-    button.textContent = "Generating...";
   } else {
     button.classList.remove("is-loading");
     button.disabled = false;
-    const original = button.getAttribute("data-original-text");
-    if (original) button.textContent = original;
   }
 }
 
@@ -629,7 +637,9 @@ function setButtonLoading(button, isLoading) {
 
 if (generateWithoutAiBtn) {
   generateWithoutAiBtn.addEventListener("click", () => {
-    const validation = validateCvForm({ strict: true });
+    const validation = validateCvForm({
+      strict: true
+    });
 
     if (!validation.valid) {
       showToast(`${validation.missingCount} required field(s) missing. Please fix highlighted fields.`, "error");
@@ -638,14 +648,16 @@ if (generateWithoutAiBtn) {
     }
 
     renderPreviewFromForm();
-    showToast("CV generated successfully.", "success");
+    showToast("CV generated without AI.", "success");
     saveFormData();
   });
 }
 
 if (generateWithAiBtn) {
   generateWithAiBtn.addEventListener("click", async () => {
-    const validation = validateCvForm({ strict: false });
+    const validation = validateCvForm({
+      strict: false
+    });
 
     if (!validation.valid) {
       showToast(`${validation.missingCount} required field(s) missing for AI generation.`, "error");
@@ -654,26 +666,26 @@ if (generateWithAiBtn) {
     }
 
     if (!canUseFullAi()) {
-      showToast("You have used all 3 AI generations for today. Come back tomorrow or use Generate Without AI.", "warning");
+      showToast("You've used all 3 AI generations for today. Come back tomorrow or use Generate Without AI.", "warning");
       return;
     }
 
     const formData = collectCvData();
 
-    setButtonText(generateWithAiBtn, "Generating with AI...");
-    generateWithAiBtn.disabled = true;
+    setButtonText(generateWithAiBtn, "Generating...");
 
     try {
       const response = await fetch("/api/generate-cv", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json"
+        },
         body: JSON.stringify(formData)
       });
 
       const data = await response.json();
 
       setButtonText(generateWithAiBtn, "Generate CV With AI");
-      generateWithAiBtn.disabled = false;
 
       if (!response.ok || !data.success) {
         showToast(data.message || "AI CV generation failed.", "error");
@@ -690,7 +702,6 @@ if (generateWithAiBtn) {
       saveFormData();
     } catch (error) {
       setButtonText(generateWithAiBtn, "Generate CV With AI");
-      generateWithAiBtn.disabled = false;
       showToast("AI CV generation failed. Please try again.", "error");
     }
   });
@@ -806,7 +817,10 @@ function scrollToFirstError() {
   const firstError = document.querySelector(".has-error, .field-error.show");
 
   if (firstError) {
-    firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+    firstError.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
   }
 }
 
@@ -855,7 +869,9 @@ function renderEmptyPreview() {
     <div class="cv-empty-state">
       <span>CV</span>
       <h3>Your Resume Preview Will Appear Here</h3>
-      <p>Fill the form and generate your CV. The selected professional template will appear here.</p>
+      <p>
+        Fill the form and generate your CV. The selected professional template will appear here.
+      </p>
     </div>
   `;
 }
@@ -897,6 +913,7 @@ function renderModernSidebarCv(data) {
         ${renderLanguagesSection(data.languages)}
         ${renderInterestsSection(data.interests)}
       </aside>
+
       <main class="cv-main">
         ${renderSummarySection(data.summary)}
         ${renderExperienceSection(data.experience)}
@@ -912,6 +929,7 @@ function renderExecutiveBoldCv(data) {
   return `
     <div class="cv-doc">
       ${renderHeader(data)}
+
       <div class="cv-body">
         ${renderBodySections(data)}
       </div>
@@ -937,11 +955,13 @@ function renderHeader(data) {
     <header class="cv-header">
       <h1 class="cv-name">${escapeHtml(data.fullName || "Your Name")}</h1>
       <p class="cv-role">${escapeHtml(data.jobTitle || "Your Job Title")}</p>
+
       <div class="cv-contact-list">
         ${data.email ? `<span>${escapeHtml(data.email)}</span>` : ""}
         ${data.phone ? `<span>${escapeHtml(data.phone)}</span>` : ""}
         ${data.location ? `<span>${escapeHtml(data.location)}</span>` : ""}
       </div>
+
       ${renderLinksInline(data.links)}
     </header>
   `;
@@ -953,8 +973,9 @@ function renderLinksInline(links) {
   return `
     <div class="cv-link-list">
       ${links
-        .filter((link) => link.type && link.url)
-        .map((link) => `<a href="${escapeAttr(link.url)}" target="_blank" rel="noopener">${escapeHtml(link.type)}</a>`)
+        .map((link) => {
+          return `<a href="${escapeAttr(link.url)}" target="_blank" rel="noopener">${escapeHtml(link.type)}</a>`;
+        })
         .join("")}
     </div>
   `;
@@ -968,8 +989,9 @@ function renderLinksBlock(links) {
       <h2 class="cv-section-title">Links</h2>
       <ul>
         ${links
-          .filter((link) => link.type && link.url)
-          .map((link) => `<li><a href="${escapeAttr(link.url)}" target="_blank" rel="noopener">${escapeHtml(link.type)}</a></li>`)
+          .map((link) => {
+            return `<li><a href="${escapeAttr(link.url)}" target="_blank" rel="noopener">${escapeHtml(link.type)}</a></li>`;
+          })
           .join("")}
       </ul>
     </section>
@@ -1006,13 +1028,14 @@ function renderExperienceSection(experience) {
   return `
     <section class="cv-section">
       <h2 class="cv-section-title">Work Experience</h2>
+
       ${experience
         .map((item) => {
           return `
             <article class="cv-item">
               <h3 class="cv-item-title">${escapeHtml(item.title)}${item.company ? ` — ${escapeHtml(item.company)}` : ""}</h3>
               <p class="cv-item-meta">
-                ${[item.location, formatDateRange(item.startDate, item.endDate)].filter(Boolean).map(escapeHtml).join(" · ")}
+                ${[item.location, formatDateRange(item.startDate, item.endDate)].filter(Boolean).map(escapeHtml).join(" | ")}
               </p>
               ${renderBulletList(item.responsibilities)}
             </article>
@@ -1029,15 +1052,15 @@ function renderProjectsSection(projects) {
   return `
     <section class="cv-section">
       <h2 class="cv-section-title">Projects</h2>
+
       ${projects
         .map((item) => {
           return `
             <article class="cv-item">
-              <h3 class="cv-item-title">
-                ${escapeHtml(item.name)}
-                ${item.link ? `<a href="${escapeAttr(item.link)}" target="_blank" rel="noopener" class="cv-project-link">↗</a>` : ""}
-              </h3>
-              ${item.techStack ? `<p class="cv-item-meta">${escapeHtml(item.techStack)}</p>` : ""}
+              <h3 class="cv-item-title">${escapeHtml(item.name)}</h3>
+              <p class="cv-item-meta">
+                ${[item.techStack, item.link].filter(Boolean).map(escapeHtml).join(" | ")}
+              </p>
               ${item.description ? `<p>${escapeHtml(item.description)}</p>` : ""}
             </article>
           `;
@@ -1053,13 +1076,14 @@ function renderEducationSection(education) {
   return `
     <section class="cv-section">
       <h2 class="cv-section-title">Education</h2>
+
       ${education
         .map((item) => {
           return `
             <article class="cv-item">
-              <h3 class="cv-item-title">${escapeHtml([item.degree, item.field].filter(Boolean).join(" — "))}</h3>
+              <h3 class="cv-item-title">${escapeHtml([item.degree, item.field].filter(Boolean).join(" - "))}</h3>
               <p class="cv-item-meta">
-                ${[item.institution, item.location, item.year].filter(Boolean).map(escapeHtml).join(" · ")}
+                ${[item.institution, item.location, item.year].filter(Boolean).map(escapeHtml).join(" | ")}
               </p>
               ${item.details ? `<p>${escapeHtml(item.details)}</p>` : ""}
             </article>
@@ -1155,66 +1179,78 @@ function getValue(id) {
 
 function getLinksData() {
   return [...document.querySelectorAll(".link-row")]
-    .map((row) => ({
-      type: row.querySelector(".link-type")?.value.trim() || "",
-      url: row.querySelector(".link-url")?.value.trim() || ""
-    }))
+    .map((row) => {
+      return {
+        type: row.querySelector(".link-type")?.value.trim() || "",
+        url: row.querySelector(".link-url")?.value.trim() || ""
+      };
+    })
     .filter((item) => item.type && item.url);
 }
 
 function getExperienceData() {
   return [...document.querySelectorAll(".experience-item")]
-    .map((item) => ({
-      title: item.querySelector(".exp-title")?.value.trim() || "",
-      company: item.querySelector(".exp-company")?.value.trim() || "",
-      location: item.querySelector(".exp-location")?.value.trim() || "",
-      startDate: item.querySelector(".exp-start")?.value.trim() || "",
-      endDate: item.querySelector(".exp-present")?.checked ? "Present" : item.querySelector(".exp-end")?.value.trim() || "",
-      responsibilities: item.querySelector(".exp-responsibilities")?.value.trim() || ""
-    }))
+    .map((item) => {
+      return {
+        title: item.querySelector(".exp-title")?.value.trim() || "",
+        company: item.querySelector(".exp-company")?.value.trim() || "",
+        location: item.querySelector(".exp-location")?.value.trim() || "",
+        startDate: item.querySelector(".exp-start")?.value.trim() || "",
+        endDate: item.querySelector(".exp-present")?.checked ? "Present" : item.querySelector(".exp-end")?.value.trim() || "",
+        responsibilities: item.querySelector(".exp-responsibilities")?.value.trim() || ""
+      };
+    })
     .filter((item) => item.title || item.company || item.responsibilities);
 }
 
 function getEducationData() {
   return [...document.querySelectorAll(".education-item")]
-    .map((item) => ({
-      degree: item.querySelector(".edu-degree")?.value.trim() || "",
-      field: item.querySelector(".edu-field")?.value.trim() || "",
-      institution: item.querySelector(".edu-institution")?.value.trim() || "",
-      location: item.querySelector(".edu-location")?.value.trim() || "",
-      year: item.querySelector(".edu-year")?.value.trim() || "",
-      details: item.querySelector(".edu-details")?.value.trim() || ""
-    }))
-    .filter((item) => item.degree || item.institution);
+    .map((item) => {
+      return {
+        degree: item.querySelector(".edu-degree")?.value.trim() || "",
+        field: item.querySelector(".edu-field")?.value.trim() || "",
+        institution: item.querySelector(".edu-institution")?.value.trim() || "",
+        location: item.querySelector(".edu-location")?.value.trim() || "",
+        year: item.querySelector(".edu-year")?.value.trim() || "",
+        details: item.querySelector(".edu-details")?.value.trim() || ""
+      };
+    })
+    .filter((item) => item.degree || item.institution || item.details);
 }
 
 function getProjectsData() {
   return [...document.querySelectorAll(".project-item")]
-    .map((item) => ({
-      name: item.querySelector(".project-name")?.value.trim() || "",
-      description: item.querySelector(".project-description")?.value.trim() || "",
-      techStack: item.querySelector(".project-tech")?.value.trim() || "",
-      link: item.querySelector(".project-link")?.value.trim() || ""
-    }))
+    .map((item) => {
+      return {
+        name: item.querySelector(".project-name")?.value.trim() || "",
+        description: item.querySelector(".project-description")?.value.trim() || "",
+        techStack: item.querySelector(".project-tech")?.value.trim() || "",
+        link: item.querySelector(".project-link")?.value.trim() || ""
+      };
+    })
     .filter((item) => item.name || item.description || item.techStack);
 }
 
 function getCertificationsData() {
   return [...document.querySelectorAll(".certification-row")]
-    .map((row) => ({
-      name: row.querySelector(".cert-name")?.value.trim() || "",
-      issuer: row.querySelector(".cert-issuer")?.value.trim() || "",
-      year: row.querySelector(".cert-year")?.value.trim() || ""
-    }))
+    .map((row) => {
+      return {
+        name: row.querySelector(".cert-name")?.value.trim() || "",
+        issuer: row.querySelector(".cert-issuer")?.value.trim() || "",
+        year: row.querySelector(".cert-year")?.value.trim() || ""
+      };
+    })
     .filter((item) => item.name || item.issuer || item.year);
 }
 
 function getLanguagesData() {
   return [...document.querySelectorAll(".language-row")]
-    .map((row) => ({
-      name: row.querySelector(".lang-name")?.value.trim() || "",
-      level: row.querySelector(".lang-level")?.value.trim() || ""
-    }))
+    .map((row) => {
+      return {
+        name: row.querySelector(".lang-name")?.value.trim() || "",
+        level: row.querySelector(".lang-level")?.value.trim() || ""
+      };
+    })
     .filter((item) => item.name);
 }
 
@@ -1250,26 +1286,50 @@ function getAiLimitData() {
   const today = new Date().toISOString().slice(0, 10);
   const saved = localStorage.getItem(AI_LIMIT_KEY);
 
-  if (!saved) return { count: 0, date: today };
+  if (!saved) {
+    return {
+      count: 0,
+      date: today
+    };
+  }
 
   try {
     const data = JSON.parse(saved);
 
-    if (data.date !== today) return { count: 0, date: today };
+    if (data.date !== today) {
+      return {
+        count: 0,
+        date: today
+      };
+    }
 
-    return { count: Number(data.count || 0), date: data.date };
-  } catch {
-    return { count: 0, date: today };
+    return {
+      count: Number(data.count || 0),
+      date: data.date
+    };
+  } catch (error) {
+    return {
+      count: 0,
+      date: today
+    };
   }
 }
 
 function canUseFullAi() {
-  return getAiLimitData().count < FULL_AI_DAILY_LIMIT;
+  const data = getAiLimitData();
+  return data.count < FULL_AI_DAILY_LIMIT;
 }
 
 function increaseFullAiUse() {
   const data = getAiLimitData();
-  localStorage.setItem(AI_LIMIT_KEY, JSON.stringify({ count: data.count + 1, date: data.date }));
+
+  localStorage.setItem(
+    AI_LIMIT_KEY,
+    JSON.stringify({
+      count: data.count + 1,
+      date: data.date
+    })
+  );
 }
 
 function updateAiLimitStatus() {
@@ -1312,7 +1372,10 @@ if (downloadHtmlBtn) {
     }
 
     const html = createStandaloneHtml();
-    const blob = new Blob([html], { type: "text/html" });
+    const blob = new Blob([html], {
+      type: "text/html"
+    });
+
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
 
@@ -1337,7 +1400,7 @@ if (copyCvTextBtn) {
     try {
       await navigator.clipboard.writeText(plainText);
       showToast("CV text copied to clipboard.", "success");
-    } catch {
+    } catch (error) {
       showToast("Could not copy CV text.", "error");
     }
   });
@@ -1352,55 +1415,322 @@ function createStandaloneHtml() {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>${escapeHtml(cvTitle)} - CV</title>
+<title>${escapeHtml(cvTitle)}</title>
+
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#f1f5f9;font-family:Arial,sans-serif;padding:24px}
-.cv-preview{width:794px;min-height:1123px;margin:0 auto;background:#fff;color:#111827;box-shadow:0 18px 60px rgba(0,0,0,.18);overflow:hidden}
-.cv-doc{padding:46px 52px;color:#111827;background:#fff}
-.cv-header{margin-bottom:24px}
-.cv-name{font-size:2.35rem;line-height:1;letter-spacing:-.055em;margin-bottom:8px}
-.cv-role{color:#4f46e5;font-size:1.05rem;font-weight:900;margin-bottom:14px}
-.cv-contact-list,.cv-link-list{display:flex;flex-wrap:wrap;gap:8px 16px;color:#475569;font-size:.86rem;font-weight:700}
-.cv-link-list{margin-top:8px}.cv-link-list a{color:#4f46e5;text-decoration:none}
-.cv-section{margin-top:20px}
-.cv-section-title{color:#111827;font-size:.86rem;font-weight:900;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px}
-.cv-section p,.cv-section li{color:#334155;font-size:.88rem;line-height:1.55}
-.cv-section ul{padding-left:18px;list-style:disc;display:grid;gap:5px}
-.cv-item{margin-bottom:14px}
-.cv-item-title{font-size:.98rem;font-weight:900;margin-bottom:3px}
-.cv-item-meta{color:#64748b;font-size:.78rem;font-weight:800;margin-bottom:6px}
-.cv-skills{display:flex;flex-wrap:wrap;gap:7px}
-.cv-skill{padding:6px 9px;background:#f1f5f9;color:#334155;border-radius:999px;font-size:.78rem;font-weight:900}
-.cv-project-link{color:#4f46e5;text-decoration:none;font-size:.9rem;margin-left:6px}
-.cv-template-classic-clean .cv-doc{font-family:Georgia,serif;padding:54px 58px}
-.cv-template-classic-clean .cv-header{padding-bottom:18px;border-bottom:2px solid #111827}
-.cv-template-classic-clean .cv-role{color:#111827}
-.cv-template-classic-clean .cv-section-title{border-bottom:1px solid #cbd5e1;padding-bottom:5px}
-.cv-template-modern-sidebar .cv-doc{display:grid;grid-template-columns:245px 1fr;gap:34px;padding:0;min-height:1123px}
-.cv-template-modern-sidebar .cv-sidebar{padding:44px 28px;background:#111827;color:#fff}
-.cv-template-modern-sidebar .cv-main{padding:44px 46px 44px 0}
-.cv-template-modern-sidebar .cv-sidebar .cv-name,.cv-template-modern-sidebar .cv-sidebar .cv-role,.cv-template-modern-sidebar .cv-sidebar .cv-section-title,.cv-template-modern-sidebar .cv-sidebar p,.cv-template-modern-sidebar .cv-sidebar li,.cv-template-modern-sidebar .cv-sidebar span,.cv-template-modern-sidebar .cv-sidebar a{color:#fff}
-.cv-template-modern-sidebar .cv-role{color:#ccf381}
-.cv-template-modern-sidebar .cv-sidebar .cv-skill{background:rgba(204,243,129,.14);color:#ccf381}
-.cv-template-minimalist-pro .cv-doc{padding:64px 70px}
-.cv-template-minimalist-pro .cv-header{text-align:center;padding-bottom:18px;border-bottom:1px solid #e5e7eb}
-.cv-template-minimalist-pro .cv-contact-list,.cv-template-minimalist-pro .cv-link-list{justify-content:center}
-.cv-template-executive-bold .cv-doc{padding:0}
-.cv-template-executive-bold .cv-header{padding:44px 52px 34px;background:#111827}
-.cv-template-executive-bold .cv-header .cv-name,.cv-template-executive-bold .cv-header .cv-role,.cv-template-executive-bold .cv-header .cv-contact-list,.cv-template-executive-bold .cv-header .cv-link-list,.cv-template-executive-bold .cv-header .cv-link-list a{color:#fff}
-.cv-template-executive-bold .cv-role{color:#ccf381}
-.cv-template-executive-bold .cv-body{padding:36px 52px 48px}
-.cv-template-executive-bold .cv-section-title{display:inline-flex;padding:7px 12px;background:#111827;color:#fff;border-radius:999px;margin-bottom:10px}
-.cv-template-tech-stack .cv-doc{padding:48px 54px;border-left:10px solid #22c55e}
-.cv-template-tech-stack .cv-header{padding:24px;background:#0f172a;border-radius:18px}
-.cv-template-tech-stack .cv-header .cv-name,.cv-template-tech-stack .cv-header .cv-role,.cv-template-tech-stack .cv-header .cv-contact-list,.cv-template-tech-stack .cv-header .cv-link-list,.cv-template-tech-stack .cv-header .cv-link-list a{color:#fff}
-.cv-template-tech-stack .cv-role{color:#ccf381;font-family:Consolas,monospace}
-.cv-template-tech-stack .cv-section-title{color:#16a34a;font-family:Consolas,monospace}
-.cv-template-tech-stack .cv-skill{background:#ecfdf5;color:#166534;font-family:Consolas,monospace}
-@media print{@page{size:A4;margin:0}html,body{width:210mm;height:297mm;margin:0!important;padding:0!important;background:#fff!important}.cv-preview{width:210mm!important;height:297mm!important;box-shadow:none!important}}
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #f1f5f9;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  padding: 24px;
+}
+
+.cv-preview {
+  width: 794px;
+  min-height: 1123px;
+  margin: 0 auto;
+  background: #ffffff;
+  color: #111827;
+  overflow: hidden;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
+}
+
+.cv-doc {
+  padding: 46px 52px;
+  color: #111827;
+  background: #ffffff;
+}
+
+.cv-header {
+  margin-bottom: 24px;
+}
+
+.cv-name {
+  color: #111827;
+  font-size: 2.35rem;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  margin: 0 0 8px;
+}
+
+.cv-role {
+  color: #4f46e5;
+  font-size: 1.05rem;
+  font-weight: 900;
+  margin: 0 0 14px;
+}
+
+.cv-contact-list,
+.cv-link-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  color: #475569;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.cv-link-list {
+  margin-top: 8px;
+}
+
+.cv-link-list a {
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+.cv-section {
+  margin-top: 20px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.cv-section-title {
+  color: #111827;
+  font-size: 0.86rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin: 0 0 8px;
+}
+
+.cv-section p,
+.cv-section li {
+  color: #334155;
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.cv-section p {
+  margin: 0;
+}
+
+.cv-section ul {
+  display: grid;
+  gap: 5px;
+  padding-left: 18px;
+  margin: 0;
+  list-style: disc;
+}
+
+.cv-item {
+  margin-bottom: 14px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.cv-item:last-child {
+  margin-bottom: 0;
+}
+
+.cv-item-title {
+  color: #111827;
+  font-size: 0.98rem;
+  font-weight: 900;
+  margin: 0 0 3px;
+}
+
+.cv-item-meta {
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  margin: 0 0 6px;
+}
+
+.cv-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.cv-skill {
+  display: inline-flex;
+  padding: 6px 9px;
+  background: #f1f5f9;
+  color: #334155;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+/* Classic Clean */
+.cv-template-classic-clean .cv-doc {
+  font-family: Georgia, "Times New Roman", serif;
+  padding: 54px 58px;
+}
+
+.cv-template-classic-clean .cv-header {
+  padding-bottom: 18px;
+  border-bottom: 2px solid #111827;
+}
+
+.cv-template-classic-clean .cv-name {
+  font-family: Georgia, "Times New Roman", serif;
+  letter-spacing: -0.035em;
+}
+
+.cv-template-classic-clean .cv-role {
+  color: #111827;
+  font-family: Arial, sans-serif;
+}
+
+.cv-template-classic-clean .cv-section-title {
+  font-family: Arial, sans-serif;
+  border-bottom: 1px solid #cbd5e1;
+  padding-bottom: 5px;
+}
+
+/* Modern Sidebar */
+.cv-template-modern-sidebar .cv-doc {
+  display: grid;
+  grid-template-columns: 245px 1fr;
+  gap: 34px;
+  padding: 0;
+  min-height: 1123px;
+}
+
+.cv-template-modern-sidebar .cv-sidebar {
+  padding: 44px 28px;
+  background: #111827;
+  color: #ffffff;
+}
+
+.cv-template-modern-sidebar .cv-main {
+  padding: 44px 46px 44px 0;
+}
+
+.cv-template-modern-sidebar .cv-name,
+.cv-template-modern-sidebar .cv-role,
+.cv-template-modern-sidebar .cv-sidebar .cv-section-title,
+.cv-template-modern-sidebar .cv-sidebar p,
+.cv-template-modern-sidebar .cv-sidebar li,
+.cv-template-modern-sidebar .cv-sidebar span,
+.cv-template-modern-sidebar .cv-sidebar a {
+  color: #ffffff;
+}
+
+.cv-template-modern-sidebar .cv-role {
+  color: #ccf381;
+}
+
+.cv-template-modern-sidebar .cv-sidebar .cv-skill {
+  background: rgba(204, 243, 129, 0.14);
+  color: #ccf381;
+}
+
+/* Minimalist Pro */
+.cv-template-minimalist-pro .cv-doc {
+  padding: 64px 70px;
+}
+
+.cv-template-minimalist-pro .cv-header {
+  text-align: center;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.cv-template-minimalist-pro .cv-contact-list,
+.cv-template-minimalist-pro .cv-link-list {
+  justify-content: center;
+}
+
+/* Executive Bold */
+.cv-template-executive-bold .cv-doc {
+  padding: 0;
+}
+
+.cv-template-executive-bold .cv-header {
+  padding: 44px 52px 34px;
+  background: #111827;
+  color: #ffffff;
+}
+
+.cv-template-executive-bold .cv-name,
+.cv-template-executive-bold .cv-role,
+.cv-template-executive-bold .cv-contact-list,
+.cv-template-executive-bold .cv-link-list,
+.cv-template-executive-bold .cv-link-list a {
+  color: #ffffff;
+}
+
+.cv-template-executive-bold .cv-body {
+  padding: 36px 52px 48px;
+}
+
+/* Tech Stack */
+.cv-template-tech-stack .cv-doc {
+  padding: 48px 54px;
+  border-left: 10px solid #22c55e;
+}
+
+.cv-template-tech-stack .cv-header {
+  padding: 24px;
+  background: #0f172a;
+  border-radius: 18px;
+  color: #ffffff;
+}
+
+.cv-template-tech-stack .cv-name,
+.cv-template-tech-stack .cv-role,
+.cv-template-tech-stack .cv-contact-list,
+.cv-template-tech-stack .cv-link-list,
+.cv-template-tech-stack .cv-link-list a {
+  color: #ffffff;
+}
+
+.cv-template-tech-stack .cv-role {
+  color: #ccf381;
+  font-family: Consolas, Monaco, monospace;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    overflow: hidden !important;
+  }
+
+  .cv-preview {
+    width: 210mm !important;
+    height: 297mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    overflow: hidden !important;
+    page-break-after: avoid !important;
+    page-break-before: avoid !important;
+  }
+
+  .cv-doc {
+    width: 210mm !important;
+    min-height: 297mm !important;
+    max-height: 297mm !important;
+    overflow: hidden !important;
+  }
+}
 </style>
 </head>
+
 <body>
 ${cvHtml}
 </body>
@@ -1432,7 +1762,11 @@ function saveFormData() {
 
   localStorage.setItem(
     AUTOSAVE_KEY,
-    JSON.stringify({ data, selectedTemplate, savedAt: new Date().toISOString() })
+    JSON.stringify({
+      data,
+      selectedTemplate,
+      savedAt: new Date().toISOString()
+    })
   );
 
   if (autosaveMeta) {
@@ -1460,7 +1794,7 @@ function loadSavedFormData() {
     renderPreviewFromForm();
 
     showToast("Autosaved draft restored.", "success");
-  } catch {
+  } catch (error) {
     localStorage.removeItem(AUTOSAVE_KEY);
   }
 }
@@ -1492,6 +1826,7 @@ function fillFormFromData(data) {
     data.experience.forEach((item, index) => {
       experienceList.insertAdjacentHTML("beforeend", getExperienceHtml(index + 1));
       const card = experienceList.lastElementChild;
+
       card.querySelector(".exp-title").value = item.title || "";
       card.querySelector(".exp-company").value = item.company || "";
       card.querySelector(".exp-location").value = item.location || "";
@@ -1506,6 +1841,7 @@ function fillFormFromData(data) {
     data.education.forEach((item, index) => {
       educationList.insertAdjacentHTML("beforeend", getEducationHtml(index + 1));
       const card = educationList.lastElementChild;
+
       card.querySelector(".edu-degree").value = item.degree || "";
       card.querySelector(".edu-field").value = item.field || "";
       card.querySelector(".edu-institution").value = item.institution || "";
@@ -1520,6 +1856,7 @@ function fillFormFromData(data) {
     data.projects.forEach((item, index) => {
       projectsList.insertAdjacentHTML("beforeend", getProjectHtml(index + 1));
       const card = projectsList.lastElementChild;
+
       card.querySelector(".project-name").value = item.name || "";
       card.querySelector(".project-tech").value = item.techStack || "";
       card.querySelector(".project-link").value = item.link || "";
@@ -1532,6 +1869,7 @@ function fillFormFromData(data) {
     data.certifications.forEach((item) => {
       certificationsList.insertAdjacentHTML("beforeend", getCertificationRowHtml());
       const row = certificationsList.lastElementChild;
+
       row.querySelector(".cert-name").value = item.name || "";
       row.querySelector(".cert-issuer").value = item.issuer || "";
       row.querySelector(".cert-year").value = item.year || "";
@@ -1543,15 +1881,19 @@ function fillFormFromData(data) {
     data.languages.forEach((item) => {
       languagesList.insertAdjacentHTML("beforeend", getLanguageRowHtml());
       const row = languagesList.lastElementChild;
+
       row.querySelector(".lang-name").value = item.name || "";
       row.querySelector(".lang-level").value = item.level || "Basic";
     });
   }
+
+  initInlineAiButtons();
 }
 
 function setTemplateActive(template) {
   document.querySelectorAll(".cv-template-card").forEach((card) => {
     const isActive = card.dataset.template === template;
+
     card.classList.toggle("active", isActive);
     card.setAttribute("aria-pressed", isActive ? "true" : "false");
   });
@@ -1561,7 +1903,10 @@ function setTemplateActive(template) {
 
 function setValue(id, value) {
   const input = document.getElementById(id);
-  if (input) input.value = value || "";
+
+  if (input) {
+    input.value = value || "";
+  }
 }
 
 /* ================================
@@ -1589,6 +1934,7 @@ if (clearCvFormBtn) {
     setTemplateActive(selectedTemplate);
 
     renderEmptyPreview();
+    initInlineAiButtons();
 
     showToast("Form cleared.", "success");
   });
@@ -1600,7 +1946,9 @@ if (clearCvFormBtn) {
 
 function splitLines(value) {
   if (!value) return [];
+
   if (Array.isArray(value)) return value.filter(Boolean);
+
   return String(value)
     .split(/\n|•/)
     .map((item) => item.replace(/^[-*]\s*/, "").trim())
@@ -1609,7 +1957,7 @@ function splitLines(value) {
 
 function formatDateRange(start, end) {
   if (!start && !end) return "";
-  return `${start || ""}${start && end ? " – " : ""}${end || ""}`;
+  return `${start || ""}${start && end ? " - " : ""}${end || ""}`;
 }
 
 function escapeHtml(value) {
@@ -1635,9 +1983,13 @@ function slugify(value) {
 
 function debounce(callback, wait = 300) {
   let timeout;
+
   return (...args) => {
     clearTimeout(timeout);
-    timeout = setTimeout(() => callback(...args), wait);
+
+    timeout = setTimeout(() => {
+      callback(...args);
+    }, wait);
   };
 }
 
