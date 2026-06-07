@@ -146,11 +146,11 @@ Return JSON in exactly this structure:
 }
 
 Content guidelines:
-- Summary: maximum 70 words.
-- Skills: maximum 16 skills.
-- Experience: keep each responsibility line under 22 words.
-- Projects: keep descriptions under 35 words each.
-- Education details: keep concise.
+- Summary: write 5 to 8 full lines, around 150 to 220 words.
+- Skills: include all relevant skills from the user input and add only strongly related missing skills.
+- Experience: write detailed ATS-friendly bullet points. Do not invent fake metrics.
+- Projects: write useful project descriptions with purpose, tech stack, and result if available.
+- Education details: improve wording but do not invent degrees or institutions.
 - Certifications: keep only real items from user input.
 - If a section is empty and cannot be improved truthfully, return an empty array or empty string.
 `;
@@ -174,7 +174,7 @@ Content guidelines:
           ],
           generationConfig: {
             temperature: 0.25,
-            maxOutputTokens: 3000,
+            maxOutputTokens: 6000,
             responseMimeType: "application/json"
           }
         })
@@ -220,7 +220,7 @@ function sanitizeCvInput(input) {
 
     links: sanitizeLinks(input.links),
 
-    summary: cleanText(input.summary, 1600),
+    summary: cleanText(input.summary, 3000),
     skills: sanitizeStringArray(input.skills, 30, 60),
 
     experience: sanitizeExperience(input.experience),
@@ -376,8 +376,8 @@ function normalizeCvResponse(cv, fallback) {
 
     links: normalizeLinks(cv.links || fallback.links),
 
-    summary: cleanText(cv.summary || fallback.summary, 900),
-    skills: sanitizeStringArray(cv.skills || fallback.skills, 16, 70),
+    summary: cleanText(cv.summary || fallback.summary, 2500),
+    skills: sanitizeStringArray(cv.skills || fallback.skills, 50, 100),
 
     experience: normalizeExperience(cv.experience || fallback.experience),
     education: normalizeEducation(cv.education || fallback.education),
