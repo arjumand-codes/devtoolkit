@@ -8037,11 +8037,7 @@ code,
 
 /* ================================
    DevToolKit - AI CV Generator
-   File: pages/cv-templates.css
-================================ */
-
-/* ================================
-   Page Layout
+   Clean CV Maker Styles
 ================================ */
 
 .cv-generator-hero-section {
@@ -8060,64 +8056,36 @@ code,
   z-index: -1;
 }
 
-.cv-seo-intro-section {
-  padding: 70px 0;
+.cv-seo-intro-section,
+.cv-template-section {
+  padding: 80px 0;
 }
 
 .cv-template-section {
-  padding: 90px 0;
   background: rgba(255, 255, 255, 0.018);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
 }
 
-.cv-builder-section {
-  background:
-    radial-gradient(circle at top left, rgba(124, 58, 237, 0.12), transparent 32%),
-    rgba(255, 255, 255, 0.018);
-}
-
-.cv-builder-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
-  gap: 24px;
-  align-items: start;
-}
-
-.cv-form-panel,
-.cv-preview-panel {
-  min-height: auto;
-}
-
-.cv-preview-panel {
-  position: sticky;
-  top: 100px;
-}
-
-/* ================================
-   Toast
-================================ */
-
 .cv-toast {
   position: fixed;
   right: 24px;
   bottom: 24px;
-  z-index: 9999;
-  max-width: 360px;
+  z-index: 99999;
+  max-width: 340px;
   padding: 14px 18px;
   border: 1px solid rgba(204, 243, 129, 0.35);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)),
-    rgba(15, 23, 42, 0.96);
+  background: rgba(15, 23, 42, 0.96);
   color: var(--text-main);
   border-radius: 999px;
-  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  box-shadow: var(--shadow-card);
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   font-size: 0.92rem;
   font-weight: 800;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(12px);
+  transform: translateY(16px);
   transition: var(--transition);
 }
 
@@ -8127,19 +8095,9 @@ code,
   transform: translateY(0);
 }
 
-.cv-toast.error {
-  border-color: rgba(248, 113, 113, 0.45);
-  color: #fecaca;
-}
-
-.cv-toast.warning {
-  border-color: rgba(251, 191, 36, 0.45);
-  color: #fbbf24;
-}
-
-/* ================================
-   Template Cards
-================================ */
+.cv-toast.success { border-color: rgba(204, 243, 129, 0.45); }
+.cv-toast.warning { border-color: rgba(251, 191, 36, 0.45); }
+.cv-toast.error { border-color: rgba(248, 113, 113, 0.45); }
 
 .cv-template-cards {
   display: grid;
@@ -8148,59 +8106,32 @@ code,
 }
 
 .cv-template-card {
-  position: relative;
+  min-height: 240px;
   display: grid;
+  align-content: start;
   gap: 14px;
-  min-height: 250px;
   padding: 20px;
   border: 1px solid var(--border);
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
-    rgba(15, 23, 42, 0.72);
+    rgba(15, 23, 42, 0.74);
   color: var(--text-main);
-  text-align: left;
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
   cursor: pointer;
-  overflow: hidden;
-  transition: var(--transition);
-}
-
-.cv-template-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(204, 243, 129, 0.16), transparent 46%);
-  opacity: 0;
+  text-align: left;
   transition: var(--transition);
 }
 
 .cv-template-card:hover,
 .cv-template-card.active {
-  transform: translateY(-6px);
+  transform: translateY(-5px);
   border-color: rgba(204, 243, 129, 0.45);
 }
 
-.cv-template-card.active {
-  box-shadow:
-    var(--shadow-card),
-    0 0 0 3px rgba(204, 243, 129, 0.12);
-}
-
-.cv-template-card:hover::before,
-.cv-template-card.active::before {
-  opacity: 1;
-}
-
-.cv-template-card strong,
-.cv-template-card small,
-.cv-template-mini {
-  position: relative;
-  z-index: 1;
-}
-
 .cv-template-card strong {
-  font-size: 1.05rem;
+  font-size: 1.02rem;
+  line-height: 1.25;
   letter-spacing: -0.03em;
 }
 
@@ -8212,71 +8143,111 @@ code,
 
 .cv-template-mini {
   width: 100%;
-  min-height: 118px;
+  height: 118px;
   display: block;
   overflow: hidden;
-  border-radius: 16px;
-  background: #ffffff;
   border: 1px solid var(--border);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.26);
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  position: relative;
 }
 
-/* Mini previews */
+.cv-template-mini::before,
+.cv-template-mini::after {
+  content: "";
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  border-radius: 999px;
+  background: #cbd5e1;
+}
+
+.cv-template-mini::before {
+  top: 18px;
+  height: 12px;
+  width: 52%;
+}
+
+.cv-template-mini::after {
+  top: 40px;
+  height: 7px;
+}
 
 .classic-clean-mini {
   background:
-    linear-gradient(#111827 0 8px, transparent 8px 100%),
-    repeating-linear-gradient(#ffffff 0 14px, #f1f5f9 14px 16px);
-  background-color: #ffffff;
+    linear-gradient(#111827, #111827) 16px 64px / calc(100% - 32px) 2px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) 16px 82px / calc(100% - 32px) 6px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) 16px 96px / 70% 6px no-repeat,
+    #ffffff;
 }
 
 .modern-sidebar-mini {
   background:
-    linear-gradient(90deg, #111827 0 34%, transparent 34%),
-    repeating-linear-gradient(#ffffff 0 15px, #f1f5f9 15px 17px);
+    linear-gradient(90deg, #111827 0 35%, transparent 35%),
+    linear-gradient(#e5e7eb, #e5e7eb) 45% 30px / 45% 7px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) 45% 52px / 42% 7px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) 45% 74px / 48% 7px no-repeat,
+    #ffffff;
 }
 
 .minimalist-pro-mini {
   background:
-    linear-gradient(#e5e7eb 0 2px, transparent 2px),
-    repeating-linear-gradient(#ffffff 0 18px, #f8fafc 18px 20px);
+    linear-gradient(#111827, #111827) center 20px / 45% 10px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) center 44px / 70% 5px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) center 68px / 80% 5px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) center 86px / 72% 5px no-repeat,
+    #ffffff;
 }
 
 .executive-bold-mini {
   background:
-    linear-gradient(#111827 0 35px, transparent 35px),
-    repeating-linear-gradient(#ffffff 0 15px, #f1f5f9 15px 17px);
+    linear-gradient(#111827 0 38px, transparent 38px),
+    linear-gradient(#e5e7eb, #e5e7eb) 16px 58px / calc(100% - 32px) 7px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) 16px 80px / 70% 7px no-repeat,
+    #ffffff;
 }
 
 .tech-stack-mini {
   background:
-    linear-gradient(90deg, #ecfdf5 0 5px, transparent 5px),
-    repeating-linear-gradient(#ffffff 0 14px, #f8fafc 14px 16px);
+    linear-gradient(90deg, #22c55e 0 8px, transparent 8px),
+    linear-gradient(#111827, #111827) 22px 18px / 65% 10px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) 22px 44px / 75% 6px no-repeat,
+    linear-gradient(#e5e7eb, #e5e7eb) 22px 64px / 60% 6px no-repeat,
+    #ffffff;
 }
 
-/* ================================
-   Form Layout
-================================ */
-
-.cv-generator-form {
+.cv-builder-layout {
   display: grid;
-  gap: 24px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 34px;
 }
+
+.cv-preview-panel { order: -1; overflow: hidden; }
+.cv-form-panel { overflow: visible; }
+.cv-generator-form { display: grid; gap: 22px; }
 
 .cv-form-section {
+  display: grid;
+  gap: 18px;
   padding: 22px;
   border: 1px solid var(--border);
-  background: rgba(0, 0, 0, 0.18);
+  background: rgba(3, 7, 18, 0.22);
   border-radius: var(--radius-lg);
 }
 
-.cv-form-section-header {
-  margin-bottom: 18px;
+.cv-form-section-header,
+.cv-field-label-row,
+.repeatable-card-header,
+.split-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
 }
 
 .cv-form-section-header h4 {
   color: var(--text-main);
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   letter-spacing: -0.03em;
   margin-bottom: 4px;
 }
@@ -8289,296 +8260,174 @@ code,
   line-height: 1.6;
 }
 
-.split-header,
-.cv-field-label-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.cv-field-label-row {
-  margin-bottom: 10px;
-}
-
-.cv-field-label-row label {
-  color: var(--text-main);
-  font-size: 0.92rem;
-  font-weight: 800;
-}
-
-.char-counter {
-  display: inline-flex;
-  margin-top: 5px;
-  color: var(--text-muted);
-  font-size: 0.78rem;
-  font-weight: 700;
-}
-
-.form-grid {
-  display: grid;
-  gap: 18px;
-}
-
-.form-grid.two-columns {
-  grid-template-columns: repeat(2, 1fr);
-}
-
-.cv-small-textarea {
-  min-height: 130px;
-}
-
-.cv-medium-textarea {
-  min-height: 180px;
-}
+.form-grid { display: grid; gap: 16px; }
+.form-grid.two-columns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.cv-medium-textarea { min-height: 180px; }
+.cv-small-textarea { min-height: 120px; }
 
 .field-error {
   display: none;
   color: #f87171;
-  font-size: 0.78rem;
-  font-weight: 800;
-  margin-top: 7px;
+  font-size: 0.82rem;
+  font-weight: 700;
 }
 
-.form-group.has-error .tool-input,
-.form-group.has-error .tool-select,
-.form-group.has-error .tool-textarea,
-.cv-form-section.has-error .skills-tags-box,
+.field-error.show,
+.has-error .field-error { display: block; }
+
 .tool-input.has-error,
 .tool-select.has-error,
-.tool-textarea.has-error {
-  border-color: rgba(248, 113, 113, 0.7);
-  box-shadow: 0 0 0 4px rgba(248, 113, 113, 0.1);
+.tool-textarea.has-error,
+.has-error .tool-input,
+.has-error .tool-select,
+.has-error .tool-textarea {
+  border-color: rgba(248, 113, 113, 0.6);
 }
 
-.form-group.has-error .field-error,
-.cv-form-section.has-error .field-error,
-.field-error.show {
-  display: block;
-}
+.repeatable-list { display: grid; gap: 16px; }
 
-/* ================================
-   Repeatable Rows
-================================ */
-
-.repeatable-list {
-  display: grid;
-  gap: 14px;
-}
-
-.repeatable-card {
-  padding: 18px;
+.repeatable-card,
+.repeatable-row {
   border: 1px solid var(--border);
-  background: rgba(15, 23, 42, 0.62);
-  border-radius: var(--radius-md);
+  background: rgba(3, 7, 18, 0.28);
+  border-radius: 20px;
 }
 
-.repeatable-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 16px;
-}
-
-.repeatable-card-header strong {
-  color: var(--accent);
-  font-size: 0.92rem;
-  font-weight: 900;
-}
+.repeatable-card { display: grid; gap: 18px; padding: 20px; }
 
 .repeatable-row {
   display: grid;
-  grid-template-columns: 0.75fr 1fr auto;
-  gap: 12px;
+  grid-template-columns: minmax(0, 180px) minmax(0, 1fr) auto;
   align-items: center;
+  gap: 12px;
+  padding: 14px;
 }
 
-.certification-row {
-  grid-template-columns: 1fr 0.85fr 0.45fr auto;
-}
-
-.language-row {
-  grid-template-columns: 1fr 0.8fr auto;
-}
-
-.link-row {
-  grid-template-columns: 0.8fr 1.4fr auto;
-}
-
-.remove-row-btn {
-  white-space: nowrap;
-}
-
-.exp-present-control {
-  align-self: end;
-  margin-bottom: 6px;
-}
-
-/* ================================
-   Skills Tags
-================================ */
+.certification-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 120px) auto; }
+.language-row { grid-template-columns: minmax(0, 1fr) minmax(0, 180px) auto; }
+.remove-row-btn { white-space: nowrap; }
 
 .skills-tags-box {
-  min-height: 52px;
+  min-height: 56px;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 8px;
-  padding: 10px;
+  gap: 10px;
+  padding: 12px;
   border: 1px solid var(--border);
   background: rgba(0, 0, 0, 0.28);
-  border-radius: var(--radius-sm);
-  transition: var(--transition);
+  border-radius: var(--radius-md);
 }
 
-.skills-tags-box:focus-within {
-  border-color: rgba(204, 243, 129, 0.45);
-  box-shadow: 0 0 0 4px rgba(204, 243, 129, 0.08);
-}
-
-.skills-tags {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+.skills-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .skill-tag {
   display: inline-flex;
   align-items: center;
   gap: 7px;
   padding: 7px 10px;
-  background: rgba(204, 243, 129, 0.1);
-  border: 1px solid rgba(204, 243, 129, 0.2);
+  border: 1px solid rgba(204, 243, 129, 0.18);
+  background: rgba(204, 243, 129, 0.09);
   color: var(--accent);
   border-radius: 999px;
-  font-size: 0.82rem;
-  font-weight: 900;
+  font-size: 0.84rem;
+  font-weight: 800;
 }
 
 .skill-tag button {
   width: 18px;
   height: 18px;
-  display: grid;
+  display: inline-grid;
   place-items: center;
   border: 0;
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--accent);
-  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: inherit;
+  border-radius: 999px;
   cursor: pointer;
-  font-size: 0.78rem;
 }
 
 .skills-tag-input {
   flex: 1;
-  min-width: 180px;
+  min-width: 170px;
+  min-height: 34px;
   border: 0;
-  outline: none;
+  outline: 0;
   background: transparent;
   color: var(--text-main);
   font-size: 0.95rem;
 }
 
-.skills-tag-input::placeholder {
-  color: rgba(148, 163, 184, 0.72);
-}
-
-/* ================================
-   AI Buttons / Loading
-================================ */
-
-.ai-field-btn {
-  position: relative;
-}
-
 .ai-field-btn.is-loading {
-  opacity: 0.75;
-  pointer-events: none;
+  opacity: 0.7;
+  cursor: wait;
 }
 
 .ai-field-btn.is-loading::after {
   content: "";
   width: 12px;
   height: 12px;
-  display: inline-block;
   margin-left: 8px;
-  border: 2px solid rgba(204, 243, 129, 0.25);
-  border-top-color: var(--accent);
+  border: 2px solid currentColor;
+  border-top-color: transparent;
   border-radius: 50%;
-  animation: cvSpin 0.7s linear infinite;
+  animation: cvSpin 0.8s linear infinite;
 }
 
-@keyframes cvSpin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-/* ================================
-   Main Action Buttons
-================================ */
+@keyframes cvSpin { to { transform: rotate(360deg); } }
 
 .cv-main-actions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  flex-wrap: wrap;
 }
 
-.cv-main-actions .btn {
-  width: 100%;
-}
-
-/* ================================
-   Preview Panel
-================================ */
+.cv-main-actions .btn { min-width: 210px; }
 
 .cv-preview-toolbar {
   display: flex;
-  align-items: center;
-  gap: 10px;
   flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 18px;
 }
 
 .cv-preview-shell {
-  overflow: auto;
-  max-height: calc(100vh - 260px);
-  min-height: 560px;
-  padding: 22px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 18px;
   border: 1px solid var(--border);
   background:
-    radial-gradient(circle at top left, rgba(124, 58, 237, 0.12), transparent 35%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
     rgba(0, 0, 0, 0.22);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
 }
 
 .cv-preview {
-  width: 794px;
+  width: min(100%, 794px);
   min-height: 1123px;
   margin: 0 auto;
+  overflow: visible;
   background: #ffffff;
   color: #111827;
-  border-radius: 4px;
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.36);
-  overflow: hidden;
-  font-family: "Inter", Arial, sans-serif;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
 }
 
 .cv-empty-state {
-  min-height: 1123px;
+  min-height: 540px;
   display: grid;
   place-items: center;
+  align-content: center;
+  gap: 12px;
+  padding: 40px;
   text-align: center;
-  padding: 42px;
-  color: #64748b;
 }
 
 .cv-empty-state span {
-  width: 82px;
-  height: 82px;
+  width: 70px;
+  height: 70px;
   display: inline-grid;
   place-items: center;
-  margin: 0 auto 20px;
   background: #f1f5f9;
   color: #7c3aed;
   border-radius: 24px;
@@ -8586,190 +8435,190 @@ code,
   font-weight: 900;
 }
 
-.cv-empty-state h3 {
-  color: #111827;
-  font-size: 1.7rem;
-  letter-spacing: -0.04em;
-  margin-bottom: 10px;
-}
-
-.cv-empty-state p {
-  max-width: 440px;
-  color: #64748b;
-  line-height: 1.7;
-}
+.cv-empty-state h3 { color: #111827; font-size: 1.7rem; letter-spacing: -0.04em; }
+.cv-empty-state p { max-width: 440px; color: #64748b; line-height: 1.7; }
 
 /* ================================
    Rendered CV Base
-   JS should output these classes
+   Matches JS classes
 ================================ */
 
+.cv-preview,
+.cv-preview * {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .cv-doc {
-  padding: 46px 52px;
-  color: #111827;
+  width: 100%;
+  padding: 42px 48px;
   background: #ffffff;
+  color: #111827;
 }
 
 .cv-header {
-  margin-bottom: 24px;
+  margin: 0 0 18px;
+  padding: 0 0 12px;
+  border-bottom: 2px solid #1f2937;
 }
 
 .cv-name {
+  margin: 0 0 4px;
   color: #111827;
-  font-size: 2.35rem;
-  line-height: 1;
-  letter-spacing: -0.055em;
-  margin-bottom: 8px;
+  font-family: Georgia, "Times New Roman", serif !important;
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+  word-break: break-word;
 }
 
 .cv-role {
-  color: #4f46e5;
-  font-size: 1.05rem;
-  font-weight: 900;
-  margin-bottom: 14px;
+  margin: 0 0 12px;
+  color: #374151;
+  font-size: 14px;
+  line-height: 1.25;
+  font-weight: 800;
 }
 
 .cv-contact-list,
 .cv-link-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 16px;
-  color: #475569;
-  font-size: 0.86rem;
+  gap: 6px 18px;
+  align-items: center;
+  color: #4b5563;
+  font-size: 11px;
+  line-height: 1.45;
   font-weight: 700;
+  overflow-wrap: anywhere;
 }
 
-.cv-link-list {
-  margin-top: 8px;
-}
-
-.cv-link-list a {
-  color: #4f46e5;
-  text-decoration: none;
-}
+.cv-link-list { margin-top: 8px; }
+.cv-link-list a { color: #2563eb; text-decoration: none; }
 
 .cv-section {
-  margin-top: 20px;
+  margin-top: 13px;
+  break-inside: auto;
+  page-break-inside: auto;
 }
 
 .cv-section-title {
+  margin: 0 0 8px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #cbd5e1;
   color: #111827;
-  font-size: 0.86rem;
+  font-size: 13px;
+  line-height: 1.2;
   font-weight: 900;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  margin-bottom: 8px;
+  break-after: avoid;
+  page-break-after: avoid;
 }
 
-.cv-section p,
-.cv-section li {
-  color: #334155;
-  font-size: 0.88rem;
-  line-height: 1.55;
-}
-
-.cv-section ul {
-  display: grid;
-  gap: 5px;
-  padding-left: 18px;
-  list-style: disc;
+.cv-section p {
+  margin: 0 0 7px;
+  color: #374151;
+  font-size: 12px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  orphans: 3;
+  widows: 3;
 }
 
 .cv-item {
-  margin-bottom: 14px;
+  margin-bottom: 10px;
+  break-inside: auto;
+  page-break-inside: auto;
 }
 
-.cv-item:last-child {
-  margin-bottom: 0;
-}
+.cv-item:last-child { margin-bottom: 0; }
 
 .cv-item-title {
+  margin: 0 0 3px;
   color: #111827;
-  font-size: 0.98rem;
+  font-size: 13px;
+  line-height: 1.25;
   font-weight: 900;
-  margin-bottom: 3px;
+  break-after: avoid;
+  page-break-after: avoid;
 }
 
 .cv-item-meta {
-  color: #64748b;
-  font-size: 0.78rem;
-  font-weight: 800;
-  margin-bottom: 6px;
+  margin: 0 0 6px;
+  color: #4b5563;
+  font-size: 11px;
+  line-height: 1.35;
+  font-weight: 700;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.cv-section ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+  list-style: disc outside;
+}
+
+.cv-section li {
+  margin: 0 0 4px;
+  padding-left: 2px;
+  color: #374151;
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: left;
+  break-inside: auto;
+  page-break-inside: auto;
+  orphans: 2;
+  widows: 2;
 }
 
 .cv-skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  justify-content: center;
+  align-items: center;
+  gap: 7px 8px;
+  margin: 10px auto 4px;
+  text-align: center;
 }
 
 .cv-skill {
   display: inline-flex;
-  padding: 6px 9px;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
+  padding: 5px 10px;
+  border: 1px solid #dbe3ea;
+  border-radius: 999px;
   background: #f1f5f9;
   color: #334155;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 900;
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 800;
+  text-align: center;
+  white-space: normal;
 }
 
-.cv-two-col {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-/* ================================
-   Template 1: Classic Clean
-================================ */
-
-.cv-template-classic-clean .cv-doc {
-  font-family: Georgia, "Times New Roman", serif;
-  padding: 54px 58px;
-}
-
-.cv-template-classic-clean .cv-header {
-  padding-bottom: 18px;
-  border-bottom: 2px solid #111827;
-}
-
-.cv-template-classic-clean .cv-name {
-  font-family: Georgia, "Times New Roman", serif;
-  letter-spacing: -0.035em;
-}
-
-.cv-template-classic-clean .cv-role {
-  color: #111827;
-  font-family: "Inter", Arial, sans-serif;
-}
-
-.cv-template-classic-clean .cv-section-title {
-  font-family: "Inter", Arial, sans-serif;
-  border-bottom: 1px solid #cbd5e1;
-  padding-bottom: 5px;
-}
-
-/* ================================
-   Template 2: Modern Sidebar
-================================ */
+.cv-template-classic-clean .cv-doc { font-family: Arial, Helvetica, sans-serif; }
+.cv-template-classic-clean .cv-name { font-family: Georgia, "Times New Roman", serif !important; }
 
 .cv-template-modern-sidebar .cv-doc {
   display: grid;
-  grid-template-columns: 245px 1fr;
+  grid-template-columns: 245px minmax(0, 1fr);
   gap: 34px;
   padding: 0;
   min-height: 1123px;
 }
 
 .cv-template-modern-sidebar .cv-sidebar {
-  padding: 44px 28px;
+  padding: 40px 26px;
   background: #111827;
   color: #ffffff;
 }
 
-.cv-template-modern-sidebar .cv-main {
-  padding: 44px 46px 44px 0;
-}
+.cv-template-modern-sidebar .cv-main { padding: 40px 42px 40px 0; }
+.cv-template-modern-sidebar .cv-header { border-bottom-color: rgba(255, 255, 255, 0.25); }
 
 .cv-template-modern-sidebar .cv-name,
 .cv-template-modern-sidebar .cv-role,
@@ -8781,64 +8630,27 @@ code,
   color: #ffffff;
 }
 
-.cv-template-modern-sidebar .cv-role {
-  color: #ccf381;
-}
+.cv-template-modern-sidebar .cv-role { color: #ccf381; }
+.cv-template-modern-sidebar .cv-sidebar .cv-section-title { border-bottom-color: rgba(255, 255, 255, 0.25); }
 
 .cv-template-modern-sidebar .cv-sidebar .cv-skill {
   background: rgba(204, 243, 129, 0.14);
   color: #ccf381;
+  border-color: rgba(204, 243, 129, 0.28);
 }
 
-.cv-template-modern-sidebar .cv-main .cv-section-title {
-  color: #4f46e5;
-}
-
-/* ================================
-   Template 3: Minimalist Pro
-================================ */
-
-.cv-template-minimalist-pro .cv-doc {
-  padding: 64px 70px;
-}
-
-.cv-template-minimalist-pro .cv-header {
-  text-align: center;
-  padding-bottom: 18px;
-  border-bottom: 1px solid #e5e7eb;
-}
-
+.cv-template-minimalist-pro .cv-doc { padding: 52px 60px; }
+.cv-template-minimalist-pro .cv-header { text-align: center; border-bottom: 1px solid #e5e7eb; }
 .cv-template-minimalist-pro .cv-contact-list,
-.cv-template-minimalist-pro .cv-link-list {
-  justify-content: center;
-}
+.cv-template-minimalist-pro .cv-link-list { justify-content: center; }
 
-.cv-template-minimalist-pro .cv-role {
-  color: #475569;
-}
-
-.cv-template-minimalist-pro .cv-section {
-  margin-top: 24px;
-}
-
-.cv-template-minimalist-pro .cv-section-title {
-  color: #111827;
-  border-bottom: 1px solid #e5e7eb;
-  padding-bottom: 6px;
-}
-
-/* ================================
-   Template 4: Executive Bold
-================================ */
-
-.cv-template-executive-bold .cv-doc {
-  padding: 0;
-}
+.cv-template-executive-bold .cv-doc { padding: 0; }
 
 .cv-template-executive-bold .cv-header {
-  padding: 44px 52px 34px;
+  padding: 40px 48px 30px;
   background: #111827;
   color: #ffffff;
+  border-bottom: 0;
 }
 
 .cv-template-executive-bold .cv-name,
@@ -8849,37 +8661,18 @@ code,
   color: #ffffff;
 }
 
-.cv-template-executive-bold .cv-role {
-  color: #ccf381;
-}
-
-.cv-template-executive-bold .cv-body {
-  padding: 36px 52px 48px;
-}
-
-.cv-template-executive-bold .cv-section-title {
-  display: inline-flex;
-  padding: 7px 12px;
-  background: #111827;
-  color: #ffffff;
-  border-radius: 999px;
-  margin-bottom: 10px;
-}
-
-/* ================================
-   Template 5: Tech Stack
-================================ */
+.cv-template-executive-bold .cv-body { padding: 32px 48px 42px; }
 
 .cv-template-tech-stack .cv-doc {
-  padding: 48px 54px;
-  border-left: 10px solid #22c55e;
+  padding: 42px 48px;
+  border-left: 8px solid #22c55e;
 }
 
 .cv-template-tech-stack .cv-header {
-  padding: 24px;
+  padding: 22px;
   background: #0f172a;
-  border-radius: 18px;
-  color: #ffffff;
+  border: 0;
+  border-radius: 16px;
 }
 
 .cv-template-tech-stack .cv-name,
@@ -8892,916 +8685,219 @@ code,
 
 .cv-template-tech-stack .cv-role {
   color: #ccf381;
-  font-family: "Consolas", "Monaco", monospace;
+  font-family: Consolas, Monaco, monospace;
 }
 
-.cv-template-tech-stack .cv-section-title {
-  color: #16a34a;
-  font-family: "Consolas", "Monaco", monospace;
+.cv-pdf-export-wrapper {
+  position: fixed;
+  left: -99999px;
+  top: 0;
+  width: 794px;
+  height: auto !important;
+  max-height: none !important;
+  background: #ffffff;
+  z-index: -1;
+  pointer-events: none;
+  overflow: visible !important;
 }
 
-.cv-template-tech-stack .cv-skill {
-  background: #ecfdf5;
-  color: #166534;
-  font-family: "Consolas", "Monaco", monospace;
+.cv-pdf-export-wrapper .cv-preview,
+.cv-pdf-export-wrapper .cv-doc {
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  box-shadow: none !important;
 }
 
-/* ================================
-   Responsive
-================================ */
-
-@media (max-width: 1180px) {
-  .cv-template-cards {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .cv-builder-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .cv-preview-panel {
-    position: static;
-  }
-
-  .cv-preview-shell {
-    max-height: none;
-  }
+.cv-pdf-export-wrapper .cv-preview {
+  width: 794px;
+  margin: 0;
 }
 
-@media (max-width: 768px) {
-  .cv-template-section {
-    padding: 64px 0;
+/* Print-safe CV rules */
+@media print {
+  @page {
+    size: A4;
+    margin: 18mm 12mm 14mm 12mm;
   }
 
-  .cv-template-cards {
-    display: flex;
-    overflow-x: auto;
-    gap: 14px;
-    padding-bottom: 8px;
-    scroll-snap-type: x mandatory;
+  html,
+  body {
+    width: auto !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  .cv-template-card {
-    min-width: 250px;
-    scroll-snap-align: start;
+  body * {
+    visibility: hidden !important;
   }
 
-  .form-grid.two-columns,
-  .cv-two-col {
-    grid-template-columns: 1fr;
-  }
-
-  .split-header,
-  .cv-field-label-row {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .repeatable-row,
-  .certification-row,
-  .language-row,
-  .link-row {
-    grid-template-columns: 1fr;
-  }
-
-  .cv-main-actions {
-    grid-template-columns: 1fr;
-  }
-
-  .cv-preview-toolbar {
-    display: grid;
-    grid-template-columns: 1fr;
-  }
-
-  .cv-preview-toolbar .mini-btn {
-    width: 100%;
-  }
-
-  .cv-preview-shell {
-    padding: 14px;
-    min-height: auto;
+  .cv-preview,
+  .cv-preview * {
+    visibility: visible !important;
   }
 
   .cv-preview {
-    width: 100%;
-    min-height: 900px;
+    position: static !important;
+    width: 100% !important;
+    max-width: 186mm !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
   }
 
   .cv-doc,
   .cv-template-classic-clean .cv-doc,
   .cv-template-minimalist-pro .cv-doc,
-  .cv-template-tech-stack .cv-doc {
-    padding: 34px 24px;
-  }
-
-  .cv-template-modern-sidebar .cv-doc {
-    display: block;
-  }
-
-  .cv-template-modern-sidebar .cv-sidebar {
-    padding: 32px 24px;
-  }
-
-  .cv-template-modern-sidebar .cv-main {
-    padding: 32px 24px;
-  }
-
-  .cv-template-executive-bold .cv-header {
-    padding: 34px 24px 28px;
-  }
-
+  .cv-template-tech-stack .cv-doc,
   .cv-template-executive-bold .cv-body {
-    padding: 32px 24px;
-  }
-
-  .cv-name {
-    font-size: 1.9rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .cv-form-section {
-    padding: 18px;
-  }
-
-  .cv-template-card {
-    min-width: 230px;
-  }
-
-  .cv-small-textarea,
-  .cv-medium-textarea {
-    min-height: 140px;
-  }
-
-  .cv-name {
-    font-size: 1.65rem;
-  }
-
-  .cv-section p,
-  .cv-section li {
-    font-size: 0.84rem;
-  }
-}
-
-/* ================================
-   Print CSS
-   JS will add body.print-cv before window.print()
-================================ */
-
-@media print {
-  @page {
-    size: A4;
-    margin: 0;
-  }
-
-  html,
-  body {
-    width: 210mm !important;
-    min-height: 297mm !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
     margin: 0 !important;
     padding: 0 !important;
-    background: #ffffff !important;
     overflow: visible !important;
-  }
-
-  body.print-cv * {
-    visibility: hidden !important;
-  }
-
-  body.print-cv #cvPreview,
-  body.print-cv #cvPreview * {
-    visibility: visible !important;
-  }
-
-  body.print-cv #cvPreview {
-    position: absolute !important;
-    inset: 0 auto auto 0 !important;
-    width: 210mm !important;
-    min-height: 297mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    overflow: hidden !important;
     background: #ffffff !important;
   }
 
-  body.print-cv .cv-preview-shell {
-    padding: 0 !important;
-    border: 0 !important;
-    background: transparent !important;
-    overflow: visible !important;
-  }
-
-  body.print-cv .cv-doc {
-    width: 210mm !important;
-    min-height: 297mm !important;
-    box-shadow: none !important;
-  }
-
-  body.print-cv .cv-empty-state {
-    display: none !important;
-  }
-
-  body.print-cv .cv-section {
-    break-inside: avoid;
-    page-break-inside: avoid;
-  }
-}
-
-/* ================================
-   AI CV Maker / CV Generator Print Fix
-================================ */
-
-@media print {
-  @page {
-    size: A4;
-    margin: 0;
-  }
-
-  html,
-  body {
-    width: 210mm !important;
-    height: 297mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #ffffff !important;
-    overflow: hidden !important;
-  }
-
-  body.print-cv * {
-    visibility: hidden !important;
-  }
-
-  body.print-cv #cvPreview,
-  body.print-cv #cvPreview * {
-    visibility: visible !important;
-  }
-
-  body.print-cv #cvPreview {
-    position: fixed !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 210mm !important;
-    height: 297mm !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    background: #ffffff !important;
-  }
-
-  body.print-cv #cvPreview .cv-doc {
-    width: 210mm !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
-    overflow: hidden !important;
-    box-shadow: none !important;
-  }
-
-  body.print-cv .cv-preview-shell {
-    padding: 0 !important;
-    border: 0 !important;
-    background: transparent !important;
-    overflow: visible !important;
-  }
-
-  body.print-cv .cv-section,
-  body.print-cv .cv-item {
+  .cv-header {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
-  }
-}
-
-
-/* ================================
-   CV Preview Scrollbar + Fit Fix
-   Add at bottom of style.css
-================================ */
-
-/* Preview panel should not create ugly scrollbars */
-.cv-preview-panel {
-  overflow: hidden;
-}
-
-.cv-preview-shell {
-  width: 100%;
-  max-height: none !important;
-  min-height: auto !important;
-  overflow: hidden !important;
-  padding: 18px !important;
-  border-radius: var(--radius-lg);
-}
-
-/* Make CV fit inside preview box on screen */
-.cv-preview {
-  width: 100% !important;
-  max-width: 794px !important;
-  min-height: auto !important;
-  margin: 0 auto !important;
-  overflow: hidden !important;
-  border-radius: 6px;
-}
-
-/* Make the CV content scale naturally */
-.cv-preview .cv-doc {
-  width: 100% !important;
-  min-height: auto !important;
-  overflow: hidden !important;
-}
-
-/* Better readable preview spacing */
-.cv-doc {
-  padding: 46px 52px !important;
-}
-
-.cv-name {
-  font-size: clamp(2rem, 4vw, 2.7rem) !important;
-  line-height: 1.05 !important;
-  word-break: break-word;
-}
-
-.cv-role {
-  font-size: 1.05rem !important;
-  word-break: break-word;
-}
-
-/* Fix contact line overflow */
-.cv-contact-list,
-.cv-link-list {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px 14px !important;
-  max-width: 100% !important;
-  overflow-wrap: anywhere !important;
-  word-break: break-word !important;
-}
-
-.cv-contact-list span,
-.cv-link-list a {
-  max-width: 100%;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-/* Fix long project/meta/link text */
-.cv-item-meta,
-.cv-section p,
-.cv-section li {
-  overflow-wrap: anywhere !important;
-  word-break: break-word !important;
-}
-
-/* Remove horizontal scroll from all preview children */
-.cv-preview *,
-.cv-preview-shell * {
-  max-width: 100%;
-}
-
-/* Hide ugly scrollbars in preview shell */
-.cv-preview-shell::-webkit-scrollbar {
-  display: none;
-}
-
-.cv-preview-shell {
-  scrollbar-width: none;
-}
-
-/* Desktop: keep preview nice and centered */
-@media (min-width: 1181px) {
-  .cv-preview-panel {
-    overflow: hidden;
-  }
-
-  .cv-preview-shell {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-  }
-
-  .cv-preview {
-    transform-origin: top center;
-  }
-}
-
-/* Tablet/mobile: make CV fully responsive */
-@media (max-width: 1180px) {
-  .cv-preview-shell {
-    padding: 14px !important;
-  }
-
-  .cv-preview {
-    width: 100% !important;
-  }
-
-  .cv-doc,
-  .cv-template-classic-clean .cv-doc,
-  .cv-template-minimalist-pro .cv-doc,
-  .cv-template-tech-stack .cv-doc {
-    padding: 34px 24px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .cv-preview-shell {
-    padding: 12px !important;
-  }
-
-  .cv-preview {
-    width: 100% !important;
-    min-height: auto !important;
-  }
-
-  .cv-doc,
-  .cv-template-classic-clean .cv-doc,
-  .cv-template-minimalist-pro .cv-doc,
-  .cv-template-tech-stack .cv-doc {
-    padding: 28px 18px !important;
-  }
-
-  .cv-name {
-    font-size: 1.9rem !important;
-  }
-
-  .cv-role {
-    font-size: 0.98rem !important;
   }
 
   .cv-section {
-    margin-top: 16px !important;
+    margin-top: 12px !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
   }
 
-  .cv-section-title {
-    font-size: 0.78rem !important;
+  .cv-section-title,
+  .cv-item-title,
+  .cv-item-meta {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
   }
 
+  .cv-item,
+  .cv-section li,
+  .cv-section p {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .cv-name { font-size: 30px !important; }
+  .cv-role { font-size: 14px !important; }
+  .cv-section-title { font-size: 13px !important; }
   .cv-section p,
-  .cv-section li {
-    font-size: 0.82rem !important;
-  }
+  .cv-section li { font-size: 12px !important; line-height: 1.45 !important; }
 
-  .cv-skill {
-    font-size: 0.74rem !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .cv-preview-shell {
-    padding: 10px !important;
-  }
-
-  .cv-doc,
-  .cv-template-classic-clean .cv-doc,
-  .cv-template-minimalist-pro .cv-doc,
-  .cv-template-tech-stack .cv-doc {
-    padding: 24px 14px !important;
-  }
-
-  .cv-name {
-    font-size: 1.65rem !important;
-  }
-
-  .cv-contact-list,
-  .cv-link-list {
+  .cv-template-modern-sidebar .cv-doc {
     display: grid !important;
-    gap: 5px !important;
+    grid-template-columns: 62mm 1fr !important;
+    gap: 9mm !important;
+    min-height: auto !important;
+  }
+
+  .cv-template-modern-sidebar .cv-sidebar {
+    padding: 10mm 7mm !important;
+    background: #111827 !important;
+  }
+
+  .cv-template-modern-sidebar .cv-main {
+    padding: 10mm 0 !important;
+  }
+
+  .cv-template-executive-bold .cv-header {
+    margin: 0 0 14px !important;
+    padding: 10mm !important;
+    background: #111827 !important;
+  }
+
+  .cv-template-tech-stack .cv-doc {
+    border-left: 6px solid #22c55e !important;
+    padding-left: 8mm !important;
   }
 }
 
-/* Keep print/PDF A4 correct */
-@media print {
-  @page {
-    size: A4;
-    margin: 0;
-  }
-
-  html,
-  body {
-    width: 210mm !important;
-    height: 297mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #ffffff !important;
-    overflow: hidden !important;
-  }
-
-  body.print-cv * {
-    visibility: hidden !important;
-  }
-
-  body.print-cv #cvPreview,
-  body.print-cv #cvPreview * {
-    visibility: visible !important;
-  }
-
-  body.print-cv #cvPreview {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 210mm !important;
-    height: 297mm !important;
-    max-width: none !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    background: #ffffff !important;
-  }
-
-  body.print-cv #cvPreview .cv-doc {
-    width: 210mm !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
-    overflow: hidden !important;
-  }
-
-  body.print-cv .cv-preview-shell {
-    padding: 0 !important;
-    border: 0 !important;
-    background: transparent !important;
-    overflow: visible !important;
-  }
+@media (max-width: 1100px) {
+  .cv-template-cards { grid-template-columns: repeat(2, 1fr); }
+  .cv-preview { width: 794px; }
 }
 
-/* ================================
-   AI CV Maker Layout Cleanup
-   Preview Top + Form Bottom
-   Paste at bottom of style.css
-================================ */
-
-/* Main builder layout: preview first, form second */
-.cv-builder-layout {
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 34px !important;
-  align-items: stretch !important;
-}
-
-/* Move preview above form without changing HTML */
-.cv-preview-panel {
-  order: 1 !important;
-  position: relative !important;
-  top: auto !important;
-  overflow: hidden !important;
-}
-
-.cv-form-panel {
-  order: 2 !important;
-}
-
-/* Keep both panels clean and centered */
-.cv-form-panel,
-.cv-preview-panel {
-  width: 100% !important;
-  max-width: 1080px !important;
-  margin-inline: auto !important;
-}
-
-/* Builder header alignment */
-.cv-builder-section .tool-workspace-header {
-  max-width: 1080px !important;
-  margin-inline: auto !important;
-  margin-bottom: 30px !important;
-}
-
-/* Preview panel style */
-.cv-preview-panel {
-  padding: 28px !important;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
-    rgba(15, 23, 42, 0.78) !important;
-  border-radius: var(--radius-xl) !important;
-}
-
-/* Preview heading */
-.cv-preview-panel .tool-panel-header {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 18px !important;
-  margin-bottom: 20px !important;
-}
-
-/* Preview buttons */
-.cv-preview-toolbar {
-  display: flex !important;
-  justify-content: flex-start !important;
-  gap: 12px !important;
-  flex-wrap: wrap !important;
-  margin-bottom: 22px !important;
-}
-
-.cv-preview-toolbar .mini-btn {
-  min-height: 40px !important;
-  padding-inline: 16px !important;
-}
-
-/* Remove ugly preview scrollbars */
-.cv-preview-shell {
-  width: 100% !important;
-  max-height: none !important;
-  min-height: auto !important;
-  overflow: hidden !important;
-  padding: 24px !important;
-  border-radius: 24px !important;
-  background:
-    radial-gradient(circle at top left, rgba(124, 58, 237, 0.16), transparent 36%),
-    radial-gradient(circle at bottom right, rgba(204, 243, 129, 0.08), transparent 32%),
-    rgba(3, 7, 18, 0.36) !important;
-}
-
-/* CV should fit inside preview */
-.cv-preview {
-  width: 100% !important;
-  max-width: 794px !important;
-  min-height: auto !important;
-  margin: 0 auto !important;
-  overflow: hidden !important;
-  border-radius: 8px !important;
-}
-
-/* CV content should not force horizontal scroll */
-.cv-preview .cv-doc {
-  width: 100% !important;
-  min-height: auto !important;
-  overflow: hidden !important;
-}
-
-/* Fix long text overflow */
-.cv-preview *,
-.cv-contact-list,
-.cv-link-list,
-.cv-item-meta,
-.cv-section p,
-.cv-section li {
-  overflow-wrap: anywhere !important;
-  word-break: break-word !important;
-}
-
-/* Contact line clean */
-.cv-contact-list,
-.cv-link-list {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px 14px !important;
-}
-
-/* Output meta under CV */
-.output-meta {
-  max-width: 794px !important;
-  margin-inline: auto !important;
-  margin-top: 16px !important;
-}
-
-/* Better empty preview */
-.cv-empty-state {
-  min-height: 520px !important;
-}
-
-/* Form panel cleaner */
-.cv-form-panel {
-  padding: 28px !important;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025)),
-    rgba(15, 23, 42, 0.78) !important;
-  border-radius: var(--radius-xl) !important;
-}
-
-/* Cleaner form sections */
-.cv-form-section {
-  padding: 24px !important;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018)),
-    rgba(15, 23, 42, 0.58) !important;
-  border: 1px solid rgba(255, 255, 255, 0.09) !important;
-  border-radius: 22px !important;
-}
-
-/* Better form spacing */
-.cv-generator-form {
-  gap: 26px !important;
-}
-
-/* Inputs cleaner */
-.cv-generator-form .tool-input,
-.cv-generator-form .tool-select,
-.cv-generator-form .tool-textarea {
-  background: rgba(3, 7, 18, 0.44) !important;
-  border-color: rgba(255, 255, 255, 0.095) !important;
-}
-
-.cv-generator-form .tool-input:focus,
-.cv-generator-form .tool-select:focus,
-.cv-generator-form .tool-textarea:focus {
-  border-color: rgba(204, 243, 129, 0.45) !important;
-  box-shadow: 0 0 0 4px rgba(204, 243, 129, 0.08) !important;
-}
-
-/* Repeatable cards cleaner */
-.repeatable-card {
-  padding: 20px !important;
-  background: rgba(3, 7, 18, 0.28) !important;
-  border-radius: 20px !important;
-}
-
-/* Repeatable rows cleaner */
-.repeatable-row {
-  padding: 14px !important;
-  background: rgba(3, 7, 18, 0.22) !important;
-  border: 1px solid var(--border) !important;
-  border-radius: 18px !important;
-}
-
-/* Main action buttons */
-.cv-main-actions {
-  display: flex !important;
-  justify-content: flex-end !important;
-  gap: 14px !important;
-  flex-wrap: wrap !important;
-}
-
-.cv-main-actions .btn {
-  width: auto !important;
-  min-width: 210px !important;
-}
-
-/* Mobile cleanup */
 @media (max-width: 768px) {
-  .cv-form-panel,
-  .cv-preview-panel {
-    padding: 20px !important;
+  .cv-seo-intro-section,
+  .cv-template-section { padding: 64px 0; }
+
+  .cv-template-cards { grid-template-columns: 1fr; }
+  .cv-form-section { padding: 18px; }
+
+  .cv-form-section-header,
+  .cv-field-label-row,
+  .repeatable-card-header,
+  .split-header {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .cv-preview-panel .tool-panel-header {
-    display: block !important;
+  .form-grid.two-columns,
+  .repeatable-row,
+  .certification-row,
+  .language-row {
+    grid-template-columns: 1fr;
   }
 
-  .cv-form-section {
-    padding: 18px !important;
-  }
-
-  .split-header,
-  .cv-field-label-row {
-    align-items: stretch !important;
-    flex-direction: column !important;
-  }
-
-  .cv-main-actions {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-  }
-
-  .cv-main-actions .btn {
-    width: 100% !important;
-    min-width: 0 !important;
-  }
-
-  .cv-preview-toolbar {
-    display: grid !important;
-    grid-template-columns: 1fr !important;
-  }
-
-  .cv-preview-toolbar .mini-btn {
-    width: 100% !important;
-  }
-
-  .cv-preview-shell {
-    padding: 12px !important;
-  }
+  .cv-main-actions { display: grid; grid-template-columns: 1fr; }
+  .cv-main-actions .btn,
+  .cv-preview-toolbar .mini-btn { width: 100%; }
+  .cv-preview-shell { padding: 12px; }
 
   .cv-doc,
   .cv-template-classic-clean .cv-doc,
   .cv-template-minimalist-pro .cv-doc,
   .cv-template-tech-stack .cv-doc {
-    padding: 28px 18px !important;
+    padding: 30px 22px;
   }
 
-  .cv-name {
-    font-size: 1.75rem !important;
+  .cv-name { font-size: 26px; }
+
+  .cv-template-modern-sidebar .cv-doc {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
-  .cv-role {
-    font-size: 0.95rem !important;
+  .cv-template-modern-sidebar .cv-sidebar,
+  .cv-template-modern-sidebar .cv-main {
+    padding: 30px 22px;
   }
 
-  .cv-section-title {
-    font-size: 0.76rem !important;
-  }
-
-  .cv-section p,
-  .cv-section li {
-    font-size: 0.82rem !important;
-  }
+  .cv-template-executive-bold .cv-header { padding: 32px 22px 26px; }
+  .cv-template-executive-bold .cv-body { padding: 30px 22px; }
 }
 
 @media (max-width: 480px) {
-  .cv-preview-shell {
-    padding: 10px !important;
+  .cv-toast {
+    left: 14px;
+    right: 14px;
+    bottom: 14px;
+    max-width: none;
   }
 
-  .cv-doc,
-  .cv-template-classic-clean .cv-doc,
-  .cv-template-minimalist-pro .cv-doc,
-  .cv-template-tech-stack .cv-doc {
-    padding: 24px 14px !important;
-  }
-
-  .cv-contact-list,
-  .cv-link-list {
-    display: grid !important;
-    gap: 5px !important;
-  }
-}
-
-/* ================================
-   CV Generator Mobile/Desktop Print Fix
-   Print only CV preview
-================================ */
-
-@media print {
-  @page {
-    size: A4;
-    margin: 0;
-  }
-
-  html,
-  body {
-    width: 210mm !important;
-    height: 297mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    background: #ffffff !important;
-    overflow: hidden !important;
-  }
-
-  body.print-cv * {
-    visibility: hidden !important;
-  }
-
-  body.print-cv #cvPreview,
-  body.print-cv #cvPreview * {
-    visibility: visible !important;
-  }
-
-  body.print-cv #cvPreview {
-    position: fixed !important;
-    left: 0 !important;
-    top: 0 !important;
-    width: 210mm !important;
-    max-width: none !important;
-    height: 297mm !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
-    box-shadow: none !important;
-    border-radius: 0 !important;
-    background: #ffffff !important;
-    transform: none !important;
-  }
-
-  body.print-cv #cvPreview .cv-doc {
-    width: 210mm !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
-    overflow: hidden !important;
-    box-shadow: none !important;
-  }
-
-  body.print-cv .cv-preview-shell,
-  body.print-cv .cv-preview-panel,
-  body.print-cv main,
-  body.print-cv body {
-    padding: 0 !important;
-    margin: 0 !important;
-    border: 0 !important;
-    background: #ffffff !important;
-    overflow: visible !important;
-  }
-
-  body.print-cv .cv-section,
-  body.print-cv .cv-item {
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-  }
-
-  body.print-cv .cv-empty-state {
-    display: none !important;
-  }
-}
-
-/* ================================
-   CV Direct PDF Export - No Blank Fix
-================================ */
-
-body.is-generating-pdf {
-  overflow: hidden !important;
+  .cv-preview { transform-origin: top left; }
 }
 
 
@@ -10634,967 +9730,6 @@ body.menu-open {
   }
 }
 
-
-/* ================================
-   AI CV Maker Full PDF Export
-   Allows multi-page PDF
-================================ */
-
-.cv-pdf-export-wrapper {
-  position: fixed !important;
-  left: 0 !important;
-  top: 0 !important;
-  width: 794px !important;
-  min-height: 1123px !important;
-  background: #ffffff !important;
-  z-index: 2147483647 !important;
-  overflow: visible !important;
-  pointer-events: none !important;
-  opacity: 1 !important;
-}
-
-.cv-pdf-export-wrapper .cv-preview,
-.cv-pdf-export {
-  width: 794px !important;
-  min-width: 794px !important;
-  max-width: 794px !important;
-  min-height: 1123px !important;
-  height: auto !important;
-  max-height: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: #ffffff !important;
-  color: #111827 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  overflow: visible !important;
-  transform: none !important;
-}
-
-.cv-pdf-export-wrapper .cv-doc {
-  width: 794px !important;
-  max-width: 794px !important;
-  min-height: 1123px !important;
-  height: auto !important;
-  max-height: none !important;
-  overflow: visible !important;
-  background: #ffffff !important;
-  transform: none !important;
-}
-
-.cv-pdf-export-wrapper .cv-template-classic-clean .cv-doc {
-  padding: 54px 58px !important;
-}
-
-.cv-pdf-export-wrapper .cv-template-minimalist-pro .cv-doc {
-  padding: 64px 70px !important;
-}
-
-.cv-pdf-export-wrapper .cv-template-tech-stack .cv-doc {
-  padding: 48px 54px !important;
-}
-
-.cv-pdf-export-wrapper .cv-template-modern-sidebar .cv-doc {
-  display: grid !important;
-  grid-template-columns: 245px 1fr !important;
-  gap: 34px !important;
-  padding: 0 !important;
-}
-
-.cv-pdf-export-wrapper .cv-template-executive-bold .cv-doc {
-  padding: 0 !important;
-}
-
-.cv-pdf-export-wrapper * {
-  box-sizing: border-box !important;
-}
-
-.cv-pdf-export-wrapper .cv-section,
-.cv-pdf-export-wrapper .cv-item {
-  break-inside: auto !important;
-  page-break-inside: auto !important;
-}
-
-    /* ================================
-       Homepage AI CV Maker Highlight
-    ================================ */
-
-    .featured-ai-tool-section {
-      padding: 90px 0;
-      position: relative;
-    }
-
-    .featured-ai-tool-section::before {
-      content: "";
-      position: absolute;
-      inset: 20% auto auto 50%;
-      width: 520px;
-      height: 520px;
-      background: radial-gradient(circle, rgba(204, 243, 129, 0.12), transparent 70%);
-      transform: translateX(-50%);
-      pointer-events: none;
-      z-index: -1;
-    }
-
-    .featured-ai-tool-card {
-      display: grid;
-      grid-template-columns: 1.08fr 0.92fr;
-      gap: 34px;
-      align-items: center;
-      padding: 34px;
-      border: 1px solid rgba(204, 243, 129, 0.24);
-      background:
-        radial-gradient(circle at top left, rgba(204, 243, 129, 0.12), transparent 34%),
-        radial-gradient(circle at bottom right, rgba(124, 58, 237, 0.14), transparent 38%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.065), rgba(255, 255, 255, 0.025)),
-        rgba(15, 23, 42, 0.82);
-      border-radius: var(--radius-xl);
-      box-shadow:
-        var(--shadow-card),
-        0 0 0 4px rgba(204, 243, 129, 0.04);
-      overflow: hidden;
-    }
-
-    .featured-ai-content h2 {
-      max-width: 760px;
-      margin: 12px 0 14px;
-      color: var(--text-main);
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      line-height: 1.02;
-      letter-spacing: -0.07em;
-    }
-
-    .featured-ai-content p {
-      max-width: 720px;
-      color: var(--text-muted);
-      font-size: 1rem;
-      line-height: 1.8;
-    }
-
-    .featured-ai-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 24px;
-    }
-
-    .featured-ai-preview {
-      display: grid;
-      place-items: center;
-    }
-
-    .mini-cv-preview {
-      width: 100%;
-      max-width: 410px;
-      padding: 26px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: #ffffff;
-      color: #111827;
-      border-radius: 24px;
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.36);
-      transform: rotate(1deg);
-    }
-
-    .mini-cv-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding-bottom: 18px;
-      border-bottom: 2px solid #111827;
-    }
-
-    .mini-cv-header > span {
-      width: 54px;
-      height: 54px;
-      display: block;
-      background: linear-gradient(135deg, #7c3aed, #ccf381);
-      border-radius: 16px;
-    }
-
-    .mini-cv-header strong {
-      display: block;
-      color: #111827;
-      font-size: 1rem;
-      font-weight: 900;
-    }
-
-    .mini-cv-header small {
-      display: block;
-      margin-top: 4px;
-      color: #64748b;
-      font-size: 0.78rem;
-      font-weight: 800;
-    }
-
-    .mini-cv-lines {
-      display: grid;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .mini-cv-lines .line {
-      display: block;
-      height: 10px;
-      background: #e2e8f0;
-      border-radius: 999px;
-    }
-
-    .mini-cv-lines .big {
-      width: 92%;
-      height: 14px;
-      background: #111827;
-    }
-
-    .mini-cv-lines .medium {
-      width: 72%;
-    }
-
-    .mini-cv-lines .small {
-      width: 52%;
-    }
-
-    .mini-cv-lines .full {
-      width: 100%;
-    }
-
-    .mini-cv-tags {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 22px;
-    }
-
-    .mini-cv-tags span {
-      padding: 7px 10px;
-      background: #eef2ff;
-      color: #3730a3;
-      border-radius: 999px;
-      font-size: 0.76rem;
-      font-weight: 900;
-    }
-
-    .ai-cv-tool-card {
-      border-color: rgba(204, 243, 129, 0.38) !important;
-      background:
-        radial-gradient(circle at top right, rgba(204, 243, 129, 0.13), transparent 42%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.025)),
-        rgba(15, 23, 42, 0.78) !important;
-    }
-
-    .ai-cv-tool-card .tool-icon {
-      background: rgba(204, 243, 129, 0.12);
-      color: var(--accent);
-      border-color: rgba(204, 243, 129, 0.25);
-    }
-
-    @media (max-width: 900px) {
-      .featured-ai-tool-card {
-        grid-template-columns: 1fr;
-        padding: 24px;
-      }
-
-      .featured-ai-preview {
-        order: -1;
-      }
-
-      .mini-cv-preview {
-        transform: none;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .featured-ai-tool-section {
-        padding: 64px 0;
-      }
-
-      .featured-ai-actions {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      .featured-ai-actions .btn {
-        width: 100%;
-      }
-
-      .mini-cv-preview {
-        padding: 20px;
-      }
-    }
-
-
-    /* =========================================================
-   AI CV Maker - Professional CV Format Upgrade
-   Add at bottom of style.css
-========================================================= */
-
-/* Screen preview shell */
-.cv-preview {
-  background: #ffffff !important;
-  color: #111827 !important;
-  font-family: Arial, Helvetica, sans-serif !important;
-  line-height: 1.45 !important;
-}
-
-/* Base document */
-.cv-doc {
-  padding: 52px 58px !important;
-  background: #ffffff !important;
-  color: #111827 !important;
-}
-
-/* Header */
-.cv-header {
-  margin-bottom: 24px !important;
-  padding-bottom: 18px !important;
-  border-bottom: 2px solid #111827 !important;
-}
-
-.cv-name {
-  margin: 0 0 8px !important;
-  color: #111827 !important;
-  font-size: 2.35rem !important;
-  line-height: 1 !important;
-  letter-spacing: -0.045em !important;
-  font-weight: 900 !important;
-}
-
-.cv-role {
-  margin: 0 0 12px !important;
-  color: #334155 !important;
-  font-size: 1.05rem !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.01em !important;
-}
-
-/* Contact row */
-.cv-contact-list,
-.cv-link-list {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 7px 14px !important;
-  color: #475569 !important;
-  font-size: 0.82rem !important;
-  font-weight: 700 !important;
-  line-height: 1.4 !important;
-}
-
-.cv-link-list {
-  margin-top: 7px !important;
-}
-
-.cv-link-list a {
-  color: #2563eb !important;
-  text-decoration: none !important;
-  overflow-wrap: anywhere !important;
-}
-
-/* Sections */
-.cv-section {
-  margin-top: 20px !important;
-  break-inside: avoid !important;
-  page-break-inside: avoid !important;
-}
-
-.cv-section-title {
-  margin: 0 0 9px !important;
-  padding-bottom: 5px !important;
-  color: #111827 !important;
-  border-bottom: 1px solid #cbd5e1 !important;
-  font-size: 0.82rem !important;
-  line-height: 1.2 !important;
-  font-weight: 900 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
-}
-
-/* Paragraphs and bullets */
-.cv-section p,
-.cv-section li {
-  color: #334155 !important;
-  font-size: 0.86rem !important;
-  line-height: 1.52 !important;
-}
-
-.cv-section p {
-  margin: 0 !important;
-}
-
-.cv-section ul {
-  display: grid !important;
-  gap: 4px !important;
-  margin: 0 !important;
-  padding-left: 18px !important;
-  list-style: disc !important;
-}
-
-.cv-section li::marker {
-  color: #111827 !important;
-}
-
-/* Items */
-.cv-item {
-  margin-bottom: 14px !important;
-  break-inside: avoid !important;
-  page-break-inside: avoid !important;
-}
-
-.cv-item:last-child {
-  margin-bottom: 0 !important;
-}
-
-.cv-item-title {
-  margin: 0 0 3px !important;
-  color: #111827 !important;
-  font-size: 0.98rem !important;
-  line-height: 1.3 !important;
-  font-weight: 900 !important;
-}
-
-.cv-item-meta {
-  margin: 0 0 6px !important;
-  color: #64748b !important;
-  font-size: 0.76rem !important;
-  line-height: 1.4 !important;
-  font-weight: 800 !important;
-}
-
-/* Skills */
-.cv-skills {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 6px !important;
-}
-
-.cv-skill {
-  display: inline-flex !important;
-  padding: 5px 8px !important;
-  background: #f1f5f9 !important;
-  color: #334155 !important;
-  border: 1px solid #e2e8f0 !important;
-  border-radius: 999px !important;
-  font-size: 0.75rem !important;
-  line-height: 1.2 !important;
-  font-weight: 800 !important;
-}
-
-/* Long text fix */
-.cv-preview *,
-.cv-pdf-export-wrapper * {
-  overflow-wrap: anywhere !important;
-  word-break: normal !important;
-}
-
-/* =========================================================
-   Template Improvements
-========================================================= */
-
-/* Classic Clean */
-.cv-template-classic-clean .cv-doc {
-  font-family: Georgia, "Times New Roman", serif !important;
-}
-
-.cv-template-classic-clean .cv-role,
-.cv-template-classic-clean .cv-section-title,
-.cv-template-classic-clean .cv-contact-list,
-.cv-template-classic-clean .cv-link-list,
-.cv-template-classic-clean .cv-skill {
-  font-family: Arial, Helvetica, sans-serif !important;
-}
-
-/* Minimalist Pro */
-.cv-template-minimalist-pro .cv-doc {
-  padding: 62px 70px !important;
-}
-
-.cv-template-minimalist-pro .cv-header {
-  text-align: center !important;
-  border-bottom: 1px solid #e5e7eb !important;
-}
-
-.cv-template-minimalist-pro .cv-contact-list,
-.cv-template-minimalist-pro .cv-link-list {
-  justify-content: center !important;
-}
-
-.cv-template-minimalist-pro .cv-section-title {
-  text-align: left !important;
-}
-
-/* Executive Bold */
-.cv-template-executive-bold .cv-doc {
-  padding: 0 !important;
-}
-
-.cv-template-executive-bold .cv-header {
-  margin: 0 !important;
-  padding: 44px 54px 32px !important;
-  background: #111827 !important;
-  border-bottom: 0 !important;
-}
-
-.cv-template-executive-bold .cv-name,
-.cv-template-executive-bold .cv-role,
-.cv-template-executive-bold .cv-contact-list,
-.cv-template-executive-bold .cv-link-list,
-.cv-template-executive-bold .cv-link-list a {
-  color: #ffffff !important;
-}
-
-.cv-template-executive-bold .cv-role {
-  color: #ccf381 !important;
-}
-
-.cv-template-executive-bold .cv-body {
-  padding: 38px 54px 54px !important;
-}
-
-.cv-template-executive-bold .cv-section-title {
-  display: inline-flex !important;
-  width: fit-content !important;
-  padding: 7px 12px !important;
-  background: #111827 !important;
-  color: #ffffff !important;
-  border: 0 !important;
-  border-radius: 999px !important;
-}
-
-/* Tech Stack */
-.cv-template-tech-stack .cv-doc {
-  padding: 50px 56px !important;
-  border-left: 9px solid #22c55e !important;
-}
-
-.cv-template-tech-stack .cv-header {
-  padding: 24px !important;
-  background: #0f172a !important;
-  border-bottom: 0 !important;
-  border-radius: 16px !important;
-}
-
-.cv-template-tech-stack .cv-name,
-.cv-template-tech-stack .cv-role,
-.cv-template-tech-stack .cv-contact-list,
-.cv-template-tech-stack .cv-link-list,
-.cv-template-tech-stack .cv-link-list a {
-  color: #ffffff !important;
-}
-
-.cv-template-tech-stack .cv-role {
-  color: #ccf381 !important;
-  font-family: Consolas, Monaco, monospace !important;
-}
-
-.cv-template-tech-stack .cv-section-title {
-  color: #15803d !important;
-  font-family: Consolas, Monaco, monospace !important;
-}
-
-/* Modern Sidebar */
-.cv-template-modern-sidebar .cv-doc {
-  display: grid !important;
-  grid-template-columns: 245px 1fr !important;
-  gap: 34px !important;
-  padding: 0 !important;
-  min-height: 1123px !important;
-}
-
-.cv-template-modern-sidebar .cv-sidebar {
-  padding: 44px 26px !important;
-  background: #111827 !important;
-  color: #ffffff !important;
-}
-
-.cv-template-modern-sidebar .cv-main {
-  padding: 44px 44px 44px 0 !important;
-}
-
-.cv-template-modern-sidebar .cv-header {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.22) !important;
-}
-
-.cv-template-modern-sidebar .cv-name,
-.cv-template-modern-sidebar .cv-role,
-.cv-template-modern-sidebar .cv-sidebar .cv-section-title,
-.cv-template-modern-sidebar .cv-sidebar p,
-.cv-template-modern-sidebar .cv-sidebar li,
-.cv-template-modern-sidebar .cv-sidebar span,
-.cv-template-modern-sidebar .cv-sidebar a {
-  color: #ffffff !important;
-}
-
-.cv-template-modern-sidebar .cv-role {
-  color: #ccf381 !important;
-}
-
-/* =========================================================
-   PDF Export Professional Fix
-========================================================= */
-
-.cv-pdf-export-wrapper {
-  position: fixed !important;
-  left: 0 !important;
-  top: 0 !important;
-  width: 794px !important;
-  min-height: 1123px !important;
-  background: #ffffff !important;
-  z-index: 2147483647 !important;
-  overflow: visible !important;
-  pointer-events: none !important;
-  opacity: 1 !important;
-}
-
-.cv-pdf-export-wrapper .cv-preview,
-.cv-pdf-export {
-  width: 794px !important;
-  min-width: 794px !important;
-  max-width: 794px !important;
-  min-height: 1123px !important;
-  height: auto !important;
-  max-height: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: #ffffff !important;
-  color: #111827 !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  overflow: visible !important;
-  transform: none !important;
-}
-
-.cv-pdf-export-wrapper .cv-doc {
-  width: 794px !important;
-  max-width: 794px !important;
-  min-height: 1123px !important;
-  height: auto !important;
-  max-height: none !important;
-  overflow: visible !important;
-  background: #ffffff !important;
-  transform: none !important;
-}
-
-/* Avoid starting sections too tight when PDF slices */
-.cv-pdf-export-wrapper .cv-section {
-  margin-top: 22px !important;
-}
-
-.cv-pdf-export-wrapper .cv-item {
-  margin-bottom: 16px !important;
-}
-
-/* Mobile preview only */
-@media (max-width: 768px) {
-  .cv-doc,
-  .cv-template-classic-clean .cv-doc,
-  .cv-template-minimalist-pro .cv-doc,
-  .cv-template-tech-stack .cv-doc {
-    padding: 30px 20px !important;
-  }
-
-  .cv-name {
-    font-size: 1.85rem !important;
-  }
-
-  .cv-section p,
-  .cv-section li {
-    font-size: 0.82rem !important;
-  }
-
-  .cv-template-executive-bold .cv-header {
-    padding: 32px 22px 26px !important;
-  }
-
-  .cv-template-executive-bold .cv-body {
-    padding: 30px 22px !important;
-  }
-}
-
-
-/* =========================================================
-   AI CV MAKER - FINAL PROFESSIONAL CV FIX
-   Paste at the VERY BOTTOM of style.css
-========================================================= */
-
-/* ===== Base CV Preview ===== */
-.cv-preview,
-.cv-pdf-export,
-.cv-pdf-export-wrapper .cv-preview {
-  background: #ffffff !important;
-  color: #1e293b !important;
-  font-family: Arial, Helvetica, sans-serif !important;
-  line-height: 1.45 !important;
-}
-
-.cv-doc,
-.cv-pdf-export-wrapper .cv-doc {
-  width: 100% !important;
-  min-height: auto !important;
-  height: auto !important;
-  background: #ffffff !important;
-  color: #1e293b !important;
-  padding: 28px 34px 32px !important; /* reduced top space */
-  margin: 0 !important;
-  box-shadow: none !important;
-  overflow: visible !important;
-}
-
-/* ===== Header ===== */
-.cv-header {
-  margin: 0 0 16px !important;
-  padding: 0 0 12px !important;
-  border-bottom: 2px solid #1f2937 !important;
-}
-
-.cv-name {
-  margin: 0 0 4px !important;
-  font-size: 2.1rem !important;
-  line-height: 1.02 !important;
-  font-weight: 900 !important;
-  letter-spacing: -0.04em !important;
-  color: #0f172a !important;
-}
-
-.cv-role {
-  margin: 0 0 10px !important;
-  font-size: 1rem !important;
-  font-weight: 800 !important;
-  color: #334155 !important;
-}
-
-/* ===== Contact + Links ===== */
-.cv-contact-list,
-.cv-link-list {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 6px 16px !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  list-style: none !important;
-  font-size: 0.9rem !important;
-  font-weight: 700 !important;
-  color: #475569 !important;
-}
-
-.cv-link-list {
-  margin-top: 8px !important;
-}
-
-.cv-link-list a,
-.cv-contact-list a,
-.cv-item a {
-  color: #2563eb !important;
-  text-decoration: none !important;
-  font-weight: 700 !important;
-  word-break: break-word !important;
-}
-
-.cv-link-list a:hover,
-.cv-contact-list a:hover,
-.cv-item a:hover {
-  text-decoration: underline !important;
-}
-
-/* ===== Sections ===== */
-.cv-section {
-  margin-top: 16px !important;
-  page-break-inside: avoid !important;
-  break-inside: avoid !important;
-}
-
-.cv-section:first-of-type {
-  margin-top: 0 !important;
-}
-
-.cv-section-title {
-  margin: 0 0 8px !important;
-  padding: 0 0 5px !important;
-  border-bottom: 1px solid #cbd5e1 !important;
-  font-size: 0.84rem !important;
-  font-weight: 900 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
-  color: #0f172a !important;
-}
-
-/* ===== Paragraphs ===== */
-.cv-section p,
-.cv-item p,
-.cv-item-meta,
-.cv-item-description {
-  margin: 0 !important;
-  color: #334155 !important;
-  font-size: 0.88rem !important;
-  line-height: 1.52 !important;
-}
-
-/* ===== Items ===== */
-.cv-item {
-  margin-bottom: 12px !important;
-  page-break-inside: avoid !important;
-  break-inside: avoid !important;
-}
-
-.cv-item:last-child {
-  margin-bottom: 0 !important;
-}
-
-.cv-item-title {
-  margin: 0 0 2px !important;
-  font-size: 1rem !important;
-  line-height: 1.3 !important;
-  font-weight: 900 !important;
-  color: #0f172a !important;
-}
-
-.cv-item-meta {
-  margin: 0 0 6px !important;
-  font-size: 0.82rem !important;
-  color: #475569 !important;
-  font-weight: 700 !important;
-}
-
-/* ===== Bullet Lists Fix ===== */
-.cv-section ul,
-.cv-item ul {
-  margin: 6px 0 0 !important;
-  padding: 0 0 0 18px !important;
-  list-style: disc !important;
-}
-
-.cv-section li,
-.cv-item li {
-  margin: 0 0 4px !important;
-  padding-left: 0 !important;
-  color: #334155 !important;
-  font-size: 0.88rem !important;
-  line-height: 1.45 !important;
-  text-align: left !important;
-}
-
-.cv-section li::marker,
-.cv-item li::marker {
-  color: #334155 !important;
-}
-
-/* ===== Skills Fix ===== */
-.cv-skills {
-  display: flex !important;
-  flex-wrap: wrap !important;
-  gap: 8px !important;
-  margin-top: 4px !important;
-}
-
-.cv-skill {
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  min-height: 32px !important;
-  padding: 0 12px !important;
-  border-radius: 999px !important;
-  background: #f1f5f9 !important;
-  border: 1px solid #dbe2ea !important;
-  color: #334155 !important;
-  font-size: 0.82rem !important;
-  font-weight: 800 !important;
-  line-height: 1 !important;
-  text-align: center !important;
-  white-space: nowrap !important;
-}
-
-/* ===== PDF Export Wrapper ===== */
-.cv-pdf-export-wrapper {
-  position: fixed !important;
-  left: 0 !important;
-  top: 0 !important;
-  width: 794px !important;
-  background: #ffffff !important;
-  z-index: 2147483647 !important;
-  opacity: 1 !important;
-  overflow: visible !important;
-  pointer-events: none !important;
-}
-
-.cv-pdf-export-wrapper .cv-preview,
-.cv-pdf-export {
-  width: 794px !important;
-  max-width: 794px !important;
-  min-width: 794px !important;
-  background: #ffffff !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  overflow: visible !important;
-}
-
-.cv-pdf-export-wrapper .cv-doc {
-  width: 794px !important;
-  max-width: 794px !important;
-  padding: 22px 34px 28px !important; /* reduced even more for PDF */
-  background: #ffffff !important;
-}
-
-/* ===== Template polish ===== */
-.cv-template-classic-clean .cv-doc {
-  font-family: Georgia, "Times New Roman", serif !important;
-}
-
-.cv-template-classic-clean .cv-role,
-.cv-template-classic-clean .cv-contact-list,
-.cv-template-classic-clean .cv-link-list,
-.cv-template-classic-clean .cv-section-title,
-.cv-template-classic-clean .cv-skill {
-  font-family: Arial, Helvetica, sans-serif !important;
-}
-
-/* ===== Mobile preview ===== */
-@media (max-width: 768px) {
-  .cv-doc {
-    padding: 22px 18px 24px !important;
-  }
-
-  .cv-name {
-    font-size: 1.8rem !important;
-  }
-
-  .cv-contact-list,
-  .cv-link-list {
-    gap: 6px 10px !important;
-    font-size: 0.82rem !important;
-  }
-
-  .cv-skill {
-    min-height: 30px !important;
-    padding: 0 10px !important;
-    font-size: 0.78rem !important;
-  }
-}
-
-
-.footer-social-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 18px;
-}
-
-.footer-social-links a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 8px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  color: #ffffff;
-  font-size: 14px;
-  text-decoration: none;
-  transition: 0.25s ease;
-}
-
-.footer-social-links a:hover {
-  color: #000000;
-  background: #9dff57;
-  border-color: #9dff57;
-  transform: translateY(-2px);
-}
-
 /* ================================
    Extra Small Mobile Hero Fix
    320px - 380px screens
@@ -11742,5 +9877,214 @@ body {
   .featured-ai-tool-card {
     display: flex;
     flex-direction: column-reverse;
+  }
+}
+
+/* ================================
+   Final CV Print Override
+   Keeps multi-page PDF spacing clean
+================================ */
+
+.cv-pdf-export-wrapper,
+.cv-pdf-export-wrapper .cv-preview,
+.cv-pdf-export-wrapper .cv-doc {
+  height: auto !important;
+  min-height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 18mm 12mm 14mm 12mm;
+  }
+
+  html,
+  body,
+  .cv-preview,
+  .cv-doc {
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .cv-section,
+  .cv-item,
+  .cv-section p,
+  .cv-section li {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .cv-header,
+  .cv-section-title,
+  .cv-item-title,
+  .cv-item-meta {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+}
+
+/* ================================
+   FINAL HARD FIX - CV PRINT PAGE BREAKS
+   Purpose: reduce empty space before new pages and keep headings clean
+================================ */
+
+@media print {
+  @page {
+    size: A4;
+    margin: 10mm 12mm 12mm 12mm;
+  }
+
+  html,
+  body {
+    width: auto !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  .cv-preview,
+  .cv-preview * {
+    visibility: visible !important;
+  }
+
+  .cv-preview {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: 186mm !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    box-shadow: none !important;
+    overflow: visible !important;
+  }
+
+  .cv-doc,
+  .cv-template-classic-clean .cv-doc,
+  .cv-template-minimalist-pro .cv-doc,
+  .cv-template-tech-stack .cv-doc,
+  .cv-template-executive-bold .cv-doc,
+  .cv-template-executive-bold .cv-body {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+  }
+
+  /* Do NOT keep whole sections/items together. This was causing the huge blank area. */
+  .cv-section,
+  .cv-item,
+  .cv-section p,
+  .cv-section li,
+  .cv-section ul {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .cv-section {
+    margin-top: 10px !important;
+  }
+
+  .cv-section-title {
+    margin: 0 0 6px !important;
+    padding-bottom: 3px !important;
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+    orphans: 2;
+    widows: 2;
+  }
+
+  .cv-item {
+    margin-bottom: 9px !important;
+  }
+
+  .cv-item-title,
+  .cv-item-meta {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .cv-header {
+    margin-bottom: 14px !important;
+    padding-bottom: 10px !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .cv-name {
+    font-size: 30px !important;
+    line-height: 1.05 !important;
+  }
+
+  .cv-role {
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+  }
+
+  .cv-section-title {
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+  }
+
+  .cv-section p,
+  .cv-section li {
+    font-size: 11.5px !important;
+    line-height: 1.38 !important;
+    margin-bottom: 3px !important;
+    orphans: 2;
+    widows: 2;
+  }
+
+  .cv-section ul {
+    margin-top: 5px !important;
+    padding-left: 16px !important;
+  }
+
+  .cv-skills {
+    justify-content: center !important;
+    gap: 5px 6px !important;
+  }
+
+  .cv-skill {
+    font-size: 10.5px !important;
+    padding: 4px 8px !important;
+    min-height: 22px !important;
+  }
+
+  .cv-template-modern-sidebar .cv-doc {
+    display: grid !important;
+    grid-template-columns: 58mm 1fr !important;
+    gap: 8mm !important;
+  }
+
+  .cv-template-modern-sidebar .cv-sidebar {
+    padding: 8mm 6mm !important;
+  }
+
+  .cv-template-modern-sidebar .cv-main {
+    padding: 8mm 0 !important;
   }
 }
