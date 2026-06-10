@@ -1433,110 +1433,127 @@ function createStandaloneHtml() {
   box-sizing: border-box;
 }
 
+@page {
+  size: A4;
+  margin: 12mm 12mm 14mm 12mm;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
-  background: #f1f5f9;
-  font-family: Arial, sans-serif;
+  background: #ffffff;
+  color: #111827;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: visible !important;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
 }
 
 body {
-  padding: 24px;
+  padding: 0;
 }
 
+/* Main CV */
 .cv-preview {
-  width: 794px;
-  min-height: 1123px;
+  width: 100%;
+  max-width: 186mm;
   margin: 0 auto;
   background: #ffffff;
   color: #111827;
-  overflow: hidden;
-  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
+  box-shadow: none !important;
+  overflow: visible !important;
 }
 
 .cv-doc {
-  padding: 46px 52px;
-  color: #111827;
+  width: 100%;
+  min-height: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  padding: 0;
   background: #ffffff;
+  color: #111827;
+  overflow: visible !important;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Header */
 .cv-header {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #111827;
 }
 
 .cv-name {
+  margin: 0 0 4px;
   color: #111827;
-  font-size: 2.35rem;
-  line-height: 1;
-  letter-spacing: -0.055em;
-  margin: 0 0 8px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 30px;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 800;
 }
 
 .cv-role {
-  color: #4f46e5;
-  font-size: 1.05rem;
-  font-weight: 900;
-  margin: 0 0 14px;
+  margin: 0 0 10px;
+  color: #111827;
+  font-size: 14px;
+  line-height: 1.2;
+  font-weight: 800;
 }
 
 .cv-contact-list,
 .cv-link-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 16px;
-  color: #475569;
-  font-size: 0.86rem;
+  gap: 6px 16px;
+  align-items: center;
+  margin-top: 7px;
+  color: #4b5563;
+  font-size: 11px;
+  line-height: 1.4;
   font-weight: 700;
 }
 
-.cv-link-list {
-  margin-top: 8px;
-}
-
 .cv-link-list a {
-  color: #4f46e5;
+  color: #2563eb;
   text-decoration: none;
 }
 
+/* Sections */
 .cv-section {
-  margin-top: 20px;
-  break-inside: avoid;
-  page-break-inside: avoid;
+  margin-top: 13px;
+  break-inside: auto;
+  page-break-inside: auto;
 }
 
 .cv-section-title {
+  margin: 0 0 7px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #cbd5e1;
   color: #111827;
-  font-size: 0.86rem;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12.5px;
+  line-height: 1.2;
   font-weight: 900;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  margin: 0 0 8px;
-}
-
-.cv-section p,
-.cv-section li {
-  color: #334155;
-  font-size: 0.88rem;
-  line-height: 1.55;
+  break-after: avoid;
+  page-break-after: avoid;
 }
 
 .cv-section p {
-  margin: 0;
+  margin: 0 0 6px;
+  color: #1f2937;
+  font-size: 11.5px;
+  line-height: 1.42;
 }
 
-.cv-section ul {
-  display: grid;
-  gap: 5px;
-  padding-left: 18px;
-  margin: 0;
-  list-style: disc;
-}
-
+/* Items */
 .cv-item {
-  margin-bottom: 14px;
-  break-inside: avoid;
-  page-break-inside: avoid;
+  margin-bottom: 10px;
+  break-inside: auto;
+  page-break-inside: auto;
 }
 
 .cv-item:last-child {
@@ -1544,79 +1561,100 @@ body {
 }
 
 .cv-item-title {
+  margin: 0 0 2px;
   color: #111827;
-  font-size: 0.98rem;
+  font-size: 12.5px;
+  line-height: 1.25;
   font-weight: 900;
-  margin: 0 0 3px;
+  break-after: avoid;
+  page-break-after: avoid;
 }
 
 .cv-item-meta {
-  color: #64748b;
-  font-size: 0.78rem;
-  font-weight: 800;
-  margin: 0 0 6px;
+  margin: 0 0 5px;
+  color: #374151;
+  font-size: 10.5px;
+  line-height: 1.3;
+  font-weight: 700;
+  break-after: avoid;
+  page-break-after: avoid;
 }
 
+/* Skills */
 .cv-skills {
   display: flex;
   flex-wrap: wrap;
-  gap: 7px;
+  justify-content: center;
+  align-items: center;
+  gap: 6px 7px;
+  margin: 8px auto 2px;
+  text-align: center;
 }
 
 .cv-skill {
   display: inline-flex;
-  padding: 6px 9px;
+  align-items: center;
+  justify-content: center;
+  min-height: 22px;
+  padding: 4px 9px;
+  border: 1px solid #dbe3ea;
+  border-radius: 999px;
   background: #f1f5f9;
   color: #334155;
-  border-radius: 999px;
-  font-size: 0.78rem;
-  font-weight: 900;
+  font-size: 10.5px;
+  line-height: 1.2;
+  font-weight: 800;
+  text-align: center;
+}
+
+/* Bullets */
+.cv-section ul {
+  margin: 5px 0 0;
+  padding-left: 17px;
+  list-style: disc;
+  list-style-position: outside;
+}
+
+.cv-section li {
+  margin: 0 0 3px;
+  padding-left: 2px;
+  color: #1f2937;
+  font-size: 11.5px;
+  line-height: 1.42;
+  text-align: left;
+  break-inside: auto;
+  page-break-inside: auto;
 }
 
 /* Classic Clean */
 .cv-template-classic-clean .cv-doc {
-  font-family: Georgia, "Times New Roman", serif;
-  padding: 54px 58px;
-}
-
-.cv-template-classic-clean .cv-header {
-  padding-bottom: 18px;
-  border-bottom: 2px solid #111827;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .cv-template-classic-clean .cv-name {
   font-family: Georgia, "Times New Roman", serif;
-  letter-spacing: -0.035em;
 }
 
 .cv-template-classic-clean .cv-role {
-  color: #111827;
-  font-family: Arial, sans-serif;
-}
-
-.cv-template-classic-clean .cv-section-title {
-  font-family: Arial, sans-serif;
-  border-bottom: 1px solid #cbd5e1;
-  padding-bottom: 5px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Modern Sidebar */
 .cv-template-modern-sidebar .cv-doc {
   display: grid;
-  grid-template-columns: 245px 1fr;
-  gap: 34px;
-  padding: 0;
-  min-height: 1123px;
+  grid-template-columns: 58mm 1fr;
+  gap: 8mm;
+  min-height: auto !important;
 }
 
 .cv-template-modern-sidebar .cv-sidebar {
-  padding: 44px 28px;
+  padding: 8mm 6mm;
   background: #111827;
   color: #ffffff;
 }
 
 .cv-template-modern-sidebar .cv-main {
-  padding: 44px 46px 44px 0;
+  padding: 8mm 0;
 }
 
 .cv-template-modern-sidebar .cv-name,
@@ -1636,16 +1674,12 @@ body {
 .cv-template-modern-sidebar .cv-sidebar .cv-skill {
   background: rgba(204, 243, 129, 0.14);
   color: #ccf381;
+  border-color: rgba(204, 243, 129, 0.25);
 }
 
 /* Minimalist Pro */
-.cv-template-minimalist-pro .cv-doc {
-  padding: 64px 70px;
-}
-
 .cv-template-minimalist-pro .cv-header {
   text-align: center;
-  padding-bottom: 18px;
   border-bottom: 1px solid #e5e7eb;
 }
 
@@ -1655,14 +1689,12 @@ body {
 }
 
 /* Executive Bold */
-.cv-template-executive-bold .cv-doc {
-  padding: 0;
-}
-
 .cv-template-executive-bold .cv-header {
-  padding: 44px 52px 34px;
+  padding: 10mm;
+  margin-bottom: 14px;
   background: #111827;
   color: #ffffff;
+  border-bottom: 0;
 }
 
 .cv-template-executive-bold .cv-name,
@@ -1674,20 +1706,21 @@ body {
 }
 
 .cv-template-executive-bold .cv-body {
-  padding: 36px 52px 48px;
+  padding: 0;
 }
 
 /* Tech Stack */
 .cv-template-tech-stack .cv-doc {
-  padding: 48px 54px;
-  border-left: 10px solid #22c55e;
+  border-left: 6px solid #22c55e;
+  padding-left: 8mm;
 }
 
 .cv-template-tech-stack .cv-header {
-  padding: 24px;
+  padding: 7mm;
   background: #0f172a;
-  border-radius: 18px;
+  border-radius: 12px;
   color: #ffffff;
+  border-bottom: 0;
 }
 
 .cv-template-tech-stack .cv-name,
@@ -1703,40 +1736,78 @@ body {
   font-family: Consolas, Monaco, monospace;
 }
 
+/* Print Rules */
 @media print {
   @page {
     size: A4;
-    margin: 0;
+    margin: 12mm 12mm 14mm 12mm;
   }
 
   html,
   body {
-    width: 210mm;
-    height: 297mm;
+    width: auto !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
     margin: 0 !important;
     padding: 0 !important;
     background: #ffffff !important;
-    overflow: hidden !important;
+    overflow: visible !important;
   }
 
   .cv-preview {
-    width: 210mm !important;
-    height: 297mm !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
-    margin: 0 !important;
+    width: 100% !important;
+    max-width: 186mm !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    margin: 0 auto !important;
     padding: 0 !important;
+    background: #ffffff !important;
     box-shadow: none !important;
-    overflow: hidden !important;
-    page-break-after: avoid !important;
-    page-break-before: avoid !important;
+    overflow: visible !important;
   }
 
   .cv-doc {
-    width: 210mm !important;
-    min-height: 297mm !important;
-    max-height: 297mm !important;
-    overflow: hidden !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+  }
+
+  .cv-section {
+    margin-top: 12px !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .cv-item {
+    margin-bottom: 9px !important;
+    break-inside: auto !important;
+    page-break-inside: auto !important;
+  }
+
+  .cv-header {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  .cv-section-title,
+  .cv-item-title,
+  .cv-item-meta,
+  h1,
+  h2,
+  h3 {
+    break-after: avoid !important;
+    page-break-after: avoid !important;
+  }
+
+  .cv-section li,
+  .cv-section p {
+    break-inside: auto !important;
+    page-break-inside: auto !important;
   }
 }
 </style>
@@ -1759,6 +1830,7 @@ ${cvHtml}
    Direct PDF Download
    html2canvas + jsPDF
 ================================ */
+
 
 function loadPdfLibraries() {
   return new Promise((resolve, reject) => {
@@ -1832,117 +1904,44 @@ function loadPdfLibraries() {
 }
 
 async function downloadCvAsPdf() {
-  const fileName = `${slugify(getValue("fullName") || "cv")}.pdf`;
+  const cvHtml = createStandaloneHtml();
 
-  const exportWrapper = document.createElement("div");
-  const clonedCv = cvPreview.cloneNode(true);
+  const printFrame = document.createElement("iframe");
 
-  clonedCv.removeAttribute("id");
-  clonedCv.classList.add("cv-pdf-export");
+  printFrame.style.position = "fixed";
+  printFrame.style.left = "-9999px";
+  printFrame.style.top = "0";
+  printFrame.style.width = "0";
+  printFrame.style.height = "0";
+  printFrame.style.border = "0";
+  printFrame.style.opacity = "0";
+  printFrame.style.pointerEvents = "none";
 
-  exportWrapper.className = "cv-pdf-export-wrapper";
-  exportWrapper.appendChild(clonedCv);
-  document.body.appendChild(exportWrapper);
+  document.body.appendChild(printFrame);
 
-  try {
-    await waitForPdfRender();
+  const frameWindow = printFrame.contentWindow;
+  const frameDoc = frameWindow.document;
 
-    const fullHeight = Math.max(
-      clonedCv.scrollHeight,
-      clonedCv.offsetHeight,
-      Math.ceil(clonedCv.getBoundingClientRect().height)
-    );
+  frameDoc.open();
+  frameDoc.write(cvHtml);
+  frameDoc.close();
 
-    const canvas = await window.html2canvas(clonedCv, {
-      scale: 2,
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: "#ffffff",
-      scrollX: 0,
-      scrollY: 0,
-      width: 794,
-      height: fullHeight,
-      windowWidth: 794,
-      windowHeight: fullHeight
-    });
+  printFrame.onload = () => {
+    setTimeout(() => {
+      frameWindow.focus();
+      frameWindow.print();
 
-    const { jsPDF } = window.jspdf;
+      frameWindow.onafterprint = () => {
+        printFrame.remove();
+      };
 
-    const pdf = new jsPDF({
-      orientation: "portrait",
-      unit: "px",
-      format: [794, 1123],
-      compress: true
-    });
-
-    const pageWidth = 794;
-    const pageHeight = 1123;
-
-    const pdfPageTopPadding = 16;
-    const pdfPageBottomPadding = 22;
-    const pdfContentHeight = pageHeight - pdfPageTopPadding - pdfPageBottomPadding;
-
-    const canvasWidth = canvas.width;
-    const canvasHeight = canvas.height;
-
-    const scaleRatio = canvasWidth / pageWidth;
-
-    const sliceHeight = Math.floor(pdfContentHeight * scaleRatio);
-    const outputPageCanvas = document.createElement("canvas");
-    const outputContext = outputPageCanvas.getContext("2d");
-
-    outputPageCanvas.width = canvasWidth;
-    outputPageCanvas.height = sliceHeight;
-
-    let sourceY = 0;
-    let pageIndex = 0;
-
-    while (sourceY < canvasHeight) {
-      const remainingHeight = canvasHeight - sourceY;
-      const currentSliceHeight = Math.min(sliceHeight, remainingHeight);
-
-      outputPageCanvas.height = currentSliceHeight;
-
-      outputContext.fillStyle = "#ffffff";
-      outputContext.fillRect(0, 0, outputPageCanvas.width, outputPageCanvas.height);
-
-      outputContext.drawImage(
-        canvas,
-        0,
-        sourceY,
-        canvasWidth,
-        currentSliceHeight,
-        0,
-        0,
-        canvasWidth,
-        currentSliceHeight
-      );
-
-      const imageData = outputPageCanvas.toDataURL("image/png", 1.0);
-
-      if (pageIndex > 0) {
-        pdf.addPage([pageWidth, pageHeight], "portrait");
-      }
-
-      const imageHeightOnPdf = currentSliceHeight / scaleRatio;
-
-      pdf.addImage(
-        imageData,
-        "PNG",
-        0,
-        pdfPageTopPadding,
-        pageWidth,
-        imageHeightOnPdf
-      );
-
-      sourceY += currentSliceHeight;
-      pageIndex++;
-    }
-
-    pdf.save(fileName);
-  } finally {
-    exportWrapper.remove();
-  }
+      setTimeout(() => {
+        if (document.body.contains(printFrame)) {
+          printFrame.remove();
+        }
+      }, 5000);
+    }, 600);
+  };
 }
 
 function waitForPdfRender() {
