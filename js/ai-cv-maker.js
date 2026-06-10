@@ -1905,14 +1905,44 @@ function loadPdfLibraries() {
 
 async function downloadCvAsPdf() {
   const cvHtml = createStandaloneHtml();
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    const blob = new Blob([cvHtml], {
+      type: "text/html"
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const printTab = window.open(url, "_blank");
+
+    if (!printTab) {
+      showToast("Please allow popups to download the PDF.", "error");
+      URL.revokeObjectURL(url);
+      return;
+    }
+
+    printTab.onload = () => {
+      setTimeout(() => {
+        printTab.focus();
+        printTab.print();
+
+        setTimeout(() => {
+          URL.revokeObjectURL(url);
+        }, 10000);
+      }, 800);
+    };
+
+    return;
+  }
 
   const printFrame = document.createElement("iframe");
 
   printFrame.style.position = "fixed";
   printFrame.style.left = "-9999px";
   printFrame.style.top = "0";
-  printFrame.style.width = "0";
-  printFrame.style.height = "0";
+  printFrame.style.width = "1px";
+  printFrame.style.height = "1px";
   printFrame.style.border = "0";
   printFrame.style.opacity = "0";
   printFrame.style.pointerEvents = "none";
