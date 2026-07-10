@@ -10088,3 +10088,13 @@ body {
     padding: 8mm 0 !important;
   }
 }
+
+
+a.arjumand-portfolio{
+  color: #CCF375;
+  font-weight: 700;
+}
+
+a.arjumand-portfolio:hover{
+  color: #fff;
+}
