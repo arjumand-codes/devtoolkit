@@ -1,46 +1,898 @@
-<header class="site-header">
-  <nav class="navbar" aria-label="Main navigation">
-    <div class="container nav-container">
-      <a href="/index.html" class="site-logo" aria-label="DevToolKit Home">
-        <span class="logo-icon">⚡</span>
-        <span class="logo-text">DevToolKit</span>
-      </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="google-site-verification" content="B_BY0aHc-bYNOh7rMJQ_B2EiU2n_liuHeeQvFiiaOPg" />
 
-      <ul class="nav-menu" id="siteNav">
-        <li><a href="/index.html#tools">Tools</a></li>
-        <li><a href="/index.html#developer-tools">Developer</a></li>
-        <li><a href="/index.html#design-tools">Design</a></li>
-        <li><a href="/index.html#image-tools">Image</a></li>
-        <li><a href="/index.html#utility-tools">Utility</a></li>
-        <li><a href="/pages/ai-cv-maker.html">AI CV Maker</a></li>
-        <li><a href="/pages/faceitfinder.html">FaceitFinder</a></li>
-        <li><a href="/index.html#faq">FAQ</a></li>
-      </ul>
+  <title>DevToolKit - Free AI CV Maker, Developer Tools & Gaming Stats</title>
 
-      <div class="nav-actions">
-        <a href="/index.html#tools" class="btn btn-outline">All Tools</a>
+  <meta
+    name="description"
+    content="Use DevToolKit to create AI CVs, format JSON, test regex, generate CSS, compress images, make QR codes, create passwords, and search FACEIT CS2 stats with 22 free online tools."
+  />
 
-        <a
-          href="https://github.com/arjumand-codes"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-primary"
-        >
-          GitHub
-        </a>
+  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/images/favicon.png" />
+
+  <meta
+    name="keywords"
+    content="DevToolKit, free online developer tools, AI CV maker, AI resume builder, free CV generator, ATS resume maker, JSON formatter online, regex tester, CSS gradient generator, image compressor, image converter, markdown previewer, meta tags generator, QR code generator, password generator, CSS minifier, FACEIT finder, CS2 FACEIT stats, FACEIT ELO lookup"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <meta name="theme-color" content="#0f172a" />
+  <meta name="application-name" content="DevToolKit" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/" />
+
+  <!-- Open Graph Meta -->
+  <meta property="og:title" content="DevToolKit - Free AI CV Maker, Developer Tools & Gaming Stats" />
+  <meta
+    property="og:description"
+    content="Create AI CVs, format code, generate CSS, optimize images, make QR codes, and search FACEIT CS2 stats with 22 free online browser tools."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="DevToolKit" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Twitter Card Meta -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DevToolKit - Free AI CV Maker, Developer Tools & Gaming Stats" />
+  <meta
+    name="twitter:description"
+    content="Create AI CVs, format code, generate CSS, optimize images, make QR codes, and search FACEIT CS2 stats in one free toolkit."
+  />
+  <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon" />
+
+  <!-- CSS Files -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+
+
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://devtoolkit-tools.vercel.app/#website",
+        "name": "DevToolKit",
+        "url": "https://devtoolkit-tools.vercel.app/",
+        "description": "DevToolKit is a free online toolbox for AI CV creation, developer tools, design generators, image tools, utility tools, and gaming stats.",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://devtoolkit-tools.vercel.app/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://devtoolkit-tools.vercel.app/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://devtoolkit-tools.vercel.app/#organization",
+        "name": "DevToolKit",
+        "url": "https://devtoolkit-tools.vercel.app/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://devtoolkit-tools.vercel.app/assets/images/favicon.png"
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Arjumand Ali",
+          "url": "https://github.com/arjumand-codes",
+          "sameAs": [
+            "https://github.com/arjumand-codes",
+            "https://www.instagram.com/arjumand.codes"
+          ]
+        },
+        "sameAs": [
+          "https://github.com/arjumand-codes",
+          "https://www.instagram.com/arjumand.codes"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://devtoolkit-tools.vercel.app/#webpage",
+        "url": "https://devtoolkit-tools.vercel.app/",
+        "name": "DevToolKit - Free AI CV Maker, Developer Tools & Gaming Stats",
+        "description": "Use DevToolKit to create AI CVs, format JSON, test regex, generate CSS, compress images, make QR codes, create passwords, and search FACEIT CS2 stats with 22 free online tools.",
+        "isPartOf": {
+          "@id": "https://devtoolkit-tools.vercel.app/#website"
+        },
+        "about": {
+          "@id": "https://devtoolkit-tools.vercel.app/#organization"
+        },
+        "primaryImageOfPage": {
+          "@type": "ImageObject",
+          "url": "https://devtoolkit-tools.vercel.app/assets/images/og-image.png"
+        },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://devtoolkit-tools.vercel.app/#tools-list",
+        "name": "DevToolKit Free Online Tools",
+        "numberOfItems": 22,
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "AI CV Maker", "url": "https://devtoolkit-tools.vercel.app/pages/ai-cv-maker.html" },
+          { "@type": "ListItem", "position": 2, "name": "FaceitFinder", "url": "https://devtoolkit-tools.vercel.app/pages/faceitfinder.html" },
+          { "@type": "ListItem", "position": 3, "name": "JSON Formatter", "url": "https://devtoolkit-tools.vercel.app/pages/json-formatter.html" },
+          { "@type": "ListItem", "position": 4, "name": "Regex Tester", "url": "https://devtoolkit-tools.vercel.app/pages/regex-tester.html" },
+          { "@type": "ListItem", "position": 5, "name": "URL Encoder / Decoder", "url": "https://devtoolkit-tools.vercel.app/pages/url-tools.html" },
+          { "@type": "ListItem", "position": 6, "name": "Markdown Previewer", "url": "https://devtoolkit-tools.vercel.app/pages/markdown-preview.html" },
+          { "@type": "ListItem", "position": 7, "name": "Meta Tags Generator", "url": "https://devtoolkit-tools.vercel.app/pages/meta-tags.html" },
+          { "@type": "ListItem", "position": 8, "name": "CSS Minifier / Beautifier", "url": "https://devtoolkit-tools.vercel.app/pages/css-minifier.html" },
+          { "@type": "ListItem", "position": 9, "name": "HTML Entity Encoder / Decoder", "url": "https://devtoolkit-tools.vercel.app/pages/html-entities.html" },
+          { "@type": "ListItem", "position": 10, "name": "Gradient Generator", "url": "https://devtoolkit-tools.vercel.app/pages/gradient-generator.html" },
+          { "@type": "ListItem", "position": 11, "name": "Color Palette Generator", "url": "https://devtoolkit-tools.vercel.app/pages/color-palette.html" },
+          { "@type": "ListItem", "position": 12, "name": "Box Shadow Generator", "url": "https://devtoolkit-tools.vercel.app/pages/box-shadow.html" },
+          { "@type": "ListItem", "position": 13, "name": "Glassmorphism Generator", "url": "https://devtoolkit-tools.vercel.app/pages/glassmorphism-generator.html" },
+          { "@type": "ListItem", "position": 14, "name": "CSS Clamp Generator", "url": "https://devtoolkit-tools.vercel.app/pages/css-clamp.html" },
+          { "@type": "ListItem", "position": 15, "name": "Image Converter", "url": "https://devtoolkit-tools.vercel.app/pages/image-converter.html" },
+          { "@type": "ListItem", "position": 16, "name": "Image Compressor", "url": "https://devtoolkit-tools.vercel.app/pages/image-compressor.html" },
+          { "@type": "ListItem", "position": 17, "name": "Image Resizer", "url": "https://devtoolkit-tools.vercel.app/pages/image-resizer.html" },
+          { "@type": "ListItem", "position": 18, "name": "Favicon Generator", "url": "https://devtoolkit-tools.vercel.app/pages/favicon-generator.html" },
+          { "@type": "ListItem", "position": 19, "name": "QR Code Generator", "url": "https://devtoolkit-tools.vercel.app/pages/qr-generator.html" },
+          { "@type": "ListItem", "position": 20, "name": "Password Generator", "url": "https://devtoolkit-tools.vercel.app/pages/password-generator.html" },
+          { "@type": "ListItem", "position": 21, "name": "Text Case Converter", "url": "https://devtoolkit-tools.vercel.app/pages/text-case.html" },
+          { "@type": "ListItem", "position": 22, "name": "Lorem Ipsum Generator", "url": "https://devtoolkit-tools.vercel.app/pages/lorem-generator.html" }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://devtoolkit-tools.vercel.app/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://devtoolkit-tools.vercel.app/"
+          }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://devtoolkit-tools.vercel.app/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is DevToolKit free to use?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, DevToolKit is a free online toolbox for developers, designers, creators, students, and job seekers."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How many tools does DevToolKit include?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "DevToolKit includes 22 tools across AI tools, developer tools, design tools, image tools, utility tools, and gaming tools."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does DevToolKit include an AI CV Maker?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, DevToolKit includes an AI CV Maker that helps create ATS-friendly resumes with AI summaries, skills, templates, HTML export, and PDF download."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to create an account?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No, DevToolKit does not require signup or login. You can open a tool and use it directly."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does DevToolKit need PHP or a backend?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No PHP is required. Most tools run with HTML, CSS, and JavaScript in the browser. API-based tools like AI CV Maker and FaceitFinder use secure Vercel serverless routes."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use DevToolKit for real projects?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, you can use it for creating AI CVs, formatting code, generating CSS, creating SEO meta tags, compressing images, generating passwords, creating QR codes, checking FACEIT CS2 stats, and other real web development tasks."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are image tools processed on the server?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The image converter, compressor, resizer, and favicon tools can be built using JavaScript and Canvas API, so images can be processed directly in the browser."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Shared Header Component -->
+  <div id="site-header"></div>
+
+  <!-- Main Content Start -->
+  <main id="main-content">
+    <!-- Hero Section Start -->
+    <section class="hero-section" id="home">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <p class="section-badge">22 Free Online Browser Tools</p>
+
+          <h1>
+            AI CV Maker, Developer Tools & Gaming Stats
+          </h1>
+
+          <p class="hero-description">
+            Build AI CVs, format code, create design assets, edit images, and check gaming stats with free online tools in one place.
+          </p>
+
+          <div class="hero-actions">
+            <a href="pages/ai-cv-maker.html" class="btn btn-primary">
+              Create AI CV
+            </a>
+
+            <a href="#tools" class="btn btn-outline">
+              Explore 22 Tools
+            </a>
+          </div>
+
+          <div class="hero-stats" aria-label="Project stats">
+            <div class="stat-item">
+              <strong>22</strong>
+              <span>Free Tools</span>
+            </div>
+
+            <div class="stat-item">
+              <strong>AI</strong>
+              <span>CV Maker</span>
+            </div>
+
+            <div class="stat-item">
+              <strong>0</strong>
+              <span>Login Required</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-preview" aria-label="DevToolKit preview">
+          <div class="preview-card">
+            <div class="preview-card-header">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+
+            <div class="preview-card-body">
+              <p class="preview-label">Tool Preview</p>
+              <h2>DevToolKit</h2>
+              <pre><code>{
+  "project": "DevToolKit",
+  "tools": 22,
+  "featuredTool": "AI CV Maker",
+  "features": [
+    "AI Resume Builder",
+    "ATS Friendly CV",
+    "PDF Download",
+    "5 Templates"
+  ],
+  "newTool": "AI CV Maker",
+  "status": "Ready"
+}</code></pre>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
+    <!-- Hero Section End -->
 
-      <button
-        class="mobile-menu-btn"
-        id="menuToggle"
-        type="button"
-        aria-label="Open mobile menu"
-        aria-expanded="false"
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-    </div>
-  </nav>
-</header>
+    <!-- Featured AI Tool Section Start -->
+    <section class="featured-ai-tool-section" id="ai-cv-maker-highlight">
+      <div class="container">
+        <div class="featured-ai-tool-card">
+          <div class="featured-ai-content">
+            <p class="section-badge">Featured AI Tool</p>
+
+            <h2>AI CV Maker — Create a Professional Resume in Minutes</h2>
+
+            <p>
+              Build an ATS-friendly CV with AI-powered summaries, improved bullet points,
+              skills suggestions, live preview, professional templates, HTML export, and direct PDF download.
+            </p>
+
+            <div class="featured-ai-actions">
+              <a href="pages/ai-cv-maker.html" class="btn btn-primary">
+                Open AI CV Maker
+              </a>
+
+              <a href="pages/ai-cv-maker.html#cv-templates" class="btn btn-outline">
+                View CV Templates
+              </a>
+            </div>
+          </div>
+
+          <div class="featured-ai-preview" aria-label="AI CV Maker preview">
+            <div class="mini-cv-preview">
+              <div class="mini-cv-header">
+                <span></span>
+                <div>
+                  <strong>Professional Resume</strong>
+                  <small>AI Generated • ATS Friendly</small>
+                </div>
+              </div>
+
+              <div class="mini-cv-lines">
+                <span class="line big"></span>
+                <span class="line medium"></span>
+                <span class="line small"></span>
+                <span class="line full"></span>
+                <span class="line medium"></span>
+              </div>
+
+              <div class="mini-cv-tags">
+                <span>Summary</span>
+                <span>Skills</span>
+                <span>PDF</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Featured AI Tool Section End -->
+
+    <!-- Tools Overview Section Start -->
+    <section class="tools-overview-section" id="tools">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">All Tools</p>
+          <h2>Everything You Need for AI CVs, Daily Web Work, and Game Stats</h2>
+          <p>
+            Choose from 22 free tools for AI resumes, coding, CSS design, SEO, image optimization,
+            productivity, and CS2 FACEIT profile lookup. No signup and no installation required.
+          </p>
+        </div>
+
+        <!-- Developer Tools Start -->
+        <div class="tools-category" id="developer-tools">
+          <div class="category-header">
+            <h3>Developer Tools</h3>
+            <p>Useful utilities for coding, testing, formatting, minifying, AI resumes, and SEO work.</p>
+          </div>
+
+          <div class="tools-grid">
+            <article class="tool-card featured-tool-card ai-cv-tool-card">
+              <div class="tool-icon">AI</div>
+              <div class="tool-content">
+                <h4>AI CV Maker</h4>
+                <p>Create ATS-friendly resumes with AI summaries, skills, templates, PDF download, and HTML export.</p>
+              </div>
+              <a href="pages/ai-cv-maker.html" class="tool-link" aria-label="Open AI CV Maker">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card featured-tool-card">
+              <div class="tool-icon">🎯</div>
+              <div class="tool-content">
+                <h4>FaceitFinder</h4>
+                <p>Search CS2 FACEIT players, ELO, skill level, stats, and recent matches.</p>
+              </div>
+              <a href="pages/faceitfinder.html" class="tool-link" aria-label="Open FaceitFinder">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">{}</div>
+              <div class="tool-content">
+                <h4>JSON Formatter</h4>
+                <p>Format, beautify, minify, validate, and copy JSON data instantly.</p>
+              </div>
+              <a href="pages/json-formatter.html" class="tool-link" aria-label="Open JSON Formatter">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">.*</div>
+              <div class="tool-content">
+                <h4>Regex Tester</h4>
+                <p>Test regular expressions and highlight matching text in real time.</p>
+              </div>
+              <a href="pages/regex-tester.html" class="tool-link" aria-label="Open Regex Tester">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">🔗</div>
+              <div class="tool-content">
+                <h4>URL Encoder / Decoder</h4>
+                <p>Encode URLs, decode URLs, generate slugs, and handle Base64 text.</p>
+              </div>
+              <a href="pages/url-tools.html" class="tool-link" aria-label="Open URL Tools">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">MD</div>
+              <div class="tool-content">
+                <h4>Markdown Previewer</h4>
+                <p>Write Markdown and preview the rendered output side by side.</p>
+              </div>
+              <a href="pages/markdown-preview.html" class="tool-link" aria-label="Open Markdown Previewer">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">SEO</div>
+              <div class="tool-content">
+                <h4>Meta Tags Generator</h4>
+                <p>Create SEO, Open Graph, and Twitter card meta tags for websites.</p>
+              </div>
+              <a href="pages/meta-tags.html" class="tool-link" aria-label="Open Meta Tags Generator">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">CSS</div>
+              <div class="tool-content">
+                <h4>CSS Minifier / Beautifier</h4>
+                <p>Minify messy CSS or beautify compressed CSS for cleaner editing.</p>
+              </div>
+              <a href="pages/css-minifier.html" class="tool-link" aria-label="Open CSS Minifier Beautifier">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">&lt;&gt;</div>
+              <div class="tool-content">
+                <h4>HTML Entity Encoder / Decoder</h4>
+                <p>Encode HTML entities or decode escaped HTML text safely and quickly.</p>
+              </div>
+              <a href="pages/html-entities.html" class="tool-link" aria-label="Open HTML Entity Encoder Decoder">
+                Open Tool
+              </a>
+            </article>
+          </div>
+        </div>
+        <!-- Developer Tools End -->
+
+        <!-- Design Tools Start -->
+        <div class="tools-category" id="design-tools">
+          <div class="category-header">
+            <h3>Design Tools</h3>
+            <p>Generate clean CSS for modern layouts, cards, sections, and UI designs.</p>
+          </div>
+
+          <div class="tools-grid">
+            <article class="tool-card">
+              <div class="tool-icon">🌈</div>
+              <div class="tool-content">
+                <h4>Gradient Generator</h4>
+                <p>Create beautiful CSS gradients with live preview and copy-ready code.</p>
+              </div>
+              <a href="pages/gradient-generator.html" class="tool-link" aria-label="Open Gradient Generator">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">🎨</div>
+              <div class="tool-content">
+                <h4>Color Palette Generator</h4>
+                <p>Generate modern color palettes and copy HEX values for your projects.</p>
+              </div>
+              <a href="pages/color-palette.html" class="tool-link" aria-label="Open Color Palette Generator">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">▣</div>
+              <div class="tool-content">
+                <h4>Box Shadow Generator</h4>
+                <p>Create smooth CSS shadows using offset, blur, spread, and color controls.</p>
+              </div>
+              <a href="pages/box-shadow.html" class="tool-link" aria-label="Open Box Shadow Generator">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">◇</div>
+              <div class="tool-content">
+                <h4>Glassmorphism Generator</h4>
+                <p>Generate modern glass UI effects with blur, opacity, border, and shadow.</p>
+              </div>
+              <a href="pages/glassmorphism-generator.html" class="tool-link" aria-label="Open Glassmorphism Generator">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">Aa</div>
+              <div class="tool-content">
+                <h4>CSS Clamp Generator</h4>
+                <p>Create responsive typography with modern CSS clamp values.</p>
+              </div>
+              <a href="pages/css-clamp.html" class="tool-link" aria-label="Open CSS Clamp Generator">
+                Open Tool
+              </a>
+            </article>
+          </div>
+        </div>
+        <!-- Design Tools End -->
+
+        <!-- Image Tools Start -->
+        <div class="tools-category" id="image-tools">
+          <div class="category-header">
+            <h3>Image Tools</h3>
+            <p>Simple browser-based tools for image conversion, resizing, favicon creation, and optimization.</p>
+          </div>
+
+          <div class="tools-grid">
+            <article class="tool-card">
+              <div class="tool-icon">IMG</div>
+              <div class="tool-content">
+                <h4>Image Converter</h4>
+                <p>Convert images between PNG, JPG, and WEBP directly in the browser.</p>
+              </div>
+              <a href="pages/image-converter.html" class="tool-link" aria-label="Open Image Converter">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">↓KB</div>
+              <div class="tool-content">
+                <h4>Image Compressor</h4>
+                <p>Compress images, reduce file size, preview results, and download quickly.</p>
+              </div>
+              <a href="pages/image-compressor.html" class="tool-link" aria-label="Open Image Compressor">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">↔</div>
+              <div class="tool-content">
+                <h4>Image Resizer</h4>
+                <p>Resize images by width and height while keeping clean preview and download options.</p>
+              </div>
+              <a href="pages/image-resizer.html" class="tool-link" aria-label="Open Image Resizer">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">ICO</div>
+              <div class="tool-content">
+                <h4>Favicon Generator</h4>
+                <p>Create favicon image sizes for websites, browser tabs, and app icons.</p>
+              </div>
+              <a href="pages/favicon-generator.html" class="tool-link" aria-label="Open Favicon Generator">
+                Open Tool
+              </a>
+            </article>
+          </div>
+        </div>
+        <!-- Image Tools End -->
+
+        <!-- Utility Tools Start -->
+        <div class="tools-category" id="utility-tools">
+          <div class="category-header">
+            <h3>Utility Tools</h3>
+            <p>Helpful daily tools for passwords, QR codes, text formatting, and content generation.</p>
+          </div>
+
+          <div class="tools-grid">
+            <article class="tool-card">
+              <div class="tool-icon">QR</div>
+              <div class="tool-content">
+                <h4>QR Code Generator</h4>
+                <p>Create QR codes for links, text, emails, phone numbers, and quick sharing.</p>
+              </div>
+              <a href="pages/qr-generator.html" class="tool-link" aria-label="Open QR Code Generator">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">***</div>
+              <div class="tool-content">
+                <h4>Password Generator</h4>
+                <p>Generate strong passwords with length, symbols, numbers, and copy options.</p>
+              </div>
+              <a href="pages/password-generator.html" class="tool-link" aria-label="Open Password Generator">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">Aa</div>
+              <div class="tool-content">
+                <h4>Text Case Converter</h4>
+                <p>Convert text to uppercase, lowercase, title case, sentence case, slug case, and more.</p>
+              </div>
+              <a href="pages/text-case.html" class="tool-link" aria-label="Open Text Case Converter">
+                Open Tool
+              </a>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-icon">TXT</div>
+              <div class="tool-content">
+                <h4>Lorem Ipsum Generator</h4>
+                <p>Generate placeholder paragraphs, sentences, and words for layouts and mockups.</p>
+              </div>
+              <a href="pages/lorem-generator.html" class="tool-link" aria-label="Open Lorem Ipsum Generator">
+                Open Tool
+              </a>
+            </article>
+          </div>
+        </div>
+        <!-- Utility Tools End -->
+      </div>
+    </section>
+    <!-- Tools Overview Section End -->
+
+    <!-- Features Section Start -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Why DevToolKit?</p>
+          <h2>Fast, Private, and Easy to Use</h2>
+          <p>
+            DevToolKit is built for quick daily tasks without unnecessary loading,
+            accounts, or complicated dashboards.
+          </p>
+        </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Fast Tools</h3>
+            <p>
+              Every tool is designed to open quickly and complete tasks instantly in the browser.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Privacy Friendly</h3>
+            <p>
+              Most tools run locally in your browser, while API tools use secure server routes to keep keys private.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📱</div>
+            <h3>Responsive Design</h3>
+            <p>
+              Use the tools on desktop, tablet, or mobile with a clean responsive interface.
+            </p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h3>Copy Ready</h3>
+            <p>
+              Generated code, text, CSS, and results can be copied easily for use in real projects.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Features Section End -->
+
+    <!-- How It Works Section Start -->
+    <section class="how-it-works-section" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Simple Workflow</p>
+          <h2>How DevToolKit Works</h2>
+          <p>
+            Open a tool, add your input, generate the result, then copy or download it.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <span class="step-number">01</span>
+            <h3>Choose a Tool</h3>
+            <p>
+              Select the tool you need from AI CV maker, developer, design, image, utility, or gaming categories.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <span class="step-number">02</span>
+            <h3>Add Your Input</h3>
+            <p>
+              Paste code, type text, select colors, upload an image, enter CV details, or enter your settings.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <span class="step-number">03</span>
+            <h3>Generate Result</h3>
+            <p>
+              DevToolKit processes your input and gives you a clean result instantly.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <span class="step-number">04</span>
+            <h3>Copy or Download</h3>
+            <p>
+              Copy code, copy text, copy CSS, download generated files, or export your CV.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How It Works Section End -->
+
+    <!-- SEO Content Section Start -->
+    <section class="seo-content-section" id="free-online-tools">
+      <div class="container">
+        <div class="content-wrapper">
+          <p class="section-badge">Free Online Developer and AI Tools</p>
+
+          <h2>Build Faster with a Clean Developer Toolkit and AI CV Maker</h2>
+
+          <p>
+            DevToolKit is a free online tools website created to help developers, designers,
+            students, creators, CS2 players, and website owners complete common web tasks faster. Instead of
+            opening many different websites for AI CV creation, JSON formatting, regex testing, CSS generation,
+            Markdown previewing, meta tag creation, image compression, image conversion, QR code
+            generation, password creation, or FACEIT CS2 profile lookup, you can use one simple toolkit.
+          </p>
+
+          <p>
+            Every tool is designed for practical frontend work and everyday productivity. You can use DevToolKit while
+            building portfolio websites, client websites, landing pages, GitHub README files,
+            SEO pages, responsive web interfaces, ATS-friendly resumes, and image-optimized web projects.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- SEO Content Section End -->
+
+    <!-- FAQ Section Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>Frequently Asked Questions</h2>
+          <p>
+            Common questions about DevToolKit and how the tools work.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Is DevToolKit free to use?</summary>
+            <p>
+              Yes, DevToolKit is a free online toolbox for developers, designers, creators, students, and job seekers.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>How many tools does DevToolKit include?</summary>
+            <p>
+              DevToolKit includes 22 tools across AI tools, developer tools, design tools, image tools, utility tools, and gaming tools.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does DevToolKit include an AI CV Maker?</summary>
+            <p>
+              Yes, DevToolKit includes an AI CV Maker that helps create ATS-friendly resumes with AI summaries, skills, templates, HTML export, and PDF download.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Do I need to create an account?</summary>
+            <p>
+              No, DevToolKit does not require signup or login. You can open a tool and use it directly.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does DevToolKit need PHP or a backend?</summary>
+            <p>
+              No PHP is required. Most tools run with HTML, CSS, and JavaScript in the browser. API-based tools like AI CV Maker and FaceitFinder use secure Vercel serverless routes.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can I use DevToolKit for real projects?</summary>
+            <p>
+              Yes, you can use it for creating AI CVs, formatting code, generating CSS, creating SEO meta tags,
+              compressing images, generating passwords, creating QR codes, checking FACEIT CS2 stats, and other real web development tasks.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Are image tools processed on the server?</summary>
+            <p>
+              The image converter, compressor, resizer, and favicon tools can be built using JavaScript and Canvas API,
+              so images can be processed directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ Section End -->
+
+    <!-- CTA Section Start -->
+    <section class="cta-section" id="start">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Start Now</p>
+          <h2>Ready to Use DevToolKit?</h2>
+          <p>
+            Create a professional AI CV, check FACEIT stats, or choose any free tool to make your workflow faster.
+          </p>
+
+          <div class="cta-actions">
+            <a href="pages/ai-cv-maker.html" class="btn btn-primary">
+              Create AI CV
+            </a>
+
+            <a href="#tools" class="btn btn-outline">
+              Explore All Tools
+            </a>
+
+            <a href="pages/faceitfinder.html" class="btn btn-outline">
+              Try FaceitFinder
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA Section End -->
+  </main>
+  <!-- Main Content End -->
+
+  <!-- Shared Footer Component -->
+  <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="/js/components.js"></script>
+</body>
+</html>
