@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Favicon Generator Online - Create Website Icons | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit Favicon Generator to create favicon sizes for websites, browser tabs, app icons, and web projects from one uploaded image."
+  />
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+
+  <meta
+    name="keywords"
+    content="favicon generator, favicon maker, website icon generator, app icon generator, browser tab icon, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/favicon-generator.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Favicon Generator Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Generate favicon sizes for websites, browser tabs, and app icons from one uploaded image."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/favicon-generator.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Favicon Generator Online - DevToolKit" />
+  <meta
+    name="twitter:description"
+    content="Create website favicons and app icon sizes directly in your browser."
+  />
+  <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FFK9B0MWHT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FFK9B0MWHT');
+  </script>
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+  <div id="site-header"></div>
+
+<!-- Header End -->
+  <!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#image-tools">Image Tools</a>
+            <span>/</span>
+            <span>Favicon Generator</span>
+          </nav>
+
+          <p class="section-badge">Image Tool</p>
+
+          <h1>Favicon Generator Online</h1>
+
+          <p>
+            Generate favicon and app icon image sizes from one uploaded logo or image.
+            Create browser tab icons, Apple touch icons, Android icons, and copy-ready HTML code.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#favicon-tool" class="btn btn-primary">Generate Favicons</a>
+            <a href="../index.html#image-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Upload one source image</li>
+            <li>Generate common favicon sizes</li>
+            <li>Preview icon output</li>
+            <li>Download generated icons</li>
+            <li>Copy favicon HTML tags</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- Favicon Workspace Start -->
+    <section class="tool-workspace-section" id="favicon-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">Favicon Workspace</p>
+            <h2>Upload Logo and Create Favicons</h2>
+            <p>
+              Upload a square image or logo. JavaScript functionality will be connected next.
+            </p>
+          </div>
+
+          <div class="tool-status" id="favicon-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="favicon-layout">
+          <!-- Controls Panel -->
+          <section class="tool-panel favicon-controls-panel" aria-labelledby="favicon-controls-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="favicon-controls-title">Upload Source Image</h3>
+                <p>Choose a PNG, JPG, or WEBP logo/image.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="clear-favicon-btn">
+                Clear
+              </button>
+            </div>
+
+            <div class="favicon-upload-box" id="favicon-upload-box">
+              <input
+                type="file"
+                id="favicon-image-input"
+                accept="image/png, image/jpeg, image/webp"
+                hidden
+              />
+
+              <label for="favicon-image-input" class="favicon-upload-label">
+                <span class="upload-icon">⇪</span>
+                <strong>Upload Logo</strong>
+                <small>Use a square PNG, JPG, or WEBP for best result</small>
+              </label>
+            </div>
+
+            <div class="uploaded-file-card" id="favicon-uploaded-file-card">
+              <div class="uploaded-file-icon">ICO</div>
+
+              <div class="uploaded-file-info">
+                <strong id="favicon-file-name">No image selected</strong>
+                <span id="favicon-file-size">File size: 0 KB</span>
+              </div>
+            </div>
+
+            <div class="favicon-form">
+              <!-- Background -->
+              <div class="form-group color-control">
+                <label for="favicon-bg-color">Background Color</label>
+                <div class="color-input-row">
+                  <input type="color" id="favicon-bg-color" value="#ffffff" />
+                  <input
+                    type="text"
+                    id="favicon-bg-color-text"
+                    class="tool-input"
+                    value="#ffffff"
+                    spellcheck="false"
+                  />
+                </div>
+                <small class="input-help">
+                  Used when the source image has transparency or needs padding.
+                </small>
+              </div>
+
+              <!-- Padding -->
+              <div class="range-group">
+                <div class="range-label-row">
+                  <label for="favicon-padding">Icon Padding</label>
+                  <span id="favicon-padding-value">12%</span>
+                </div>
+                <input type="range" id="favicon-padding" min="0" max="30" value="12" />
+              </div>
+
+              <!-- Shape -->
+              <div class="form-group">
+                <label for="favicon-shape">Icon Shape</label>
+                <select id="favicon-shape" class="tool-select">
+                  <option value="square">Square</option>
+                  <option value="rounded" selected>Rounded</option>
+                  <option value="circle">Circle</option>
+                </select>
+              </div>
+
+              <!-- Output Sizes -->
+              <div class="favicon-size-options">
+                <label class="checkbox-control">
+                  <input type="checkbox" class="favicon-size-checkbox" value="16" checked />
+                  <span>16×16 favicon</span>
+                </label>
+
+                <label class="checkbox-control">
+                  <input type="checkbox" class="favicon-size-checkbox" value="32" checked />
+                  <span>32×32 favicon</span>
+                </label>
+
+                <label class="checkbox-control">
+                  <input type="checkbox" class="favicon-size-checkbox" value="48" checked />
+                  <span>48×48 favicon</span>
+                </label>
+
+                <label class="checkbox-control">
+                  <input type="checkbox" class="favicon-size-checkbox" value="180" checked />
+                  <span>180×180 Apple touch icon</span>
+                </label>
+
+                <label class="checkbox-control">
+                  <input type="checkbox" class="favicon-size-checkbox" value="192" checked />
+                  <span>192×192 Android icon</span>
+                </label>
+
+                <label class="checkbox-control">
+                  <input type="checkbox" class="favicon-size-checkbox" value="512" checked />
+                  <span>512×512 app icon</span>
+                </label>
+              </div>
+
+              <!-- Actions -->
+              <div class="tool-actions favicon-actions">
+                <button class="btn btn-primary" type="button" id="generate-favicon-btn">
+                  Generate Favicons
+                </button>
+
+                <button class="btn btn-outline" type="button" id="download-favicon-btn" disabled>
+                  Download Icons
+                </button>
+
+                <button class="btn btn-outline" type="button" id="copy-favicon-html-btn">
+                  Copy HTML Tags
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Preview Panel -->
+          <section class="tool-panel favicon-preview-panel" aria-labelledby="favicon-preview-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="favicon-preview-title">Favicon Preview</h3>
+                <p>Generated favicon sizes and HTML tags will appear here.</p>
+              </div>
+            </div>
+
+            <div class="favicon-browser-preview">
+              <div class="fake-browser-tab">
+                <span class="fake-tab-icon" id="fake-tab-icon"></span>
+                <strong>DevToolKit</strong>
+              </div>
+
+              <div class="fake-browser-url">
+                <span>https://devtoolkit-tools.vercel.app/</span>
+              </div>
+            </div>
+
+            <div class="favicon-source-preview">
+              <div class="favicon-source-box" id="favicon-source-preview">
+                <span>Source Preview</span>
+              </div>
+
+              <div class="image-preview-meta">
+                <strong>Source Image</strong>
+                <span id="favicon-source-info">No image selected</span>
+              </div>
+            </div>
+
+            <div class="favicon-output-grid" id="favicon-output-grid">
+              <div class="favicon-empty-state">
+                <span>ICO</span>
+                <strong>No favicons generated yet</strong>
+                <small>Upload an image and click generate.</small>
+              </div>
+            </div>
+
+            <div class="favicon-html-wrapper">
+              <div class="tool-panel-header small-header">
+                <div>
+                  <h3>Favicon HTML Tags</h3>
+                  <p>Copy these tags into your page head section.</p>
+                </div>
+              </div>
+
+              <pre class="tool-output favicon-html-output" id="favicon-html-output"><code>&lt;!-- Favicon HTML tags will appear here --&gt;</code></pre>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- Favicon Workspace End -->
+
+    <!-- Favicon Sizes Start -->
+    <section class="favicon-sizes-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Favicon Sizes</p>
+          <h2>Common Website Icon Sizes</h2>
+          <p>
+            Different devices and browsers use different icon sizes for tabs, shortcuts, and app screens.
+          </p>
+        </div>
+
+        <div class="favicon-sizes-grid">
+          <article class="favicon-size-card">
+            <span>16</span>
+            <strong>16×16 favicon</strong>
+            <small>Used for classic browser tab favicon display.</small>
+          </article>
+
+          <article class="favicon-size-card">
+            <span>32</span>
+            <strong>32×32 favicon</strong>
+            <small>Common browser favicon size for modern displays.</small>
+          </article>
+
+          <article class="favicon-size-card">
+            <span>180</span>
+            <strong>Apple touch icon</strong>
+            <small>Used when saving websites to iPhone or iPad home screen.</small>
+          </article>
+
+          <article class="favicon-size-card">
+            <span>512</span>
+            <strong>Large app icon</strong>
+            <small>Used for app-style icons, PWA assets, and high-resolution previews.</small>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Favicon Sizes End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Generate Favicons</h2>
+
+            <p>
+              Favicon Generator creates multiple website icon sizes from one image.
+              Use a clean square logo for the best result.
+            </p>
+
+            <ol class="guide-list">
+              <li>Upload your logo or image.</li>
+              <li>Select padding, background color, and shape.</li>
+              <li>Choose the icon sizes you need.</li>
+              <li>Generate, download icons, and copy the HTML tags.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Why Use a Favicon?</h2>
+
+            <p>
+              Favicons make your website look more professional in browser tabs,
+              bookmarks, mobile shortcuts, and search previews.
+            </p>
+
+            <ul class="feature-list">
+              <li>Add a browser tab icon</li>
+              <li>Create Apple touch icons</li>
+              <li>Make Android/PWA app icons</li>
+              <li>Improve website branding</li>
+              <li>Prepare icons for Vercel projects</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Image Tools</h2>
+          <p>
+            Continue working with browser-based image tools from DevToolKit.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">↔</div>
+            <div class="tool-content">
+              <h3>Image Resizer</h3>
+              <p>Resize images by width and height while keeping clean preview and download options.</p>
+            </div>
+            <a href="image-resizer.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">IMG</div>
+            <div class="tool-content">
+              <h3>Image Converter</h3>
+              <p>Convert images between PNG, JPG, and WEBP directly in the browser.</p>
+            </div>
+            <a href="image-converter.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">↓KB</div>
+            <div class="tool-content">
+              <h3>Image Compressor</h3>
+              <p>Compress images, reduce file size, preview results, and download quickly.</p>
+            </div>
+            <a href="image-compressor.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>Favicon Generator FAQs</h2>
+          <p>
+            Common questions about website icons, favicon sizes, and browser tab icons.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is a favicon?</summary>
+            <p>
+              A favicon is a small website icon shown in browser tabs, bookmarks,
+              mobile shortcuts, and some search or app previews.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What image should I upload?</summary>
+            <p>
+              A square logo or image works best. PNG is recommended if your logo uses transparency.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Which favicon sizes do I need?</summary>
+            <p>
+              Common sizes include 16×16, 32×32, 48×48, 180×180, 192×192, and 512×512.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can this generate .ico files?</summary>
+            <p>
+              This version is structured to generate PNG favicon sizes. You can still use PNG favicon
+              tags in modern browsers.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this favicon generator free?</summary>
+            <p>
+              Yes, DevToolKit Favicon Generator is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">All Tools Ready</p>
+          <h2>Your DevToolKit Structure Is Complete</h2>
+          <p>
+            You now have 20 tools planned across developer, design, image, and utility categories.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="image-resizer.html" class="btn btn-outline">
+              Try Image Resizer
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+   <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="/js/components.js"></script>
+
+  <!-- JS Later -->
+  <script src="../js/favicon-generator.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

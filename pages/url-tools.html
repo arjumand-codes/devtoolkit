@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>URL Encoder Decoder Online - Encode, Decode, Slug & Base64 | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit URL Tools to encode URLs, decode URLs, generate SEO-friendly slugs, and convert Base64 text online for free."
+  />
+
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+
+  <meta
+    name="keywords"
+    content="URL encoder online, URL decoder online, slug generator, Base64 encoder, Base64 decoder, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/url-tools.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="URL Encoder Decoder Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Encode URLs, decode URLs, generate slugs, and convert Base64 text online using DevToolKit."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/url-tools.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="../assets/icons/favicon.ico" type="image/x-icon" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FFK9B0MWHT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FFK9B0MWHT');
+  </script>
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+  <div id="site-header"></div>
+
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#developer-tools">Developer Tools</a>
+            <span>/</span>
+            <span>URL Tools</span>
+          </nav>
+
+          <p class="section-badge">Developer Tool</p>
+
+          <h1>URL Encoder Decoder Online</h1>
+
+          <p>
+            Encode URLs, decode URL strings, generate clean SEO-friendly slugs,
+            and convert text to or from Base64 using one simple browser-based tool.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#url-tool" class="btn btn-primary">Start Using Tool</a>
+            <a href="../index.html#developer-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Encode URL text</li>
+            <li>Decode URL text</li>
+            <li>Generate clean slugs</li>
+            <li>Base64 encode text</li>
+            <li>Base64 decode text</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- URL Tool Workspace Start -->
+    <section class="tool-workspace-section" id="url-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">URL Workspace</p>
+            <h2>Encode, Decode, Slugify, and Convert</h2>
+            <p>
+              Paste your text or URL below, choose an action, and get the result instantly.
+            </p>
+          </div>
+
+          <div class="tool-status" id="url-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="url-tool-layout">
+          <!-- Input Panel -->
+          <section class="tool-panel" aria-labelledby="url-input-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="url-input-title">Input Text</h3>
+                <p>Paste a URL, title, text, or Base64 string here.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="sample-url-btn">
+                Sample
+              </button>
+            </div>
+
+            <textarea
+              class="tool-textarea"
+              id="url-input"
+              placeholder="Example: My New Project Website"
+              spellcheck="false"
+            ></textarea>
+
+            <div class="tool-actions url-actions">
+              <button class="btn btn-primary" type="button" id="url-encode-btn">
+                Encode URL
+              </button>
+
+              <button class="btn btn-outline" type="button" id="url-decode-btn">
+                Decode URL
+              </button>
+
+              <button class="btn btn-outline" type="button" id="slug-generate-btn">
+                Generate Slug
+              </button>
+
+              <button class="btn btn-outline" type="button" id="base64-encode-btn">
+                Base64 Encode
+              </button>
+
+              <button class="btn btn-outline" type="button" id="base64-decode-btn">
+                Base64 Decode
+              </button>
+
+              <button class="btn btn-outline" type="button" id="clear-url-btn">
+                Clear
+              </button>
+            </div>
+          </section>
+
+          <!-- Output Panel -->
+          <section class="tool-panel" aria-labelledby="url-output-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="url-output-title">Output Result</h3>
+                <p>Your encoded, decoded, slug, or Base64 result will appear here.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="copy-url-btn">
+                Copy
+              </button>
+            </div>
+
+            <pre class="tool-output" id="url-output"><code>Your result will appear here.</code></pre>
+
+            <div class="output-meta">
+              <span id="url-chars">Characters: 0</span>
+              <span id="url-words">Words: 0</span>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- URL Tool Workspace End -->
+
+    <!-- Quick Examples Start -->
+    <section class="examples-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Examples</p>
+          <h2>What This Tool Can Do</h2>
+          <p>
+            Use URL Tools for common frontend, SEO, and content formatting tasks.
+          </p>
+        </div>
+
+        <div class="examples-grid">
+          <article class="example-card">
+            <h3>URL Encode</h3>
+            <p>Convert special characters into safe URL format.</p>
+
+            <div class="example-box">
+              <span>Before</span>
+              <code>hello world</code>
+            </div>
+
+            <div class="example-box">
+              <span>After</span>
+              <code>hello%20world</code>
+            </div>
+          </article>
+
+          <article class="example-card">
+            <h3>URL Decode</h3>
+            <p>Convert encoded URL strings back into readable text.</p>
+
+            <div class="example-box">
+              <span>Before</span>
+              <code>hello%20world</code>
+            </div>
+
+            <div class="example-box">
+              <span>After</span>
+              <code>hello world</code>
+            </div>
+          </article>
+
+          <article class="example-card">
+            <h3>Slug Generator</h3>
+            <p>Create clean slugs for blog posts, pages, and SEO URLs.</p>
+
+            <div class="example-box">
+              <span>Before</span>
+              <code>My New Website Project</code>
+            </div>
+
+            <div class="example-box">
+              <span>After</span>
+              <code>my-new-website-project</code>
+            </div>
+          </article>
+
+          <article class="example-card">
+            <h3>Base64 Encode</h3>
+            <p>Convert plain text into Base64 format.</p>
+
+            <div class="example-box">
+              <span>Before</span>
+              <code>DevToolKit</code>
+            </div>
+
+            <div class="example-box">
+              <span>After</span>
+              <code>RGV2VG9vbEtpdA==</code>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Quick Examples End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Use URL Tools Online</h2>
+
+            <p>
+              URL Tools helps you quickly transform text for web development, SEO,
+              links, and data handling. You can paste any text and choose the action
+              you need.
+            </p>
+
+            <ol class="guide-list">
+              <li>Paste your text, URL, page title, or Base64 string.</li>
+              <li>Choose Encode, Decode, Slug, Base64 Encode, or Base64 Decode.</li>
+              <li>Check the output result on the right side.</li>
+              <li>Use the Copy button to copy the final result.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Why Use URL Tools?</h2>
+
+            <p>
+              Developers often need to encode URLs, decode query strings, generate
+              clean slugs for pages, or convert text into Base64 while working with
+              websites and APIs.
+            </p>
+
+            <ul class="feature-list">
+              <li>Create SEO-friendly page slugs</li>
+              <li>Decode copied URL query strings</li>
+              <li>Encode special characters safely</li>
+              <li>Convert text for basic Base64 usage</li>
+              <li>Clean titles for static website URLs</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Developer Tools</h2>
+          <p>
+            Continue working with other useful tools from DevToolKit.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">{}</div>
+            <div class="tool-content">
+              <h3>JSON Formatter</h3>
+              <p>Format, validate, beautify, and minify JSON data instantly.</p>
+            </div>
+            <a href="json-formatter.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">.*</div>
+            <div class="tool-content">
+              <h3>Regex Tester</h3>
+              <p>Test regular expressions and highlight matching text in real time.</p>
+            </div>
+            <a href="regex-tester.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">SEO</div>
+            <div class="tool-content">
+              <h3>Meta Tags Generator</h3>
+              <p>Create SEO, Open Graph, and Twitter card meta tags for websites.</p>
+            </div>
+            <a href="meta-tags.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>URL Tools FAQs</h2>
+          <p>
+            Common questions about URL encoding, decoding, slug generation, and Base64.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What is URL encoding?</summary>
+            <p>
+              URL encoding converts special characters into a safe format that can be used
+              inside URLs. For example, spaces can become %20.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is URL decoding?</summary>
+            <p>
+              URL decoding converts encoded URL text back into readable text.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is a slug generator?</summary>
+            <p>
+              A slug generator converts a title or phrase into a clean lowercase URL slug,
+              usually separated by hyphens.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>What is Base64 encoding?</summary>
+            <p>
+              Base64 encoding converts text into a different text-based format commonly used
+              for basic data representation.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this URL tool free?</summary>
+            <p>
+              Yes, DevToolKit URL Tools is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Building</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free online tools for development, design, SEO, and image optimization.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="json-formatter.html" class="btn btn-outline">
+              Try JSON Formatter
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+   <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="/js/components.js"></script>
+  <!-- JS Later -->
+  <script src="../js/url-tools.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Image Resizer Online - Resize JPG, PNG & WEBP Images | DevToolKit</title>
+
+  <meta
+    name="description"
+    content="Use DevToolKit Image Resizer to resize JPG, PNG, and WEBP images online. Change width and height, keep aspect ratio, preview, and download resized images."
+  />
+
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png" />
+<link rel="apple-touch-icon" href="../assets/images/favicon.png" />
+  <meta
+    name="keywords"
+    content="image resizer online, resize image, resize JPG, resize PNG, resize WEBP, image size changer, DevToolKit"
+  />
+
+  <meta name="author" content="Arjumand Ali" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://devtoolkit-tools.vercel.app/pages/image-resizer.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Image Resizer Online - DevToolKit" />
+  <meta
+    property="og:description"
+    content="Resize JPG, PNG, and WEBP images online with preview and download options."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://devtoolkit-tools.vercel.app/pages/image-resizer.html" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Image Resizer Online - DevToolKit" />
+  <meta
+    name="twitter:description"
+    content="Resize images directly in your browser with DevToolKit Image Resizer."
+  />
+  <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+
+  
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/responsive.css" />
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-FFK9B0MWHT"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-FFK9B0MWHT');
+  </script>
+</head>
+
+<body>
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Header Start -->
+  <div id="site-header"></div>
+
+<!-- Header End -->
+
+  <!-- Main Start -->
+  <main id="main-content">
+    <!-- Tool Hero Start -->
+    <section class="tool-hero-section">
+      <div class="container tool-hero-container">
+        <div class="tool-hero-content">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="../index.html">Home</a>
+            <span>/</span>
+            <a href="../index.html#image-tools">Image Tools</a>
+            <span>/</span>
+            <span>Image Resizer</span>
+          </nav>
+
+          <p class="section-badge">Image Tool</p>
+
+          <h1>Image Resizer Online</h1>
+
+          <p>
+            Resize images by width and height directly in your browser. Upload a JPG, PNG,
+            or WEBP image, keep aspect ratio, preview the resized result, and download it.
+          </p>
+
+          <div class="tool-hero-actions">
+            <a href="#image-resizer-tool" class="btn btn-primary">Resize Image</a>
+            <a href="../index.html#image-tools" class="btn btn-outline">View More Tools</a>
+          </div>
+        </div>
+
+        <aside class="tool-info-card" aria-label="Tool information">
+          <h2>Tool Features</h2>
+
+          <ul>
+            <li>Resize JPG, PNG, and WEBP</li>
+            <li>Custom width and height</li>
+            <li>Keep aspect ratio option</li>
+            <li>Preview resized image</li>
+            <li>Download resized output</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+    <!-- Tool Hero End -->
+
+    <!-- Image Resizer Workspace Start -->
+    <section class="tool-workspace-section" id="image-resizer-tool">
+      <div class="container">
+        <div class="tool-workspace-header">
+          <div>
+            <p class="section-badge">Resize Workspace</p>
+            <h2>Upload and Resize Your Image</h2>
+            <p>
+              Choose an image and enter new dimensions. JavaScript functionality will be connected next.
+            </p>
+          </div>
+
+          <div class="tool-status" id="image-resizer-status">
+            Ready
+          </div>
+        </div>
+
+        <div class="image-resizer-layout">
+          <!-- Controls Panel -->
+          <section class="tool-panel image-resizer-controls-panel" aria-labelledby="image-resizer-controls-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="image-resizer-controls-title">Upload Image</h3>
+                <p>Select your image and resize settings.</p>
+              </div>
+
+              <button class="mini-btn" type="button" id="clear-image-resizer-btn">
+                Clear
+              </button>
+            </div>
+
+            <div class="image-resizer-upload-box" id="image-resizer-upload-box">
+              <input
+                type="file"
+                id="resizer-image-input"
+                accept="image/png, image/jpeg, image/webp"
+                hidden
+              />
+
+              <label for="resizer-image-input" class="image-resizer-upload-label">
+                <span class="upload-icon">⇪</span>
+                <strong>Upload Image</strong>
+                <small>Choose PNG, JPG, JPEG, or WEBP file</small>
+              </label>
+            </div>
+
+            <div class="uploaded-file-card" id="resizer-uploaded-file-card">
+              <div class="uploaded-file-icon">IMG</div>
+
+              <div class="uploaded-file-info">
+                <strong id="resizer-file-name">No image selected</strong>
+                <span id="resizer-file-size">File size: 0 KB</span>
+              </div>
+            </div>
+
+            <div class="image-resizer-form">
+              <!-- Dimensions -->
+              <div class="image-resizer-dimensions-grid">
+                <div class="form-group">
+                  <label for="resize-image-width">New Width</label>
+                  <input
+                    type="number"
+                    id="resize-image-width"
+                    class="tool-input"
+                    placeholder="Width in px"
+                    min="1"
+                    step="1"
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="resize-image-height">New Height</label>
+                  <input
+                    type="number"
+                    id="resize-image-height"
+                    class="tool-input"
+                    placeholder="Height in px"
+                    min="1"
+                    step="1"
+                  />
+                </div>
+              </div>
+
+              <!-- Aspect Ratio -->
+              <label class="checkbox-control">
+                <input type="checkbox" id="resize-keep-aspect" checked />
+                <span>Keep aspect ratio</span>
+              </label>
+
+              <!-- Output Format -->
+              <div class="form-group">
+                <label for="resize-output-format">Output Format</label>
+                <select id="resize-output-format" class="tool-select">
+                  <option value="original">Keep Original Format</option>
+                  <option value="image/png">PNG</option>
+                  <option value="image/jpeg">JPG</option>
+                  <option value="image/webp">WEBP</option>
+                </select>
+              </div>
+
+              <!-- Quality -->
+              <div class="range-group">
+                <div class="range-label-row">
+                  <label for="resize-image-quality">Output Quality</label>
+                  <span id="resize-image-quality-value">90%</span>
+                </div>
+                <input type="range" id="resize-image-quality" min="10" max="100" value="90" />
+                <small class="input-help">
+                  Quality affects JPG and WEBP output. PNG ignores quality.
+                </small>
+              </div>
+
+              <!-- Background Color -->
+              <div class="form-group color-control">
+                <label for="resize-bg-color">JPG Background Color</label>
+                <div class="color-input-row">
+                  <input type="color" id="resize-bg-color" value="#ffffff" />
+                  <input
+                    type="text"
+                    id="resize-bg-color-text"
+                    class="tool-input"
+                    value="#ffffff"
+                    spellcheck="false"
+                  />
+                </div>
+              </div>
+
+              <!-- Quick Presets -->
+              <div class="resizer-preset-row">
+                <button class="mini-btn resizer-preset-btn" type="button" data-width="1920">1920px</button>
+                <button class="mini-btn resizer-preset-btn" type="button" data-width="1200">1200px</button>
+                <button class="mini-btn resizer-preset-btn" type="button" data-width="800">800px</button>
+                <button class="mini-btn resizer-preset-btn" type="button" data-width="400">400px</button>
+              </div>
+
+              <!-- Actions -->
+              <div class="tool-actions image-resizer-actions">
+                <button class="btn btn-primary" type="button" id="resize-image-btn">
+                  Resize Image
+                </button>
+
+                <button class="btn btn-outline" type="button" id="download-resized-image-btn" disabled>
+                  Download Image
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- Preview Panel -->
+          <section class="tool-panel image-resizer-preview-panel" aria-labelledby="image-resizer-preview-title">
+            <div class="tool-panel-header">
+              <div>
+                <h3 id="image-resizer-preview-title">Resize Preview</h3>
+                <p>Compare original and resized image details.</p>
+              </div>
+            </div>
+
+            <div class="resizer-preview-grid">
+              <div class="resizer-preview-card">
+                <div class="resizer-preview-box" id="resizer-original-preview">
+                  <span>Original Preview</span>
+                </div>
+
+                <div class="image-preview-meta">
+                  <strong>Original Image</strong>
+                  <span id="resizer-original-info">No image selected</span>
+                </div>
+              </div>
+
+              <div class="resizer-preview-card">
+                <div class="resizer-preview-box" id="resizer-result-preview">
+                  <span>Resized Preview</span>
+                </div>
+
+                <div class="image-preview-meta">
+                  <strong>Resized Image</strong>
+                  <span id="resizer-result-info">Resize an image first</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="resizer-results-grid">
+              <div class="resizer-result-card">
+                <span>Original Size</span>
+                <strong id="resizer-original-size">0 KB</strong>
+              </div>
+
+              <div class="resizer-result-card">
+                <span>New Size</span>
+                <strong id="resizer-new-size">0 KB</strong>
+              </div>
+
+              <div class="resizer-result-card">
+                <span>Original Dimensions</span>
+                <strong id="resizer-original-dimensions">0 × 0</strong>
+              </div>
+
+              <div class="resizer-result-card">
+                <span>New Dimensions</span>
+                <strong id="resizer-new-dimensions">0 × 0</strong>
+              </div>
+            </div>
+
+            <div class="image-note-box">
+              <h3>Resize Tip</h3>
+              <p>
+                Resize large images before uploading them to websites. Smaller dimensions
+                can improve loading speed and reduce storage size.
+              </p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+    <!-- Image Resizer Workspace End -->
+
+    <!-- Resize Tips Start -->
+    <section class="image-resizer-tips-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Resize Tips</p>
+          <h2>Best Image Resizing Practices</h2>
+          <p>
+            Use the right image dimensions for better performance, clean layouts, and faster websites.
+          </p>
+        </div>
+
+        <div class="image-resizer-tips-grid">
+          <article class="image-resizer-tip-card">
+            <span>Hero</span>
+            <strong>Use around 1600–1920px width</strong>
+            <small>Good for large website hero images and wide banners.</small>
+          </article>
+
+          <article class="image-resizer-tip-card">
+            <span>Blog</span>
+            <strong>Use around 1200px width</strong>
+            <small>Good for blog covers, portfolio previews, and featured images.</small>
+          </article>
+
+          <article class="image-resizer-tip-card">
+            <span>Cards</span>
+            <strong>Use around 600–800px width</strong>
+            <small>Good for project cards, product cards, and section thumbnails.</small>
+          </article>
+
+          <article class="image-resizer-tip-card">
+            <span>Icons</span>
+            <strong>Use small square sizes</strong>
+            <small>Good for avatars, icons, small logos, and UI graphics.</small>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Resize Tips End -->
+
+    <!-- How To Use Start -->
+    <section class="tool-guide-section">
+      <div class="container">
+        <div class="tool-guide-grid">
+          <article class="guide-content">
+            <p class="section-badge">How to Use</p>
+
+            <h2>How to Resize Images Online</h2>
+
+            <p>
+              Image Resizer helps you change image dimensions before using images on websites,
+              portfolios, blogs, and social previews.
+            </p>
+
+            <ol class="guide-list">
+              <li>Upload a JPG, PNG, or WEBP image.</li>
+              <li>Enter the new width and height.</li>
+              <li>Keep aspect ratio enabled for natural resizing.</li>
+              <li>Resize and download the final image.</li>
+            </ol>
+          </article>
+
+          <article class="guide-content">
+            <p class="section-badge">Use Cases</p>
+
+            <h2>Why Resize Images?</h2>
+
+            <p>
+              Large images slow down websites. Resizing images before upload helps improve performance,
+              reduce file size, and keep layouts clean.
+            </p>
+
+            <ul class="feature-list">
+              <li>Prepare images for websites</li>
+              <li>Resize portfolio project screenshots</li>
+              <li>Make blog featured images</li>
+              <li>Create smaller thumbnails</li>
+              <li>Improve loading speed</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- How To Use End -->
+
+    <!-- Related Tools Start -->
+    <section class="related-tools-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">Related Tools</p>
+          <h2>More Image Tools</h2>
+          <p>
+            Continue working with image optimization tools from DevToolKit.
+          </p>
+        </div>
+
+        <div class="tools-grid">
+          <article class="tool-card">
+            <div class="tool-icon">IMG</div>
+            <div class="tool-content">
+              <h3>Image Converter</h3>
+              <p>Convert images between PNG, JPG, and WEBP directly in the browser.</p>
+            </div>
+            <a href="image-converter.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">↓KB</div>
+            <div class="tool-content">
+              <h3>Image Compressor</h3>
+              <p>Compress images, reduce file size, preview results, and download quickly.</p>
+            </div>
+            <a href="image-compressor.html" class="tool-link">Open Tool</a>
+          </article>
+
+          <article class="tool-card">
+            <div class="tool-icon">ICO</div>
+            <div class="tool-content">
+              <h3>Favicon Generator</h3>
+              <p>Create favicon image sizes for browser tabs, websites, and app icons.</p>
+            </div>
+            <a href="favicon-generator.html" class="tool-link">Open Tool</a>
+          </article>
+        </div>
+      </div>
+    </section>
+    <!-- Related Tools End -->
+
+    <!-- FAQ Start -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-badge">FAQ</p>
+          <h2>Image Resizer FAQs</h2>
+          <p>
+            Common questions about image resizing, aspect ratio, file size, and browser-based resizing.
+          </p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>What does image resizing do?</summary>
+            <p>
+              Image resizing changes the width and height of an image while keeping or changing
+              the original aspect ratio.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Should I keep aspect ratio enabled?</summary>
+            <p>
+              Yes, keeping aspect ratio prevents images from becoming stretched or squeezed.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Can resizing reduce file size?</summary>
+            <p>
+              Yes, reducing image dimensions often reduces file size, especially for large photos
+              and website images.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Does this upload my image to a server?</summary>
+            <p>
+              The tool can be built with JavaScript Canvas API, so resizing can happen directly
+              in the browser.
+            </p>
+          </details>
+
+          <details class="faq-item">
+            <summary>Is this image resizer free?</summary>
+            <p>
+              Yes, DevToolKit Image Resizer is free and runs directly in the browser.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+    <!-- FAQ End -->
+
+    <!-- CTA Start -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-box">
+          <p class="section-badge">Keep Optimizing</p>
+          <h2>Explore More DevToolKit Tools</h2>
+          <p>
+            Use more free tools for image compression, image conversion, favicon creation,
+            CSS design, SEO, and frontend development.
+          </p>
+
+          <div class="cta-actions">
+            <a href="../index.html#tools" class="btn btn-primary">
+              View All Tools
+            </a>
+
+            <a href="favicon-generator.html" class="btn btn-outline">
+              Try Favicon Generator
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA End -->
+  </main>
+  <!-- Main End -->
+
+   <div id="site-footer"></div>
+
+  <!-- JavaScript Files -->
+  <script src="js/main.js"></script>
+  <script src="/js/components.js"></script>
+
+  <!-- JS Later -->
+  <script src="../js/image-resizer.js"></script>
+  <script src="../js/main.js"></script>
+</body>
+</html>
