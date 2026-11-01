@@ -13,9 +13,6 @@
     content="Use DevToolKit to create AI CVs, format JSON, test regex, generate CSS, compress images, make QR codes, create passwords, and search FACEIT CS2 stats with 22 free online tools."
   />
 
-  <link rel="icon" type="image/png" href="assets/images/favicon.png" />
-  <link rel="apple-touch-icon" href="assets/images/favicon.png" />
-
   <meta
     name="keywords"
     content="DevToolKit, free online developer tools, AI CV maker, AI resume builder, free CV generator, ATS resume maker, JSON formatter online, regex tester, CSS gradient generator, image compressor, image converter, markdown previewer, meta tags generator, QR code generator, password generator, CSS minifier, FACEIT finder, CS2 FACEIT stats, FACEIT ELO lookup"
@@ -25,11 +22,17 @@
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="theme-color" content="#0f172a" />
   <meta name="application-name" content="DevToolKit" />
+  <meta name="apple-mobile-web-app-title" content="DevToolKit" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <!-- Favicon (single, consistent set) -->
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="apple-touch-icon" href="/assets/images/favicon.png" />
 
   <!-- Canonical URL -->
   <link rel="canonical" href="https://devtoolkit-tools.vercel.app/" />
 
-  <!-- Open Graph Meta -->
+  <!-- Open Graph Meta (link preview card) -->
   <meta property="og:title" content="DevToolKit - Free AI CV Maker, Developer Tools & Gaming Stats" />
   <meta
     property="og:description"
@@ -39,7 +42,12 @@
   <meta property="og:site_name" content="DevToolKit" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:url" content="https://devtoolkit-tools.vercel.app/" />
-  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
+  <meta property="og:image" content="https://devtoolkit-tools.vercel.app/assets/images/og.jpg" />
+  <meta property="og:image:secure_url" content="https://devtoolkit-tools.vercel.app/assets/images/og.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="DevToolKit - AI CV Maker, Developer Tools & Gaming Stats, 22 free online browser tools" />
 
   <!-- Twitter Card Meta -->
   <meta name="twitter:card" content="summary_large_image" />
@@ -48,10 +56,12 @@
     name="twitter:description"
     content="Create AI CVs, format code, generate CSS, optimize images, make QR codes, and search FACEIT CS2 stats in one free toolkit."
   />
-  <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og-image.png" />
-
-  <!-- Favicon -->
-  <link rel="icon" href="assets/icons/favicon.ico" type="image/x-icon" />
+  <meta name="twitter:image" content="https://devtoolkit-tools.vercel.app/assets/images/og.jpg" />
+  <meta name="twitter:image:alt" content="DevToolKit - AI CV Maker, Developer Tools & Gaming Stats, 22 free online browser tools" />
+  <!-- If you make a Twitter/X account for this project, add these two for attribution:
+  <meta name="twitter:site" content="@yourhandle" />
+  <meta name="twitter:creator" content="@yourhandle" />
+  -->
 
   <!-- CSS Files -->
   <link rel="stylesheet" href="css/style.css" />
@@ -126,9 +136,49 @@
         },
         "primaryImageOfPage": {
           "@type": "ImageObject",
-          "url": "https://devtoolkit-tools.vercel.app/assets/images/og-image.png"
+          "url": "https://devtoolkit-tools.vercel.app/assets/images/og.jpg",
+          "width": 1200,
+          "height": 630
         },
         "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https://devtoolkit-tools.vercel.app/#software",
+        "name": "DevToolKit",
+        "url": "https://devtoolkit-tools.vercel.app/",
+        "applicationCategory": "DeveloperApplication",
+        "operatingSystem": "Any (Web Browser)",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "description": "A free online toolkit with 22 tools including an AI CV maker, JSON formatter, regex tester, CSS generators, image tools, and FACEIT CS2 stats lookup.",
+        "featureList": [
+          "AI CV Maker",
+          "FaceitFinder",
+          "JSON Formatter",
+          "Regex Tester",
+          "URL Encoder / Decoder",
+          "Markdown Previewer",
+          "Meta Tags Generator",
+          "CSS Minifier / Beautifier",
+          "HTML Entity Encoder / Decoder",
+          "Gradient Generator",
+          "Color Palette Generator",
+          "Box Shadow Generator",
+          "Glassmorphism Generator",
+          "CSS Clamp Generator",
+          "Image Converter",
+          "Image Compressor",
+          "Image Resizer",
+          "Favicon Generator",
+          "QR Code Generator",
+          "Password Generator",
+          "Text Case Converter",
+          "Lorem Ipsum Generator"
+        ]
       },
       {
         "@type": "ItemList",
